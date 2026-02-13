@@ -1,6 +1,7 @@
 import React from "react"
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { ChatWidget } from "@/components/chat-widget";
 
 import "./globals.css";
 
@@ -31,7 +32,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}>
-      <body suppressHydrationWarning className="font-sans antialiased">{children}</body>
+      <body suppressHydrationWarning className="font-sans antialiased">
+        {children}
+        <ChatWidget />
+      </body>
     </html>
   );
 }
