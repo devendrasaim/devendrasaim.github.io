@@ -61,7 +61,7 @@ export function HeroSection() {
         </motion.div>
 
         {/* Name */}
-        <h1 className="font-mono text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-foreground">
+        <h1 className="font-mono text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-foreground break-words">
           <Typewriter
             text="DEVENDRA SAI MUPPARAJU"
             speed={60}
@@ -75,9 +75,9 @@ export function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className="mb-10"
+            className="mb-8 md:mb-10 px-4"
           >
-            <p className="font-mono text-sm md:text-base tracking-[0.15em] text-muted-foreground">
+            <p className="font-mono text-xs sm:text-sm md:text-base tracking-[0.15em] text-muted-foreground">
               <Typewriter
                 text="Software Engineer | MSCS Graduate | System Architect"
                 speed={30}
@@ -93,7 +93,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-sans text-base md:text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto mb-12"
+            className="font-sans text-sm sm:text-base md:text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto mb-8 md:mb-12 px-4"
           >
             I believe in code that feels, not just functions. Built on care and
             curiosity, my work explores how deep logic shapes simple experiences.
@@ -109,11 +109,11 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-6 md:px-0"
           >
             <a
               href="mailto:mdevendrasai9@gmail.com"
-              className="group relative inline-flex items-center gap-3 border border-foreground/20 px-8 py-3 font-mono text-sm tracking-wider text-foreground transition-all hover:border-foreground hover:bg-foreground hover:text-background"
+              className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 border border-foreground/20 px-8 py-3 font-mono text-sm tracking-wider text-foreground transition-all hover:border-foreground hover:bg-foreground hover:text-background"
             >
               <Mail className="h-4 w-4" />
               Contact Me
@@ -122,7 +122,7 @@ export function HeroSection() {
               href="https://github.com/devendrasaim"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-3 border border-foreground/10 px-8 py-3 font-mono text-sm tracking-wider text-muted-foreground transition-all hover:border-foreground/30 hover:text-foreground"
+              className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 border border-foreground/10 px-8 py-3 font-mono text-sm tracking-wider text-muted-foreground transition-all hover:border-foreground/30 hover:text-foreground"
             >
               <Github className="h-4 w-4" />
               Access Repository
@@ -131,7 +131,7 @@ export function HeroSection() {
               href="/docs/Resume.pdf?v=updated"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-3 border border-foreground/10 px-8 py-3 font-mono text-sm tracking-wider text-muted-foreground transition-all hover:border-foreground/30 hover:text-foreground"
+              className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 border border-foreground/10 px-8 py-3 font-mono text-sm tracking-wider text-muted-foreground transition-all hover:border-foreground/30 hover:text-foreground"
             >
               <FileIcon className="h-4 w-4" />
               Resume

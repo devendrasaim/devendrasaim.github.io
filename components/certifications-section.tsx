@@ -76,10 +76,13 @@ export function CertificationsSection() {
 
         {/* Stacked Cards Container */}
         <div className="w-full flex justify-center py-10">
-            {/* The group class allows us to detect hover on the container */}
-            <div className="group flex flex-col md:flex-row items-center justify-center relative w-full max-w-4xl h-[400px] md:h-[200px]">
+            {/* 
+                Mobile: Simple vertical stack with gap
+                Desktop: Horizontal overlapping stack requiring hover interaction
+            */}
+            <div className="group flex flex-col md:flex-row items-center justify-center relative w-full max-w-4xl gap-4 md:gap-0 md:h-[200px]">
                 {certifications.map((cert, index) => {
-                    const offset = index * 40; // Default overlap offset
+                    const offset = index * 40; 
                     
                     return (
                         <motion.a
@@ -87,48 +90,36 @@ export function CertificationsSection() {
                             target="_blank"
                             rel="noopener noreferrer"
                             key={cert.id}
-                            // Initial stacked state
+                            // Initial state: Mobile (static) vs Desktop (stacked)
                             initial={{ 
-                                x: offset - (certifications.length * 20), // Center the stack roughly
-                                marginLeft: -100, // Negative margin creates overlap
-                                rotate: index % 2 === 0 ? -2 : 2, // Slight rotation for natural feel
-                                zIndex: index 
+                                opacity: 1,
+                                y: 0
                             }}
-                            // Animate to spread state on hover of the PARENT container (.group)
-                            variants={{
-                                stacked: { 
-                                     x: 0,
-                                     marginLeft: -120, // Keep overlapping
-                                     rotate: (index % 2 === 0 ? -3 : 3) + index, // Fan out slightly
-                                     scale: 0.95
-                                },
-                                // When container is hovered, spread them out
-                                expanded: { 
-                                    x: 0,
-                                    marginLeft: 20, // Add gap
-                                    rotate: 0,
-                                    scale: 1,
-                                    transition: { type: "spring", stiffness: 200, damping: 20 }
-                                }
-                            }}
+                            // We only use variants for Desktop hover effects manually here to avoid complex media query logic in variants
+                            whileHover="hover"
                             
                             className={`
-                                relative w-[280px] h-[160px] md:h-[180px] flex-shrink-0
+                                relative flex-shrink-0
+                                w-full md:w-[280px] h-[160px] md:h-[180px]
                                 rounded-lg border overflow-hidden p-6 flex flex-col justify-between
                                 transition-all duration-500 ease-out cursor-pointer group/card
                                 ${accentMap[cert.color as keyof typeof accentMap]}
                                 
-                                /* Default State (Stacked) via CSS transforms to act as backup/base */
-                                md:-ml-[140px] first:ml-0
+                                /* DESKTOP STYLES (md:) */
+                                md:absolute md:top-0 md:bg-background/95 md:backdrop-blur-sm
                                 
-                                /* Hover State (Expanded) */
-                                group-hover:!ml-4 group-hover:rotate-0 group-hover:scale-100 group-hover:!translate-x-0
+                                /* Desktop Default Stacked State (via CSS for stability) */
+                                md:[transform:var(--stack-transform)] md:ml-[var(--stack-margin)] md:z-[var(--stack-z)]
+                                
+                                /* Desktop Hover State (via group-hover on parent) */
+                                md:group-hover:!ml-4 md:group-hover:!translate-y-0 md:group-hover:!translate-x-0 md:group-hover:!rotate-0 md:group-hover:!scale-100 md:group-hover:relative md:group-hover:inset-auto
                             `}
                             style={{
-                                // Inline styles for the "fan" effect when not hovered
-                                transform: `rotate(${(index - 1.5) * 5}deg) translateY(${Math.abs(index - 1.5) * 10}px)`,
-                                zIndex: index
-                            }}
+                                // Custom properties for the stacked state on desktop
+                                "--stack-transform": `rotate(${(index - 1.5) * 5}deg) translateY(${Math.abs(index - 1.5) * 10}px)`,
+                                "--stack-margin": `${index === 0 ? 0 : -140}px`,
+                                "--stack-z": index,
+                            } as React.CSSProperties}
                         >
                             {/* Background Image Preview */}
                             {cert.image && (
