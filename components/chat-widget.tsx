@@ -41,9 +41,25 @@ export function ChatWidget() {
     setInput("");
     setIsLoading(true);
 
+    // Debug command to list models
+    if (userMsg === "/models") {
+      try {
+        const response = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models?key=${GEMINI_API_KEY}`
+        );
+        const data = await response.json();
+        const modelNames = data.models?.map((m: any) => m.name).join(", ") || "No models found";
+        setMessages((prev) => [...prev, { role: "model", text: `AVAILABLE MODELS:\n${modelNames}` }]);
+      } catch (error) {
+        setMessages((prev) => [...prev, { role: "model", text: `DEBUG ERROR: ${error instanceof Error ? error.message : "Failed"}` }]);
+      }
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-001:generateContent?key=${GEMINI_API_KEY}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
         {
           method: "POST",
           headers: {
