@@ -77,7 +77,7 @@ export function ChatWidget() {
       console.error("Chat Error:", error);
       setMessages((prev) => [
         ...prev, 
-        { role: "model", text: "SYSTEM_ERROR: Connection interrupted. Please try again." }
+        { role: "model", text: `SYSTEM_ERROR: ${error instanceof Error ? error.message : "Connection failed"}` }
       ]);
     } finally {
       setIsLoading(false);
