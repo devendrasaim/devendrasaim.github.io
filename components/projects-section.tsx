@@ -6,14 +6,13 @@ import { ProjectModule } from "@/components/project-module";
 const projects = [
   {
     moduleId: "MODULE_A",
-    title: "BOUNCE_STREAK_ENGINE",
-    tags: ["Reddit Devvit", "Phaser", "TypeScript"],
+    title: "SECURE_ENCLAVE_PROTOCOLS",
+    tags: ["Intel SGX", "PyTorch", "C++"],
     description:
-      "Engineered a high-performance 2D arcade physics engine optimized for mobile browsers. Implemented 'cushion' collision detection to deliver a smooth 60 FPS experience. Architected a deterministic daily challenge system using seeded randomization, ensuring identical physics conditions for thousands of concurrent users.",
-    viewportLabel: "PHYSICS_SIMULATION_VIEWPORT",
+      "Proved the integrity of sensitive training loops in untrusted environments. By leveraging Intel SGX enclaves, this architecture isolates computation from OS-level vulnerabilities, ensuring privacy was maintained even during simulated system compromise scenarios.",
+    viewportLabel: "ENCRYPTED_TERMINAL_OUTPUT",
     accentColor: "amber" as const,
-    link: "https://www.reddit.com/r/bounce_streak_dev/comments/1r1adpg/bouncestreak/",
-    image: "/images/gameplay.gif",
+    pdfUrl: "/docs/secure-deep-learning-sgx.pdf",
   },
   {
     moduleId: "MODULE_B",
@@ -39,13 +38,14 @@ const projects = [
   },
   {
     moduleId: "MODULE_D",
-    title: "SECURE_ENCLAVE_PROTOCOLS",
-    tags: ["Intel SGX", "PyTorch", "C++"],
+    title: "BOUNCE_STREAK_ENGINE",
+    tags: ["Reddit Devvit", "Phaser", "TypeScript"],
     description:
-      "Proved the integrity of sensitive training loops in untrusted environments. By leveraging Intel SGX enclaves, this architecture isolates computation from OS-level vulnerabilities, ensuring privacy was maintained even during simulated system compromise scenarios.",
-    viewportLabel: "ENCRYPTED_TERMINAL_OUTPUT",
+      "Engineered a high-performance 2D arcade physics engine optimized for mobile browsers. Implemented 'cushion' collision detection to deliver a smooth 60 FPS experience. Architected a deterministic daily challenge system using seeded randomization, ensuring identical physics conditions for thousands of concurrent users.",
+    viewportLabel: "PHYSICS_SIMULATION_VIEWPORT",
     accentColor: "amber" as const,
-    pdfUrl: "/docs/secure-deep-learning-sgx.pdf",
+    link: "https://www.reddit.com/r/bounce_streak_dev/comments/1r1adpg/bouncestreak/",
+    image: "/images/gameplay.gif",
   },
   {
     moduleId: "MODULE_E",

@@ -74,96 +74,62 @@ export function CertificationsSection() {
           </h2>
         </motion.div>
 
-        {/* Stacked Cards Container */}
-        <div className="w-full flex justify-center py-10">
-            {/* 
-                Mobile: Simple vertical stack with gap
-                Desktop: Horizontal overlapping stack requiring hover interaction
-            */}
-            <div className="group flex flex-col md:flex-row items-center justify-center relative w-full max-w-4xl gap-4 md:gap-0 md:h-[200px]">
-                {certifications.map((cert, index) => {
-                    const offset = index * 40; 
+        {/* Grid Cards Container */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl mx-auto py-10">
+            {certifications.map((cert, index) => (
+                <motion.a
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    key={cert.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.02 }}
+                    className={`
+                        relative w-full h-[180px]
+                        rounded-lg border overflow-hidden p-6 flex flex-col justify-between
+                        transition-all duration-300 ease-out cursor-pointer group/card
+                        ${accentMap[cert.color as keyof typeof accentMap]}
+                        hover:shadow-lg
+                    `}
+                >
+                    {/* Background Image Preview */}
+                    {cert.image && (
+                        <div className="absolute inset-0 z-0">
+                            <img 
+                                src={cert.image} 
+                                alt={`${cert.title} preview`}
+                                className="w-full h-full object-cover opacity-20 group-hover/card:opacity-40 transition-opacity grayscale group-hover/card:grayscale-0"
+                            />
+                            <div className="absolute inset-0 bg-background/80 group-hover/card:bg-background/40 transition-colors" />
+                        </div>
+                    )}
+
+                    <div className="relative z-10 flex justify-between items-start">
+                        <Award className="h-8 w-8 opacity-80" />
+                        <span className="font-mono text-[10px] opacity-60 border border-current px-1 py-0.5 rounded bg-background/50 backdrop-blur-sm">
+                            {cert.date}
+                        </span>
+                    </div>
                     
-                    return (
-                        <motion.a
-                            href={cert.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            key={cert.id}
-                            // Initial state: Mobile (static) vs Desktop (stacked)
-                            initial={{ 
-                                opacity: 1,
-                                y: 0
-                            }}
-                            // We only use variants for Desktop hover effects manually here to avoid complex media query logic in variants
-                            whileHover="hover"
-                            
-                            className={`
-                                relative flex-shrink-0
-                                w-full md:w-[280px] h-[160px] md:h-[180px]
-                                rounded-lg border overflow-hidden p-6 flex flex-col justify-between
-                                transition-all duration-500 ease-out cursor-pointer group/card
-                                ${accentMap[cert.color as keyof typeof accentMap]}
-                                
-                                /* DESKTOP STYLES (md:) */
-                                md:absolute md:top-0 md:bg-background/95 md:backdrop-blur-sm
-                                
-                                /* Desktop Default Stacked State (via CSS for stability) */
-                                md:[transform:var(--stack-transform)] md:ml-[var(--stack-margin)] md:z-[var(--stack-z)]
-                                
-                                /* Desktop Hover State (via group-hover on parent) */
-                                md:group-hover:!ml-4 md:group-hover:!translate-y-0 md:group-hover:!translate-x-0 md:group-hover:!rotate-0 md:group-hover:!scale-100 md:group-hover:relative md:group-hover:inset-auto
-                            `}
-                            style={{
-                                // Custom properties for the stacked state on desktop
-                                "--stack-transform": `rotate(${(index - 1.5) * 5}deg) translateY(${Math.abs(index - 1.5) * 10}px)`,
-                                "--stack-margin": `${index === 0 ? 0 : -140}px`,
-                                "--stack-z": index,
-                            } as React.CSSProperties}
-                        >
-                            {/* Background Image Preview */}
-                            {cert.image && (
-                                <div className="absolute inset-0 z-0">
-                                    <img 
-                                        src={cert.image} 
-                                        alt={`${cert.title} preview`}
-                                        className="w-full h-full object-cover opacity-20 group-hover/card:opacity-40 transition-opacity grayscale group-hover/card:grayscale-0"
-                                    />
-                                    <div className="absolute inset-0 bg-background/80 group-hover/card:bg-background/40 transition-colors" />
-                                </div>
-                            )}
+                    <div className="relative z-10">
+                        <h3 className="font-bold text-lg leading-tight mb-1 line-clamp-2 drop-shadow-md">
+                            {cert.title}
+                        </h3>
+                        <div className="flex items-center justify-between">
+                            <span className="text-xs opacity-70 font-mono">
+                                {cert.issuer}
+                            </span>
+                            <ExternalLink className="h-3 w-3 opacity-0 group-hover/card:opacity-100 transition-opacity" />
+                        </div>
+                    </div>
 
-                            <div className="relative z-10 flex justify-between items-start">
-                                <Award className="h-8 w-8 opacity-80" />
-                                <span className="font-mono text-[10px] opacity-60 border border-current px-1 py-0.5 rounded bg-background/50 backdrop-blur-sm">
-                                    {cert.date}
-                                </span>
-                            </div>
-                            
-                            <div className="relative z-10">
-                                <h3 className="font-bold text-lg leading-tight mb-1 line-clamp-2 drop-shadow-md">
-                                    {cert.title}
-                                </h3>
-                                <div className="flex items-center justify-between">
-                                    <span className="text-xs opacity-70 font-mono">
-                                        {cert.issuer}
-                                    </span>
-                                    <ExternalLink className="h-3 w-3 opacity-0 group-hover/card:opacity-100 transition-opacity" />
-                                </div>
-                            </div>
-
-                            {/* Hover glow effect per card */}
-                            <div className="absolute inset-0 bg-current opacity-0 hover:opacity-5 transition-opacity pointer-events-none z-20" />
-                        </motion.a>
-                    );
-                })}
-            </div>
-        </div>
-        
-        <div className="text-center mt-8 md:mt-0">
-             <p className="font-mono text-[10px] text-muted-foreground/50 uppercase tracking-widest">
-                [ HOVER TO INSPECT CREDENTIALS ]
-             </p>
+                    {/* Hover glow effect per card */}
+                    <div className="absolute inset-0 bg-current opacity-0 hover:opacity-5 transition-opacity pointer-events-none z-20" />
+                </motion.a>
+            ))}
         </div>
       </div>
     </section>
