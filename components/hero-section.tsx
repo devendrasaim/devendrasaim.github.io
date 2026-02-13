@@ -128,7 +128,7 @@ export function HeroSection() {
               Access Repository
             </a>
             <a
-              href="/docs/Resume.pdf"
+              href="/docs/Resume.pdf?v=updated"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative inline-flex items-center gap-3 border border-foreground/10 px-8 py-3 font-mono text-sm tracking-wider text-muted-foreground transition-all hover:border-foreground/30 hover:text-foreground"
