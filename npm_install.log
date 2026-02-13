@@ -1,0 +1,23 @@
+npm ERR! code ERESOLVE
+npm ERR! ERESOLVE unable to resolve dependency tree
+npm ERR! 
+npm ERR! While resolving: my-project@0.1.0
+npm ERR! Found: date-fns@4.1.0
+npm ERR! node_modules/date-fns
+npm ERR!   date-fns@"4.1.0" from the root project
+npm ERR! 
+npm ERR! Could not resolve dependency:
+npm ERR! peer date-fns@"^2.28.0 || ^3.0.0" from react-day-picker@8.10.1
+npm ERR! node_modules/react-day-picker
+npm ERR!   react-day-picker@"8.10.1" from the root project
+npm ERR! 
+npm ERR! Fix the upstream dependency conflict, or retry
+npm ERR! this command with --force or --legacy-peer-deps
+npm ERR! to accept an incorrect (and potentially broken) dependency resolution.
+npm ERR! 
+npm ERR! 
+npm ERR! For a full report see:
+npm ERR! C:\Users\cc\AppData\Local\npm-cache\_logs\2026-02-12T21_01_34_492Z-eresolve-report.txt
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\cc\AppData\Local\npm-cache\_logs\2026-02-12T21_01_34_492Z-debug-0.log

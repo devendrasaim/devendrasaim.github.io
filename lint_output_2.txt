@@ -1,0 +1,1 @@
+Invalid project directory provided, no such directory: C:\Users\cc\OneDrive - Iowa State University\Desktop\MyPortfolio\lint
