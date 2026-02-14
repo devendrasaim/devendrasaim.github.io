@@ -11,9 +11,9 @@ export async function chatWithGemini(userMessage: string) {
   }
 
   try {
-    // Use the 2.0 Flash Lite model (designed for speed and reliability, often less congested)
+    // Use the 1.5 Flash Lite "Latest" model (Standard Free Tier, usually very reliable)
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=${apiKey}`,
       {
         method: "POST",
         headers: {
