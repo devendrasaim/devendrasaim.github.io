@@ -19,7 +19,7 @@ const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: "model", text: "SYSTEM_ONLINE. How can I assist you with Devendra's portfolio?" }
+    { role: "model", text: "Hello! I'm Devendra's AI assistant. Ask me anything about his projects, skills, or experience." }
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -70,14 +70,14 @@ export function ChatWidget() {
         throw new Error(data.error.message || "API Error");
       }
 
-      const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "ERROR: Data corruption detected.";
+      const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't process that. Please try again.";
       
       setMessages((prev) => [...prev, { role: "model", text: reply }]);
     } catch (error) {
       console.error("Chat Error:", error);
       setMessages((prev) => [
         ...prev, 
-        { role: "model", text: `SYSTEM_ERROR: ${error instanceof Error ? error.message : "Connection failed"}` }
+        { role: "model", text: `Error: ${error instanceof Error ? error.message : "Connection failed"}` }
       ]);
     } finally {
       setIsLoading(false);
@@ -120,7 +120,7 @@ export function ChatWidget() {
               <div className="flex items-center gap-2">
                 <Cpu className="w-4 h-4 text-cyan" />
                 <span className="font-mono text-xs font-bold tracking-widest text-cyan uppercase">
-                  System_Assistant v1.2 // Online
+                  AI Assistant // Online
                 </span>
               </div>
             </div>
