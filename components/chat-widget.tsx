@@ -136,7 +136,7 @@ export function ChatWidget() {
               <div className="flex items-center gap-2">
                 <Cpu className="w-4 h-4 text-cyan" />
                 <span className="font-mono text-xs font-bold tracking-widest text-cyan uppercase">
-                  System_Assistant // Online
+                  System_Assistant v1.2 // Online
                 </span>
               </div>
             </div>
