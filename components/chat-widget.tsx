@@ -67,6 +67,17 @@ export function ChatWidget() {
     handleSend(input);
   };
 
+  // Helper to parse **bold** text
+  const renderMessage = (text: string) => {
+    const parts = text.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, index) => {
+      if (part.startsWith("**") && part.endsWith("**")) {
+        return <strong key={index} className="text-purple-300 font-bold">{part.slice(2, -2)}</strong>;
+      }
+      return part;
+    });
+  };
+
   return (
     <>
       {/* Floating Toggle Button */}
@@ -159,7 +170,7 @@ export function ChatWidget() {
                         : "bg-zinc-800/80 text-zinc-200 rounded-bl-none border border-zinc-700/50"
                     }`}
                   >
-                    <p className="whitespace-pre-wrap">{msg.text}</p>
+                    <p className="whitespace-pre-wrap">{renderMessage(msg.text)}</p>
                   </div>
                 </div>
               ))}
