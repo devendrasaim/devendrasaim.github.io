@@ -27,17 +27,23 @@ export function ChatWidget() {
     }
   }, [messages, isOpen]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim() || isLoading) return;
+  // Suggestions configuration
+  const suggestions = [
+    { icon: "💡", label: "What's your most impressive project?" },
+    { icon: "🚀", label: "Why are you a good fit for a startup?" },
+    { icon: "🛠️", label: "What are your core skills?" },
+  ];
 
-    const userMsg = input.trim();
+  const handleSend = async (text: string) => {
+    if (!text.trim() || isLoading) return;
+
+    const userMsg = text.trim();
     setMessages((prev) => [...prev, { role: "user", text: userMsg }]);
     setInput("");
     setIsLoading(true);
 
     try {
-      // Call the Server Action (Secure Backend)
+      // Call the Server Action
       const result = await chatWithGemini(userMsg);
 
       if (result.error) {
@@ -54,6 +60,11 @@ export function ChatWidget() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    handleSend(input);
   };
 
   return (
@@ -117,22 +128,24 @@ export function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-6 z-50 w-[90vw] md:w-[400px] h-[500px] max-h-[70vh] flex flex-col rounded-xl overflow-hidden border border-cyan/30 bg-[#030304]/95 backdrop-blur-xl shadow-2xl"
+            className="fixed bottom-24 right-6 z-50 w-[90vw] md:w-[400px] h-[550px] max-h-[75vh] flex flex-col rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-950/95 backdrop-blur-xl shadow-2xl"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-cyan/20 bg-cyan/5">
+            <div className="flex items-center justify-between px-4 py-4 border-b border-zinc-800 bg-zinc-900/50">
               <div className="flex items-center gap-2">
-                <Cpu className="w-4 h-4 text-cyan" />
-                <span className="font-mono text-xs font-bold tracking-widest text-cyan uppercase">
-                  AI Assistant // Online
+                <span className="font-sans text-sm font-semibold tracking-wide text-zinc-100">
+                  Ask DevendraAI
                 </span>
               </div>
+              <button onClick={() => setIsOpen(false)} className="text-zinc-500 hover:text-white transition-colors">
+                <X className="w-5 h-5" />
+              </button>
             </div>
 
             {/* Messages Area */}
             <div 
               ref={scrollRef}
-              className="flex-1 overflow-y-auto p-4 space-y-4 font-mono text-sm scrollbar-thin scrollbar-thumb-cyan/20 scrollbar-track-transparent"
+              className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-zinc-700/50 scrollbar-track-transparent"
             >
               {messages.map((msg, i) => (
                 <div
@@ -140,49 +153,61 @@ export function ChatWidget() {
                   className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`max-w-[85%] p-3 rounded-lg border ${
+                    className={`max-w-[85%] p-3.5 rounded-2xl text-sm leading-relaxed ${
                       msg.role === "user"
-                        ? "bg-cyan/10 border-cyan/30 text-cyan-50 rounded-br-none"
-                        : "bg-zinc-900/80 border-zinc-800 text-amber-50/90 rounded-bl-none border-l-2 border-l-amber-500/50"
+                        ? "bg-purple-600 text-white rounded-br-none"
+                        : "bg-zinc-800/80 text-zinc-200 rounded-bl-none border border-zinc-700/50"
                     }`}
                   >
-                    {msg.role === "model" && (
-                        <span className="block text-[10px] text-zinc-500 mb-1 tracking-wider uppercase">
-                            AI_RESPONSE
-                        </span>
-                    )}
-                    <p className="leading-relaxed whitespace-pre-wrap">{msg.text}</p>
+                    <p className="whitespace-pre-wrap">{msg.text}</p>
                   </div>
                 </div>
               ))}
               
+              {/* Suggested Prompts (Only show if only 1 message exists) */}
+              {messages.length === 1 && (
+                 <div className="flex flex-col gap-2 mt-4 px-1">
+                   {suggestions.map((s, i) => (
+                     <button
+                       key={i}
+                       onClick={() => handleSend(s.label)}
+                       className="flex items-center gap-3 p-3 rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-purple-500/50 hover:bg-zinc-800 transition-all text-left group"
+                     >
+                       <span className="text-lg">{s.icon}</span>
+                       <span className="text-sm text-zinc-400 group-hover:text-purple-300 transition-colors">
+                         {s.label}
+                       </span>
+                     </button>
+                   ))}
+                 </div>
+              )}
+
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-zinc-900/50 border border-zinc-800 p-3 rounded-lg rounded-bl-none flex items-center gap-2">
-                    <Loader2 className="w-4 h-4 text-cyan animate-spin" />
-                    <span className="text-xs text-zinc-500 animate-pulse">Processing Query...</span>
+                  <div className="bg-zinc-800/80 border border-zinc-700/50 p-3 rounded-2xl rounded-bl-none flex items-center gap-2">
+                    <Loader2 className="w-4 h-4 text-purple-400 animate-spin" />
+                    <span className="text-xs text-zinc-400">Thinking...</span>
                   </div>
                 </div>
               )}
             </div>
 
             {/* Input Area */}
-            <form onSubmit={handleSubmit} className="p-4 border-t border-cyan/20 bg-background/50">
-              <div className="relative flex items-center gap-2">
-                <span className="text-cyan font-mono">{">"}</span>
+            <form onSubmit={handleSubmit} className="p-4 bg-zinc-900/30">
+              <div className="relative flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 rounded-full px-2 py-1.5 focus-within:border-purple-500/50 focus-within:ring-1 focus-within:ring-purple-500/20 transition-all">
                 <input
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Execute query..."
-                  className="flex-1 bg-transparent border-none outline-none font-mono text-sm text-foreground placeholder:text-muted-foreground/50 focus:ring-0"
+                  placeholder="Ask about skills, projects..."
+                  className="flex-1 bg-transparent border-none outline-none text-sm text-zinc-200 placeholder:text-zinc-500 px-3 py-2 focus:ring-0"
                 />
                 <button
                   type="submit"
                   disabled={isLoading || !input.trim()}
-                  className="p-2 rounded-md hover:bg-cyan/10 text-cyan disabled:opacity-50 transition-colors"
+                  className="p-2 rounded-full bg-purple-600 hover:bg-purple-500 text-white disabled:opacity-50 disabled:bg-zinc-700 transition-all"
                 >
-                  <Send className="w-4 h-4" />
+                  <Send className="w-4 h-4 ml-0.5" />
                 </button>
               </div>
             </form>
