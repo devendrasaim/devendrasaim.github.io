@@ -3,18 +3,12 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Terminal, X, Send, Cpu, Loader2 } from "lucide-react";
-import { SYSTEM_PROMPT } from "@/lib/system-prompt";
+import { chatWithGemini } from "@/app/actions";
 
 type Message = {
   role: "user" | "model";
   text: string;
 };
-
-// **SECURITY NOTE**:
-// This key is exposed on the client side because GitHub Pages is a static host.
-// You MUST restrict this key in the Google Cloud Console to only allow requests from your domain:
-// https://devendrasaim.github.io
-const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,47 +26,20 @@ export function ChatWidget() {
     }
   }, [messages, isOpen]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim() || isLoading) return;
-
     const userMsg = input.trim();
     setMessages((prev) => [...prev, { role: "user", text: userMsg }]);
     setInput("");
     setIsLoading(true);
 
     try {
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            contents: [
-              {
-                role: "user",
-                parts: [
-                  { 
-                    text: `SYSTEM CONTEXT: ${SYSTEM_PROMPT}\n\nUSER QUESTION: ${userMsg}` 
-                  }
-                ],
-              },
-            ],
-          }),
-        }
-      );
+      // Call the Server Action (Secure Backend)
+      const result = await chatWithGemini(userMsg);
 
-      const data = await response.json();
-      
-      if (data.error) {
-        throw new Error(data.error.message || "API Error");
+      if (result.error) {
+        throw new Error(result.error);
       }
 
-      const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't process that. Please try again.";
-      
-      setMessages((prev) => [...prev, { role: "model", text: reply }]);
+      setMessages((prev) => [...prev, { role: "model", text: result.reply || "Error: Empty response." }]);
     } catch (error) {
       console.error("Chat Error:", error);
       setMessages((prev) => [
