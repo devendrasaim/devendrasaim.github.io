@@ -80,21 +80,7 @@ export function SpotlightAvatar({ src, alt, size = 180 }: SpotlightAvatarProps) 
         />
       </div>
 
-      {/* Crosshair decorations */}
-      <svg
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        viewBox="0 0 100 100"
-        aria-hidden="true"
-      >
-        {/* Top tick */}
-        <line x1="50" y1="8" x2="50" y2="14" stroke="hsl(var(--muted-foreground))" strokeWidth="0.3" opacity="0.4" />
-        {/* Bottom tick */}
-        <line x1="50" y1="86" x2="50" y2="92" stroke="hsl(var(--muted-foreground))" strokeWidth="0.3" opacity="0.4" />
-        {/* Left tick */}
-        <line x1="8" y1="50" x2="14" y2="50" stroke="hsl(var(--muted-foreground))" strokeWidth="0.3" opacity="0.4" />
-        {/* Right tick */}
-        <line x1="86" y1="50" x2="92" y2="50" stroke="hsl(var(--muted-foreground))" strokeWidth="0.3" opacity="0.4" />
-      </svg>
+
     </motion.div>
   );
 }
