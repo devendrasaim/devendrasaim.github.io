@@ -122,9 +122,10 @@ export function ChatWidget() {
                     e.stopPropagation();
                     setShowNotification(false);
                   }} 
-                  className="absolute -top-2 -left-2 bg-zinc-900 border border-purple-500/50 rounded-full p-1 hover:bg-purple-500/20 text-purple-400 transition-colors shadow-sm"
+                  className="absolute -top-3 -left-3 z-50 bg-zinc-950 border border-purple-500/50 rounded-full p-1.5 hover:bg-purple-900/20 text-purple-400 transition-colors shadow-md cursor-pointer flex items-center justify-center group"
+                  aria-label="Close notification"
               >
-                  <X className="w-3 h-3" />
+                  <X className="w-3 h-3 group-hover:scale-110 transition-transform" />
               </button>
             </div>
           </motion.div>
