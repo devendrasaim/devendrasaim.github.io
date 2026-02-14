@@ -12,6 +12,7 @@ type Message = {
 
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showNotification, setShowNotification] = useState(true);
   const [messages, setMessages] = useState<Message[]>([
     { role: "model", text: "Hello! I'm Devendra's AI assistant. Ask me anything about his projects, skills, or experience." }
   ]);
@@ -75,6 +76,38 @@ export function ChatWidget() {
            <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse" />
         )}
       </motion.button>
+
+      {/* Notification Bubble */}
+      <AnimatePresence>
+        {!isOpen && showNotification && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ delay: 2, duration: 0.5 }}
+            className="fixed bottom-24 right-6 z-40 max-w-[200px]"
+          >
+            <div className="relative bg-background/80 backdrop-blur-md border border-purple-500/80 p-3 rounded-lg shadow-[0_0_15px_rgba(168,85,247,0.15)]">
+              <p className="text-xs font-mono text-purple-400 leading-relaxed pr-2">
+                Free to ask any questions. I am Devendra's AI assistant.
+              </p>
+              {/* Triangle Tail */}
+              <div className="absolute -bottom-2 right-6 w-4 h-4 bg-background/80 border-b border-r border-purple-500/80 transform rotate-45"></div>
+              
+              {/* Close Button */}
+              <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowNotification(false);
+                  }} 
+                  className="absolute -top-2 -left-2 bg-zinc-900 border border-purple-500/50 rounded-full p-1 hover:bg-purple-500/20 text-purple-400 transition-colors shadow-sm"
+              >
+                  <X className="w-3 h-3" />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Chat Window */}
       <AnimatePresence>
