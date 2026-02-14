@@ -50,3 +50,43 @@ export async function chatWithGemini(userMessage: string) {
     return { error: "Internal Server Error. Please try again later." };
   }
 }
+
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email address"),
+  subject: z.string().min(1, "Subject is required"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+export async function sendEmail(prevState: any, formData: FormData) {
+  const data = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    subject: formData.get("subject"),
+    message: formData.get("message"),
+  };
+
+  const validatedFields = contactSchema.safeParse(data);
+
+  if (!validatedFields.success) {
+    return {
+      success: false,
+      errors: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+
+  // Simulate network delay
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  // Log to console (Simulation)
+  console.log("--- EMAIL SENT ---");
+  console.log(validatedFields.data);
+  console.log("------------------");
+
+  return {
+    success: true,
+    message: "Transmission received. I will establish connection shortly.",
+  };
+}

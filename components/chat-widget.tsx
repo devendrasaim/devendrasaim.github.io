@@ -104,9 +104,17 @@ export function ChatWidget() {
         {!isOpen && showNotification && (
           <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ delay: 2, duration: 0.5 }}
+            animate={{ 
+              opacity: 1, 
+              y: 0, 
+              scale: 1,
+              transition: { delay: 2, duration: 0.5 }
+            }}
+            exit={{ 
+              opacity: 0, 
+              scale: 0.9,
+              transition: { duration: 0.2 }
+            }}
             className="fixed bottom-24 right-6 z-40 max-w-[200px]"
           >
             <div className="relative bg-background/80 backdrop-blur-md border border-purple-500/80 p-3 rounded-lg shadow-[0_0_15px_rgba(168,85,247,0.15)]">

@@ -78,9 +78,9 @@ export function SkillsSection() {
                     key={category.id}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, amount: 0.1 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className={`border ${accentMap[category.accent].split(" ")[0]} bg-background/50 p-6 md:p-8 relative overflow-hidden group`}
+                    className={`border ${accentMap[category.accent].split(" ")[0]} bg-background/50 p-5 md:p-8 relative overflow-hidden group`}
                 >
                     {/* Background tint on hover */}
                      <div className={`absolute inset-0 ${accentMap[category.accent].split(" ")[1]} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />

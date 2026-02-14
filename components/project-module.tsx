@@ -78,7 +78,7 @@ export function ProjectModule({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.7, ease: "easeOut" }}
-      className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center"
+      className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center"
     >
       {/* Text */}
       <div 

@@ -25,6 +25,8 @@ export const viewport: Viewport = {
   themeColor: "#030304",
 };
 
+import { LazyMotion, domAnimation } from "framer-motion";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -33,8 +35,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}>
       <body suppressHydrationWarning className="font-sans antialiased">
-        {children}
-        <ChatWidget />
+        <LazyMotion features={domAnimation}>
+          {children}
+          <ChatWidget />
+        </LazyMotion>
       </body>
     </html>
   );

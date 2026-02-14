@@ -18,7 +18,7 @@ export function HeroSection() {
         className="absolute inset-0 pointer-events-none z-10 overflow-hidden"
         aria-hidden="true"
       >
-        <div className="absolute w-full h-px bg-foreground/[0.03] animate-scan-line" />
+        <div className="absolute w-full h-px bg-foreground/[0.03] animate-scan-line will-change-transform" />
       </div>
 
       {/* Grid background */}
@@ -61,7 +61,7 @@ export function HeroSection() {
         </motion.div>
 
         {/* Name */}
-        <h1 className="font-mono text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-foreground break-words">
+        <h1 className="font-mono text-lg sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-foreground break-words">
           <Typewriter
             text="DEVENDRA SAI MUPPARAJU"
             speed={60}
@@ -75,9 +75,9 @@ export function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className="mb-8 md:mb-10 px-4"
+            className="mb-8 md:mb-10 px-0 sm:px-4"
           >
-            <p className="font-mono text-xs sm:text-sm md:text-base tracking-[0.15em] text-muted-foreground">
+            <p className="font-mono text-[10px] sm:text-sm md:text-base tracking-[0.1em] sm:tracking-[0.15em] text-muted-foreground">
               <Typewriter
                 text="Software Engineer | MSCS Graduate | System Architect"
                 speed={30}
