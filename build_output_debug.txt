@@ -1,0 +1,37 @@
+
+> my-project@0.1.0 build
+> next build
+
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\cc\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\cc\OneDrive - Iowa State University\Desktop\MyPortfolio\package-lock.json
+
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 1 errors:
+./OneDrive - Iowa State University/Desktop/MyPortfolio/components/chat-widget.tsx:15:25
+Parsing ecmascript source code failed
+[0m [90m 13 |[39m [90m// ... existing code ...[39m
+ [90m 14 |[39m
+[31m[1m>[22m[39m[90m 15 |[39m                         [33m:[39m [32m"bg-zinc-900/80 border-zinc-800 text-amber-50/90 rounded-bl-none border-l-2 border-l-amber-500/50"[39m
+ [90m    |[39m                         [31m[1m^[22m[39m
+ [90m 16 |[39m                     }[32m`}[39m
+ [90m 17 |[39m [32m                  >[39m
+ [90m 18 |[39m [32m                    {msg.role === "model" && ([39m[0m
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./OneDrive - Iowa State University/Desktop/MyPortfolio/components/chat-widget.tsx
+    ./OneDrive - Iowa State University/Desktop/MyPortfolio/app/layout.tsx
+
+
+    at <unknown> (./OneDrive - Iowa State University/Desktop/MyPortfolio/components/chat-widget.tsx:15:25)
