@@ -2,6 +2,7 @@ import React from "react"
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { ChatWidget } from "@/components/chat-widget";
+import { Analytics } from "@vercel/analytics/next";
 
 import "./globals.css";
 
@@ -38,6 +39,7 @@ export default function RootLayout({
         <LazyMotion features={domAnimation}>
           {children}
           <ChatWidget />
+          <Analytics />
         </LazyMotion>
       </body>
     </html>
