@@ -89,7 +89,7 @@ export function AboutSection() {
                <div className="mt-8 pt-6 border-t border-border/50 flex flex-wrap gap-8">
                   <div>
                     <span className="block font-mono text-[10px] tracking-[0.2em] text-muted-foreground/60 uppercase mb-1">LOCATION</span>
-                    <span className="font-mono text-sm text-foreground">Ames, IA</span>
+                    <span className="font-mono text-sm text-foreground">Open to Relocate (United States)</span>
                   </div>
                   <div>
                     <span className="block font-mono text-[10px] tracking-[0.2em] text-muted-foreground/60 uppercase mb-1">STATUS</span>
