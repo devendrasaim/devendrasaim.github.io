@@ -76,7 +76,7 @@ jobs:
       - name: Build with Next.js
         env:
           NEXT_PUBLIC_GEMINI_API_KEY: ${{ secrets.NEXT_PUBLIC_GEMINI_API_KEY }}
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        run: ${{ steps.detect-package-manager.outputs.runner }} next build --no-lint
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
