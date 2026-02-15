@@ -7,6 +7,7 @@ export async function chatWithGemini(userMessage: string) {
   const apiKey = process.env.GEMINI_API_KEY;
 
   if (!apiKey) {
+    console.error("API Key Missing");
     return { error: "API Key Configuration Error: Key not found on server." };
   }
 
@@ -40,8 +41,19 @@ export async function chatWithGemini(userMessage: string) {
     const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
     
     if (!reply) {
+        console.warn("Gemini Response Empty:", JSON.stringify(data));
         return { error: "No response received from AI." };
     }
+
+    // --- STRUCTERED LOGGING FOR ANALYTICS ---
+    console.log(JSON.stringify({
+      event: "chat_interaction",
+      timestamp: new Date().toISOString(),
+      user_message: userMessage,
+      ai_response: reply,
+      status: "success"
+    }));
+    // ----------------------------------------
 
     return { success: true, reply };
 
