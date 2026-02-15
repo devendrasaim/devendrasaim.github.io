@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { ChatWidget } from "@/components/chat-widget";
+import { Analytics } from "@vercel/analytics/next";
 
 import "./globals.css";
 
