@@ -68,7 +68,6 @@ export function SpotlightAvatar({ src, alt, size = 180 }: SpotlightAvatarProps) 
           src={src}
           alt={alt}
           className="w-full h-full object-cover"
-          crossOrigin="anonymous"
         />
 
         {/* Subtle inner shadow for depth */}

@@ -42,7 +42,7 @@ export function HeroSection() {
         {/* Profile Picture with Spotlight */}
         <div className="flex justify-center mb-8">
           <SpotlightAvatar
-            src="/images/Profile.png"
+            src="/images/profile.png"
             alt="Devendra Sai Mupparaju"
             size={160}
           />
