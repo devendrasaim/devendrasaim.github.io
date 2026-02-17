@@ -72,16 +72,16 @@ export function ContactSection() {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center gap-4 mb-4">
-            <span className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground uppercase">
+            <span className="font-mono text-xs tracking-[0.3em] text-muted-foreground uppercase">
               {"// TRANSMISSION ENDPOINT"}
             </span>
           </div>
 
-          <h2 className="font-mono text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight mb-4">
+          <h2 className="font-mono text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight mb-4">
             Initialize Connection
           </h2>
           
-          <p className="font-sans text-muted-foreground max-w-xl mx-auto">
+          <p className="font-sans text-lg text-muted-foreground max-w-xl mx-auto">
              Ready to collaborate? Establish a secure link below.
           </p>
         </motion.div>
@@ -97,65 +97,65 @@ export function ContactSection() {
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
-                             <label htmlFor="name" className="font-mono text-xs tracking-wider text-muted-foreground">
+                             <label htmlFor="name" className="font-mono text-sm tracking-wider text-muted-foreground">
                                 NAME
                             </label>
                             <input
                                 {...register("name")}
-                                className="w-full bg-background/50 border border-border px-4 py-3 font-mono text-sm text-foreground focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/50 transition-all placeholder:text-muted-foreground/30"
+                                className="w-full bg-background/50 border border-border px-4 py-3 font-mono text-base text-foreground focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/50 transition-all placeholder:text-muted-foreground/30"
                                 placeholder="ENTER_NAME"
                             />
                             {errors.name && (
-                                <p className="font-mono text-[10px] text-destructive mt-1">{errors.name.message}</p>
+                                <p className="font-mono text-xs text-destructive mt-1">{errors.name.message}</p>
                             )}
                         </div>
                          <div className="space-y-2">
-                             <label htmlFor="email" className="font-mono text-xs tracking-wider text-muted-foreground">
+                             <label htmlFor="email" className="font-mono text-sm tracking-wider text-muted-foreground">
                                 EMAIL
                             </label>
                             <input
                                 {...register("email")}
-                                className="w-full bg-background/50 border border-border px-4 py-3 font-mono text-sm text-foreground focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/50 transition-all placeholder:text-muted-foreground/30"
+                                className="w-full bg-background/50 border border-border px-4 py-3 font-mono text-base text-foreground focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/50 transition-all placeholder:text-muted-foreground/30"
                                 placeholder="ENTER_EMAIL"
                             />
                             {errors.email && (
-                                <p className="font-mono text-[10px] text-destructive mt-1">{errors.email.message}</p>
+                                <p className="font-mono text-xs text-destructive mt-1">{errors.email.message}</p>
                             )}
                         </div>
                     </div>
 
                     <div className="space-y-2">
-                        <label htmlFor="subject" className="font-mono text-xs tracking-wider text-muted-foreground">
+                        <label htmlFor="subject" className="font-mono text-sm tracking-wider text-muted-foreground">
                             SUBJECT
                         </label>
                         <input
                             {...register("subject")}
-                            className="w-full bg-background/50 border border-border px-4 py-3 font-mono text-sm text-foreground focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/50 transition-all placeholder:text-muted-foreground/30"
+                            className="w-full bg-background/50 border border-border px-4 py-3 font-mono text-base text-foreground focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/50 transition-all placeholder:text-muted-foreground/30"
                             placeholder="SUBJECT_LINE"
                         />
                          {errors.subject && (
-                            <p className="font-mono text-[10px] text-destructive mt-1">{errors.subject.message}</p>
+                            <p className="font-mono text-xs text-destructive mt-1">{errors.subject.message}</p>
                         )}
                     </div>
 
                     <div className="space-y-2">
-                        <label htmlFor="message" className="font-mono text-xs tracking-wider text-muted-foreground">
+                        <label htmlFor="message" className="font-mono text-sm tracking-wider text-muted-foreground">
                             MESSAGE
                         </label>
                         <textarea
                             {...register("message")}
-                            className="w-full bg-background/50 border border-border px-4 py-3 font-mono text-sm text-foreground focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/50 transition-all placeholder:text-muted-foreground/30 min-h-[150px] resize-y"
+                            className="w-full bg-background/50 border border-border px-4 py-3 font-mono text-base text-foreground focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/50 transition-all placeholder:text-muted-foreground/30 min-h-[150px] resize-y"
                             placeholder="INPUT_MESSAGE_DATA..."
                         />
                         {errors.message && (
-                            <p className="font-mono text-[10px] text-destructive mt-1">{errors.message.message}</p>
+                            <p className="font-mono text-xs text-destructive mt-1">{errors.message.message}</p>
                         )}
                     </div>
 
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full group relative inline-flex items-center justify-center gap-3 bg-foreground text-background px-8 py-4 font-mono text-sm tracking-widest uppercase hover:bg-foreground/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full group relative inline-flex items-center justify-center gap-3 bg-foreground text-background px-8 py-4 font-mono text-base tracking-widest uppercase hover:bg-foreground/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {isSubmitting ? (
                              <>
@@ -181,7 +181,7 @@ export function ContactSection() {
                 className="space-y-12 lg:pt-8"
              >
                 <div className="space-y-6">
-                    <h3 className="font-mono text-lg font-bold text-foreground mb-6">
+                    <h3 className="font-mono text-xl font-bold text-foreground mb-6">
                         Direct Protocols
                     </h3>
                     
@@ -190,8 +190,8 @@ export function ContactSection() {
                             <Mail className="h-5 w-5 text-muted-foreground group-hover:text-foreground" />
                         </div>
                         <div>
-                             <span className="block font-mono text-[10px] tracking-wider text-muted-foreground mb-1">EMAIL</span>
-                             <span className="font-sans text-sm text-foreground group-hover:text-cyan transition-colors">mdevendrasai9@gmail.com</span>
+                             <span className="block font-mono text-xs tracking-wider text-muted-foreground mb-1">EMAIL</span>
+                             <span className="font-sans text-base text-foreground group-hover:text-cyan transition-colors">mdevendrasai9@gmail.com</span>
                         </div>
                     </a>
 
@@ -200,8 +200,8 @@ export function ContactSection() {
                             <Github className="h-5 w-5 text-muted-foreground group-hover:text-foreground" />
                         </div>
                         <div>
-                             <span className="block font-mono text-[10px] tracking-wider text-muted-foreground mb-1">GITHUB</span>
-                             <span className="font-sans text-sm text-foreground group-hover:text-cyan transition-colors">github.com/devendrasaim</span>
+                             <span className="block font-mono text-xs tracking-wider text-muted-foreground mb-1">GITHUB</span>
+                             <span className="font-sans text-base text-foreground group-hover:text-cyan transition-colors">github.com/devendrasaim</span>
                         </div>
                     </a>
 
@@ -210,8 +210,8 @@ export function ContactSection() {
                             <Linkedin className="h-5 w-5 text-muted-foreground group-hover:text-foreground" />
                         </div>
                         <div>
-                             <span className="block font-mono text-[10px] tracking-wider text-muted-foreground mb-1">LINKEDIN</span>
-                             <span className="font-sans text-sm text-foreground group-hover:text-cyan transition-colors">in/devendrasaim</span>
+                             <span className="block font-mono text-xs tracking-wider text-muted-foreground mb-1">LINKEDIN</span>
+                             <span className="font-sans text-base text-foreground group-hover:text-cyan transition-colors">in/devendrasaim</span>
                         </div>
                     </a>
                 </div>
@@ -221,15 +221,15 @@ export function ContactSection() {
                          <div className="absolute inset-0 bg-grid-pattern opacity-10" />
                      </div>
                      <div className="relative z-10 space-y-2">
-                        <div className="flex items-center justify-between text-xs font-mono text-muted-foreground">
+                        <div className="flex items-center justify-between text-sm font-mono text-muted-foreground">
                             <span>STATUS</span>
                             <span className="text-green">ACTIVE</span>
                         </div>
-                         <div className="flex items-center justify-between text-xs font-mono text-muted-foreground">
+                         <div className="flex items-center justify-between text-sm font-mono text-muted-foreground">
                             <span>LATENCY</span>
                             <span>12ms</span>
                         </div>
-                         <div className="flex items-center justify-between text-xs font-mono text-muted-foreground">
+                         <div className="flex items-center justify-between text-sm font-mono text-muted-foreground">
                             <span>ENCRYPTION</span>
                             <span>TLS 1.3</span>
                         </div>

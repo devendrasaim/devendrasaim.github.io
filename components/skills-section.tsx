@@ -62,11 +62,11 @@ export function SkillsSection() {
         >
           <div className="flex items-center gap-4 mb-4">
              <div className="h-px flex-1 max-w-[60px] bg-muted-foreground/20" />
-            <span className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground uppercase">
+            <span className="font-mono text-xs tracking-[0.3em] text-muted-foreground uppercase">
               {"// SYSTEM CAPABILITIES"}
             </span>
           </div>
-          <h2 className="font-mono text-xl md:text-2xl font-bold text-foreground tracking-tight">
+          <h2 className="font-mono text-2xl md:text-3xl font-bold text-foreground tracking-tight">
             Technical Skills
           </h2>
         </motion.div>
@@ -87,8 +87,8 @@ export function SkillsSection() {
 
                     <div className="relative z-10">
                         <div className="flex items-center justify-between mb-6">
-                            <h3 className="font-mono text-lg font-bold text-foreground">{category.name}</h3>
-                             <span className={`font-mono text-[10px] tracking-widest uppercase opacity-60 ${accentMap[category.accent].split(" ")[2]}`}>
+                            <h3 className="font-mono text-xl font-bold text-foreground">{category.name}</h3>
+                             <span className={`font-mono text-xs tracking-widest uppercase opacity-60 ${accentMap[category.accent].split(" ")[2]}`}>
                                 {category.id}_MODULE
                              </span>
                         </div>
@@ -97,7 +97,7 @@ export function SkillsSection() {
                             {category.items.map((item) => (
                                 <span 
                                     key={item} 
-                                    className="px-3 py-1.5 border border-border/60 bg-background/50 text-muted-foreground font-mono text-xs tracking-wide"
+                                    className="px-3 py-1.5 border border-border/60 bg-background/50 text-muted-foreground font-mono text-sm tracking-wide"
                                 >
                                     {item}
                                 </span>

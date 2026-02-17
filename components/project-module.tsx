@@ -89,11 +89,11 @@ export function ProjectModule({
       >
         <div className={`space-y-3 ${!hasMedia ? "lg:flex lg:flex-col lg:items-center" : ""}`}>
           <span
-            className={`font-mono text-[10px] tracking-[0.3em] uppercase ${colors.text}`}
+            className={`font-mono text-xs tracking-[0.3em] uppercase ${colors.text}`}
           >
             {moduleId}
           </span>
-          <h3 className="font-mono text-2xl md:text-3xl font-bold text-foreground tracking-tight">
+          <h3 className="font-mono text-3xl md:text-4xl font-bold text-foreground tracking-tight">
             {title}
           </h3>
         </div>
@@ -102,14 +102,14 @@ export function ProjectModule({
           {tags.map((tag) => (
             <span
               key={tag}
-              className={`border ${colors.tagBorder} ${colors.tagText} px-3 py-1 font-mono text-[11px] tracking-wider`}
+              className={`border ${colors.tagBorder} ${colors.tagText} px-3 py-1 font-mono text-xs tracking-wider`}
             >
               {tag}
             </span>
           ))}
         </div>
 
-        <p className="font-sans text-sm md:text-base leading-relaxed text-muted-foreground max-w-lg">
+        <p className="font-sans text-base md:text-lg leading-relaxed text-muted-foreground max-w-lg">
           {description}
         </p>
 
@@ -118,7 +118,7 @@ export function ProjectModule({
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className={`inline-flex items-center gap-2 font-mono text-xs tracking-wider ${colors.text} hover:opacity-70 transition-opacity`}
+            className={`inline-flex items-center gap-2 font-mono text-sm tracking-wider ${colors.text} hover:opacity-70 transition-opacity`}
           >
             <span className="h-px w-4 bg-current" />
             {"VIEW_PROJECT"}
@@ -159,7 +159,7 @@ export function ProjectModule({
               <div
                 className={`h-1.5 w-1.5 rounded-full ${colors.dot} animate-pulse-slow`}
               />
-              <span className="font-mono text-[9px] tracking-[0.2em] text-muted-foreground/50 uppercase">
+              <span className="font-mono text-xs tracking-[0.2em] text-muted-foreground/50 uppercase">
                 Active
               </span>
             </div>

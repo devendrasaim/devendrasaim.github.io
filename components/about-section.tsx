@@ -16,11 +16,11 @@ export function AboutSection() {
         >
           <div className="flex items-center gap-4 mb-4">
              <div className="h-px flex-1 max-w-[60px] bg-muted-foreground/20" />
-            <span className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground uppercase">
+            <span className="font-mono text-xs tracking-[0.3em] text-muted-foreground uppercase">
               {"// IDENTITY VERIFICATION"}
             </span>
           </div>
-          <h2 className="font-mono text-xl md:text-2xl font-bold text-foreground tracking-tight">
+          <h2 className="font-mono text-2xl md:text-3xl font-bold text-foreground tracking-tight">
             About Me
           </h2>
         </motion.div>
@@ -42,22 +42,22 @@ export function AboutSection() {
                <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-foreground/50" />
 
                <div className="mb-8 p-4 border-l-2 border-primary bg-primary/5">
-                 <h4 className="font-mono text-xs font-bold text-primary mb-2 uppercase tracking-wider">
+                  <h4 className="font-mono text-sm font-bold text-primary mb-2 uppercase tracking-wider">
                    // TL;DR
                  </h4>
-                 <p className="font-mono text-xs md:text-sm text-muted-foreground leading-relaxed">
+                  <p className="font-mono text-sm md:text-base text-muted-foreground leading-relaxed">
                    MSCS Grad '25 @ Iowa State. Full Stack Engineer & AI Enthusiast. Built scalable games for 3k+ users & optimized AI security with Intel SGX. Seeking backend/AI roles.
                  </p>
                </div>
 
 
-               <p className="font-sans text-base md:text-lg leading-relaxed text-muted-foreground mb-8">
+                <p className="font-sans text-lg md:text-xl leading-relaxed text-muted-foreground mb-8">
                  I am <span className="text-foreground font-semibold">Devendra Sai Mupparaju</span>, a recent Master of Science in Computer Science graduate from Iowa State University (December 2025). I am actively seeking full-time opportunities in software engineering, backend architecture, and AI/ML development.
                </p>
 
                <div className="space-y-6">
                  <div>
-                   <h3 className="font-mono text-sm font-bold text-foreground mb-2 uppercase tracking-wider text-cyan">
+                    <h3 className="font-mono text-base font-bold text-foreground mb-2 uppercase tracking-wider text-cyan">
                      Full Stack Engineering & AI Innovation
                    </h3>
                    <p className="font-sans text-sm md:text-base leading-relaxed text-muted-foreground">
@@ -72,7 +72,7 @@ export function AboutSection() {
                  </div>
 
                  <div>
-                   <h3 className="font-mono text-sm font-bold text-foreground mb-2 uppercase tracking-wider text-amber">
+                    <h3 className="font-mono text-base font-bold text-foreground mb-2 uppercase tracking-wider text-amber">
                      Cloud Automation & System Security
                    </h3>
                    <p className="font-sans text-sm md:text-base leading-relaxed text-muted-foreground">
@@ -88,16 +88,16 @@ export function AboutSection() {
                </div>
                <div className="mt-8 pt-6 border-t border-border/50 flex flex-wrap gap-8">
                   <div>
-                    <span className="block font-mono text-[10px] tracking-[0.2em] text-muted-foreground/60 uppercase mb-1">LOCATION</span>
-                    <span className="font-mono text-sm text-foreground">Open to Relocate (United States)</span>
+                    <span className="block font-mono text-xs tracking-[0.2em] text-muted-foreground/60 uppercase mb-1">LOCATION</span>
+                    <span className="font-mono text-base text-foreground">Open to Relocate (United States)</span>
                   </div>
                   <div>
-                    <span className="block font-mono text-[10px] tracking-[0.2em] text-muted-foreground/60 uppercase mb-1">STATUS</span>
-                    <span className="font-mono text-sm text-green">Online / Open to Work</span>
+                    <span className="block font-mono text-xs tracking-[0.2em] text-muted-foreground/60 uppercase mb-1">STATUS</span>
+                    <span className="font-mono text-base text-green">Online / Open to Work</span>
                   </div>
                    <div>
-                    <span className="block font-mono text-[10px] tracking-[0.2em] text-muted-foreground/60 uppercase mb-1">EXPERIENCE</span>
-                    <span className="font-mono text-sm text-foreground">2+ Years</span>
+                    <span className="block font-mono text-xs tracking-[0.2em] text-muted-foreground/60 uppercase mb-1">EXPERIENCE</span>
+                    <span className="font-mono text-base text-foreground">2+ Years</span>
                   </div>
                </div>
             </div>

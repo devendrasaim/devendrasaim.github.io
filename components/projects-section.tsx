@@ -73,11 +73,11 @@ export function ProjectsSection() {
         >
           <div className="flex items-center gap-4 mb-4">
             <div className="h-px flex-1 max-w-[60px] bg-muted-foreground/20" />
-            <span className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground uppercase">
+            <span className="font-mono text-xs tracking-[0.3em] text-muted-foreground uppercase">
               {"// SYSTEM MODULES"}
             </span>
           </div>
-          <h2 className="font-mono text-xl md:text-2xl font-bold text-foreground tracking-tight">
+          <h2 className="font-mono text-2xl md:text-3xl font-bold text-foreground tracking-tight">
             Project Architecture
           </h2>
         </motion.div>
