@@ -6,7 +6,7 @@ import { ProjectModule } from "@/components/project-module";
 const projects = [
   {
     moduleId: "MODULE_A",
-    title: "SECURE_ENCLAVE_PROTOCOLS",
+    title: "PRIVACY_PRESERVING_USING_INTEL_SGX",
     tags: ["Intel SGX", "PyTorch", "C++"],
     description:
       "Proved the integrity of sensitive training loops in untrusted environments. By leveraging Intel SGX enclaves, this architecture isolates computation from OS-level vulnerabilities, ensuring privacy was maintained even during simulated system compromise scenarios.",
@@ -27,7 +27,7 @@ const projects = [
   },
   {
     moduleId: "MODULE_C",
-    title: "HOBBY_HIVE_GRID",
+    title: "HOBBY_HIVE",
     tags: ["React", "Supabase", "Real-Time Systems"],
     description:
       "Validated real-time data scalability by architecting a 'Time Capsule' feature with Supabase, ensuring instant video updates. Established a seamless user experience strategy by engineering dynamic dashboards in TypeScript to visualize complex hobby progress data intuitively.",
@@ -38,7 +38,7 @@ const projects = [
   },
   {
     moduleId: "MODULE_D",
-    title: "BOUNCE_STREAK_ENGINE",
+    title: "BOUNCE_STREAK_(HACKATHON)",
     tags: ["Reddit Devvit", "Hackathon Project", "Phaser", "TypeScript"],
     description:
       "Engineered a high-performance 2D arcade physics engine optimized for mobile browsers. Implemented 'cushion' collision detection to deliver a smooth 60 FPS experience. Architected a deterministic daily challenge system using seeded randomization, ensuring identical physics conditions for thousands of concurrent users.",

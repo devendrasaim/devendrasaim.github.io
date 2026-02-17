@@ -36,7 +36,7 @@ To help visitors understand my skills, projects, and experience. If a recruiter 
 - Tools: Git, Linux, Slurm, NuSMV.
 
 **KEY PROJECTS:**
-1. **Secure Enclave Protocols (Intel SGX, PyTorch, C++)**:
+1. **Privacy Preserving using Intel SGX (Intel SGX, PyTorch, C++)**:
    - I architected a privacy-preserving deep learning framework using Intel SGX enclaves.
    - Isolated sensitive training loops from OS-level vulnerabilities.
    - Maintained data privacy even during simulated system compromise.
@@ -51,7 +51,7 @@ To help visitors understand my skills, projects, and experience. If a recruiter 
    - Included a "Time Capsule" feature for video updates.
    - Engineered dynamic dashboards for data visualization.
 
-4. **Bounce Streak (Reddit Devvit, Phaser, TypeScript)**:
+4. **Bounce Streak (Hackathon) (Reddit Devvit, Phaser, TypeScript)**:
    - *Hackathon Project*.
    - A high-performance 2D arcade physics engine I built for mobile browsers (60 FPS).
    - Implemented "cushion" collision detection and deterministic daily challenges.
