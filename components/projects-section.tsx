@@ -6,7 +6,13 @@ import { ProjectModule } from "@/components/project-module";
 const projects = [
   {
     moduleId: "MODULE_A",
-    title: "PRIVACY_PRESERVING_USING_INTEL_SGX",
+    title: (
+      <>
+        PRIVACY PRESERVING
+        <br />
+        USING INTEL SGX
+      </>
+    ),
     tags: ["Intel SGX", "PyTorch", "C++"],
     description:
       "Proved the integrity of sensitive training loops in untrusted environments. By leveraging Intel SGX enclaves, this architecture isolates computation from OS-level vulnerabilities, ensuring privacy was maintained even during simulated system compromise scenarios.",
@@ -16,7 +22,7 @@ const projects = [
   },
   {
     moduleId: "MODULE_B",
-    title: "ACTIVATION_STEERING_APR",
+    title: "ACTIVATION STEERING APR",
     tags: ["PyTorch", "CodeLLM", "Activation Steering"],
     description:
       "A training-free method for enhancing CodeLLM reliability in Automatic Program Repair. Computes a correctness vector from contrastive buggy/fixed code pairs and injects it into the model's residual stream during inference. Eliminated invalid code generation entirely and boosted CodeLlama-7B accuracy from 48% to 56%.",
@@ -27,7 +33,7 @@ const projects = [
   },
   {
     moduleId: "MODULE_C",
-    title: "HOBBY_HIVE",
+    title: "HOBBY HIVE",
     tags: ["React", "Supabase", "Real-Time Systems"],
     description:
       "Validated real-time data scalability by architecting a 'Time Capsule' feature with Supabase, ensuring instant video updates. Established a seamless user experience strategy by engineering dynamic dashboards in TypeScript to visualize complex hobby progress data intuitively.",
@@ -38,7 +44,7 @@ const projects = [
   },
   {
     moduleId: "MODULE_D",
-    title: "BOUNCE_STREAK_(HACKATHON)",
+    title: "BOUNCE STREAK (HACKATHON)",
     tags: ["Reddit Devvit", "Hackathon Project", "Phaser", "TypeScript"],
     description:
       "Engineered a high-performance 2D arcade physics engine optimized for mobile browsers. Implemented 'cushion' collision detection to deliver a smooth 60 FPS experience. Architected a deterministic daily challenge system using seeded randomization, ensuring identical physics conditions for thousands of concurrent users.",
@@ -49,7 +55,7 @@ const projects = [
   },
   {
     moduleId: "MODULE_E",
-    title: "FEDERATED_FAIRNESS_VERIFICATION",
+    title: "FEDERATED FAIRNESS VERIFICATION",
     tags: ["NuSMV", "CTL", "Formal Verification", "Python"],
     description:
       "Formal verification of fairness properties in a 3-client federated learning protocol. Models the FL workflow as a finite-state machine in NuSMV, encodes CTL properties for liveness, safety, and fairness, then automatically verifies no client is starved and no deadlocks occur across bounded aggregation rounds.",

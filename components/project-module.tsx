@@ -6,7 +6,7 @@ import { Crosshair } from "@/components/crosshair";
 
 interface ProjectModuleProps {
   moduleId: string;
-  title: string;
+  title: string | React.ReactNode;
   tags: string[];
   description: string;
   viewportLabel: string;
