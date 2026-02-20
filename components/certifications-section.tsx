@@ -41,7 +41,15 @@ const certifications = [
     image: "/images/certs/oracle.png",
     color: "rose",
   },
-
+  {
+    id: "CERT-05",
+    title: "Prompt Design in Vertex AI",
+    issuer: "Google Cloud",
+    date: "Feb 19, 2026",
+    link: "#",
+    image: "/images/certs/Prompt Design in Vertex AI Google Cloud.png",
+    color: "cyan",
+  },
 ];
 
 const accentMap = {
