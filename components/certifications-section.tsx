@@ -46,7 +46,7 @@ const certifications = [
     title: "Prompt Design in Vertex AI",
     issuer: "Google Cloud",
     date: "Feb 19, 2026",
-    link: "#",
+    link: "https://www.credly.com/badges/cf2ac668-e79e-4297-8bfe-a9636da3d68d",
     image: "/images/certs/Prompt Design in Vertex AI Google Cloud.png",
     color: "cyan",
   },
