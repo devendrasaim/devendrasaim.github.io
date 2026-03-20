@@ -46,43 +46,39 @@ export function AboutSection() {
                    // TL;DR
                  </h4>
                   <p className="font-mono text-sm md:text-base text-muted-foreground leading-relaxed">
-                   MSCS Grad '25 @ Iowa State. Full Stack Engineer & AI Enthusiast. Built scalable games for 3k+ users & optimized AI security with Intel SGX. Seeking backend/AI roles.
+                   MSCS Grad '25 @ Iowa State. Full Stack Engineer & AI Researcher. Ship production apps with Next.js, Supabase & CI/CD. Steer LLM internals with PyTorch. Seeking SWE / Full Stack / AI roles.
                  </p>
                </div>
 
 
                 <p className="font-sans text-lg md:text-xl leading-relaxed text-muted-foreground mb-8">
-                 I am <span className="text-foreground font-semibold">Devendra Sai Mupparaju</span>, a recent Master of Science in Computer Science graduate from Iowa State University (December 2025). I am actively seeking full-time opportunities in software engineering, backend architecture, and AI/ML development.
+                 I am <span className="text-foreground font-semibold">Devendra Sai Mupparaju</span>, a Master of Science in Computer Science graduate from Iowa State University (December 2025). I build full-stack platforms end-to-end and research ways to make AI models more reliable — from production Next.js deployments to training-free LLM steering techniques.
                </p>
 
                <div className="space-y-6">
                  <div>
                     <h3 className="font-mono text-base font-bold text-foreground mb-2 uppercase tracking-wider text-cyan">
-                     Full Stack Engineering & AI Innovation
+                     Full Stack Engineering
                    </h3>
                    <p className="font-sans text-sm md:text-base leading-relaxed text-muted-foreground">
-                     Expertise in architecting scalable web and gaming solutions, such as a Reddit Devvit community game that supports 3,000+ concurrent users while maintaining a consistent 60 FPS on mobile browsers.
+                     Architected Grocery Square, a production-grade e-commerce platform with Next.js App Router and Supabase/PostgreSQL, deployed via GitHub Actions CI/CD to GitHub Pages with SSG pre-rendering across thousands of product routes.
                      <br className="mb-2" />
-                     Strong foundation in AI model optimization, implementing "Activation Steering" in PyTorch to reduce code-fix generation error rates by 15% without full retraining.
+                     Built Hobby Hive, a real-time social platform using React and Supabase, featuring instant video updates through a Time Capsule architecture and dynamic TypeScript dashboards for data visualization.
                      <br className="mb-2" />
-                     Developed dynamic, user-centric applications like the "Hop-bee" social platform, utilizing React and Supabase to facilitate real-time engagement and secure data handling.
-                     <br className="mb-2" />
-                     Experienced in game physics engineering, specifically designing deterministic daily challenge systems and optimizing collision detection algorithms using Phaser and TypeScript.
+                     Engineered Bounce Streak during a hackathon — a 2D arcade game on Reddit Devvit serving 3,000+ concurrent users at 60 FPS, with deterministic daily challenges via seeded randomization in Phaser and TypeScript.
                    </p>
                  </div>
 
                  <div>
                     <h3 className="font-mono text-base font-bold text-foreground mb-2 uppercase tracking-wider text-amber">
-                     Cloud Automation & System Security
+                     AI Engineering & Research
                    </h3>
                    <p className="font-sans text-sm md:text-base leading-relaxed text-muted-foreground">
-                     Proficient in a diverse tech stack including Python, C++, TypeScript, SQL, and cloud tools like AWS and Docker.
+                     Developed a training-free Activation Steering method in PyTorch that injects a correctness vector into CodeLLM residual streams during inference, boosting CodeLlama-7B repair accuracy from 48% to 56% and eliminating invalid code generation entirely.
                      <br className="mb-2" />
-                     Experienced in Infrastructure-as-Code (IaC), automating AWS environment setups to reduce manual configuration time by 40% and enforcing granular IAM policies for security.
+                     Secured deep learning training loops inside Intel SGX enclaves, isolating computation from OS-level vulnerabilities and maintaining 100% data privacy during simulated system compromise scenarios.
                      <br className="mb-2" />
-                     Expertise in securing AI infrastructure, leveraging Intel SGX enclaves to harden training loops and maintain 100% data privacy during simulated compromise scenarios.
-                     <br className="mb-2" />
-                     Optimized large-scale computations on Slurm clusters, eliminating bottlenecks to achieve a 20% increase in model repair accuracy during stress tests.
+                     Formally verified fairness properties of a federated learning protocol using NuSMV and CTL, modeling the 3-client workflow as a finite-state machine to prove no client starvation or deadlocks occur across aggregation rounds.
                    </p>
                  </div>
                </div>
