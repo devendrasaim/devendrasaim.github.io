@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: "Devendra Sai Mupparaju",
     images: [
       {
-        url: "/images/profile.png",
+        url: "/images/profile.JPEG",
         width: 400,
         height: 400,
         alt: "Devendra Sai Mupparaju",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     title: "Devendra Sai Mupparaju | Full Stack Engineer & AI Researcher",
     description:
       "MSCS Graduate from Iowa State. Building production full-stack platforms and researching training-free LLM steering techniques.",
-    images: ["/images/profile.png"],
+    images: ["/images/profile.JPEG"],
   },
   manifest: "/manifest.json",
 };
