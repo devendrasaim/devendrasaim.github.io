@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal, X, Send, Cpu, Loader2 } from "lucide-react";
+import { Terminal, X, Send, Loader2 } from "lucide-react";
 import { chatWithGemini } from "../app/actions";
 
 type Message = {
@@ -72,7 +72,7 @@ export function ChatWidget() {
     const parts = text.split(/(\*\*.*?\*\*)/g);
     return parts.map((part, index) => {
       if (part.startsWith("**") && part.endsWith("**")) {
-        return <strong key={index} className="text-purple-300 font-bold">{part.slice(2, -2)}</strong>;
+        return <strong key={index} className="text-cyan font-bold">{part.slice(2, -2)}</strong>;
       }
       return part;
     });

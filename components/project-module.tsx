@@ -77,7 +77,7 @@ export function ProjectModule({
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center"
     >
       {/* Text */}
@@ -167,7 +167,8 @@ export function ProjectModule({
             {image ? (
               <img
                 src={image}
-                alt={`${title} preview`}
+                alt={typeof title === "string" ? `${title} preview` : `${moduleId} preview`}
+                loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover object-center"
               />
             ) : (

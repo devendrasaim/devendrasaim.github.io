@@ -48,6 +48,9 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   * {
     @apply border-border;
   }
@@ -62,6 +65,7 @@
   }
   .animate-scan-line {
     will-change: transform;
+    transform: translateZ(0);
   }
 }
 

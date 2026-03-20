@@ -42,11 +42,11 @@ const skillCategories = [
 ];
 
 const accentMap = {
-    cyan: "border-cyan/20 bg-cyan/5 text-cyan",
-    amber: "border-amber/20 bg-amber/5 text-amber",
-    rose: "border-rose/20 bg-rose/5 text-rose",
-    green: "border-green/20 bg-green/5 text-green",
-}
+  cyan:  { border: "border-cyan/20",  bg: "bg-cyan/5",  text: "text-cyan"  },
+  amber: { border: "border-amber/20", bg: "bg-amber/5", text: "text-amber" },
+  rose:  { border: "border-rose/20",  bg: "bg-rose/5",  text: "text-rose"  },
+  green: { border: "border-green/20", bg: "bg-green/5", text: "text-green" },
+};
 
 export function SkillsSection() {
   return (
@@ -80,15 +80,15 @@ export function SkillsSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.1 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className={`border ${accentMap[category.accent].split(" ")[0]} bg-background/50 p-5 md:p-8 relative overflow-hidden group`}
+                    className={`border ${accentMap[category.accent].border} bg-background/50 p-5 md:p-8 relative overflow-hidden group`}
                 >
                     {/* Background tint on hover */}
-                     <div className={`absolute inset-0 ${accentMap[category.accent].split(" ")[1]} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
+                     <div className={`absolute inset-0 ${accentMap[category.accent].bg} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
 
                     <div className="relative z-10">
                         <div className="flex items-center justify-between mb-6">
                             <h3 className="font-mono text-xl font-bold text-foreground">{category.name}</h3>
-                             <span className={`font-mono text-xs tracking-widest uppercase opacity-60 ${accentMap[category.accent].split(" ")[2]}`}>
+                             <span className={`font-mono text-xs tracking-widest uppercase opacity-60 ${accentMap[category.accent].text}`}>
                                 {category.id}_MODULE
                              </span>
                         </div>

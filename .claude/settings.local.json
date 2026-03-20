@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l \"c:/Users/cc/One Drive devm905/OneDrive/Desktop/MyPortfolio\"/*)",
+      "WebFetch(domain:devendrasaim.github.io)",
+      "Bash(git commit:*)",
+      "Bash(git push origin main)"
+    ]
+  }
+}
