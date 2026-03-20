@@ -93,7 +93,7 @@ export function AboutSection() {
                   </div>
                    <div>
                     <span className="block font-mono text-xs tracking-[0.2em] text-muted-foreground/60 uppercase mb-1">EXPERIENCE</span>
-                    <span className="font-mono text-base text-foreground">2+ Years</span>
+                    <span className="font-mono text-base text-foreground">2+ Years (Full Stack + AI Research)</span>
                   </div>
                </div>
             </div>

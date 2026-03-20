@@ -17,10 +17,38 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 });
 
+const siteUrl = "https://devendrasaim-portfolio.vercel.app";
+
 export const metadata: Metadata = {
-  title: "Devendra Sai Mupparaju | System Interface",
+  title: "Devendra Sai Mupparaju | Full Stack Engineer & AI Researcher",
   description:
-    "Full-Stack Engineer & AI Researcher. Software Engineer, MSCS Graduate, System Architect.",
+    "Full Stack Engineer & AI Researcher. MSCS Graduate from Iowa State. Building production apps with Next.js, Supabase & CI/CD. Steering LLM internals with PyTorch.",
+  metadataBase: new URL(siteUrl),
+  openGraph: {
+    title: "Devendra Sai Mupparaju | Full Stack Engineer & AI Researcher",
+    description:
+      "MSCS Graduate from Iowa State. Building production full-stack platforms and researching training-free LLM steering techniques.",
+    url: siteUrl,
+    siteName: "Devendra Sai Mupparaju",
+    images: [
+      {
+        url: "/images/profile.png",
+        width: 400,
+        height: 400,
+        alt: "Devendra Sai Mupparaju",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Devendra Sai Mupparaju | Full Stack Engineer & AI Researcher",
+    description:
+      "MSCS Graduate from Iowa State. Building production full-stack platforms and researching training-free LLM steering techniques.",
+    images: ["/images/profile.png"],
+  },
+  manifest: "/manifest.json",
 };
 
 export const viewport: Viewport = {

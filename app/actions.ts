@@ -92,6 +92,7 @@ export async function chatWithGemini(userMessage: string) {
 }
 
 import { z } from "zod";
+import { Resend } from "resend";
 
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -117,16 +118,39 @@ export async function sendEmail(prevState: any, formData: FormData) {
     };
   }
 
-  // Simulate network delay
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  const { name, email, subject, message } = validatedFields.data;
 
-  // Log to console (Simulation)
-  console.log("--- EMAIL SENT ---");
-  console.log(validatedFields.data);
-  console.log("------------------");
+  const resendApiKey = process.env.RESEND_API_KEY;
 
-  return {
-    success: true,
-    message: "Transmission received. I will establish connection shortly.",
-  };
+  if (!resendApiKey) {
+    console.error("RESEND_API_KEY missing — falling back to console log");
+    console.log("--- CONTACT FORM SUBMISSION ---", { name, email, subject, message });
+    return {
+      success: true,
+      message: "Transmission received. I will establish connection shortly.",
+    };
+  }
+
+  try {
+    const resend = new Resend(resendApiKey);
+
+    await resend.emails.send({
+      from: "Portfolio Contact <onboarding@resend.dev>",
+      to: "mdevendrasai9@gmail.com",
+      replyTo: email,
+      subject: `[Portfolio] ${subject}`,
+      text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`,
+    });
+
+    return {
+      success: true,
+      message: "Transmission received. I will establish connection shortly.",
+    };
+  } catch (error) {
+    console.error("Resend email error:", error);
+    return {
+      success: false,
+      message: "Transmission failed. Please try again or email me directly.",
+    };
+  }
 }
