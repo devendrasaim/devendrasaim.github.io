@@ -5,6 +5,17 @@ import { ProjectModule } from "@/components/project-module";
 
 const projects = [
   {
+    moduleId: "MODULE_E",
+    title: "GROCERY SQUARE",
+    tags: ["Next.js", "Supabase", "PostgreSQL", "GitHub Actions"],
+    description:
+      "Architected a production-grade full-stack grocery e-commerce platform deployed to GitHub Pages via automated CI/CD pipelines. Leveraged Next.js SSG with generateStaticParams to pre-render product routes at build time, eliminating runtime 404 errors at scale. Engineered a resilient fallback architecture toggling between live Supabase/PostgreSQL and local mock data for zero-downtime deployments across environments.",
+    viewportLabel: "ECOMMERCE_DEPLOYMENT_CORE",
+    accentColor: "green" as const,
+    link: "https://devendrasaim.github.io/GrocerySquare/",
+    image: "/images/grocery.gif",
+  },
+  {
     moduleId: "MODULE_A",
     title: (
       <>
@@ -53,17 +64,7 @@ const projects = [
     link: "https://www.reddit.com/r/bounce_streak_dev/comments/1r1adpg/bouncestreak/",
     image: "/images/gameplay.gif",
   },
-  {
-    moduleId: "MODULE_E",
-    title: "GROCERY SQUARE",
-    tags: ["Next.js", "Supabase", "PostgreSQL", "GitHub Actions"],
-    description:
-      "Architected a production-grade full-stack grocery e-commerce platform deployed to GitHub Pages via automated CI/CD pipelines. Leveraged Next.js SSG with generateStaticParams to pre-render product routes at build time, eliminating runtime 404 errors at scale. Engineered a resilient fallback architecture toggling between live Supabase/PostgreSQL and local mock data for zero-downtime deployments across environments.",
-    viewportLabel: "ECOMMERCE_DEPLOYMENT_CORE",
-    accentColor: "green" as const,
-    link: "https://devendrasaim.github.io/GrocerySquare/",
-    image: "/images/grocery.gif",
-  },
+
   {
     moduleId: "MODULE_F",
     title: "FEDERATED FAIRNESS VERIFICATION",
