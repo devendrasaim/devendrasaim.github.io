@@ -25,6 +25,7 @@ const projects = [
     accentColor: "cyan" as const,
     link: "https://github.com/devendrasaim/AI-Automated-Social-Media-Generator",
     liveLink: "https://www.instagram.com/myaiguru9/",
+    flowchart: true,
   },
   {
     moduleId: "MODULE_A",

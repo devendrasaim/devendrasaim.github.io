@@ -3,19 +3,21 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Crosshair } from "@/components/crosshair";
+import { WorkflowFlowchart } from "@/components/workflow-flowchart";
 
 interface ProjectModuleProps {
   moduleId: string;
   title: string | React.ReactNode;
   tags: string[];
   description: string;
-  viewportLabel: string;
+  viewportLabel?: string;
   accentColor: "amber" | "cyan" | "green" | "rose";
   reversed?: boolean;
   link?: string;
   liveLink?: string;
   image?: string;
   pdfUrl?: string;
+  flowchart?: boolean;
 }
 
 const accentMap = {
@@ -62,15 +64,15 @@ export function ProjectModule({
   title,
   tags,
   description,
-  viewportLabel,
   accentColor,
   reversed = false,
   link,
   liveLink,
   image,
   pdfUrl,
+  flowchart,
 }: ProjectModuleProps) {
-  const hasMedia = !!(image || pdfUrl);
+  const hasMedia = !!(image || pdfUrl || flowchart);
   const colors = accentMap[accentColor];
   const [isPdfHovered, setIsPdfHovered] = useState(false);
 
@@ -200,6 +202,8 @@ export function ProjectModule({
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover object-center"
               />
+            ) : flowchart ? (
+              <WorkflowFlowchart accentColor={accentColor} />
             ) : (
               <>
                 {/* PDF Preview (First Page) */}
