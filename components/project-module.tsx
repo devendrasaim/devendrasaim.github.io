@@ -13,6 +13,7 @@ interface ProjectModuleProps {
   accentColor: "amber" | "cyan" | "green" | "rose";
   reversed?: boolean;
   link?: string;
+  liveLink?: string;
   image?: string;
   pdfUrl?: string;
 }
@@ -65,6 +66,7 @@ export function ProjectModule({
   accentColor,
   reversed = false,
   link,
+  liveLink,
   image,
   pdfUrl,
 }: ProjectModuleProps) {
@@ -122,6 +124,33 @@ export function ProjectModule({
           >
             <span className="h-px w-4 bg-current" />
             {"VIEW_PROJECT"}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M7 17L17 7" />
+              <path d="M7 7h10v10" />
+            </svg>
+          </a>
+        )}
+
+        {liveLink && (
+          <a
+            href={liveLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`inline-flex items-center gap-2 font-mono text-sm tracking-wider ${colors.text} hover:opacity-70 transition-opacity`}
+          >
+            <span className="h-px w-4 bg-current" />
+            {"LIVE_DEMO"}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="12"

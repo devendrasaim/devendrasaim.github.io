@@ -16,6 +16,17 @@ const projects = [
     image: "/images/grocery.gif",
   },
   {
+    moduleId: "MODULE_G",
+    title: "AI SOCIAL MEDIA GENERATOR",
+    tags: ["Python", "Google Gemini API", "Imagen 3", "Pillow", "Perplexity API", "REST APIs", "Instagram Automation"],
+    description:
+      "Autonomous content pipeline that pulls trending AI topics via Perplexity API, generates captions with Gemini 2.5-Flash, creates images using Imagen 3, and auto-publishes to Instagram — fully scheduled with zero manual steps. Features a multi-tier fallback chain for image generation (Imagen 3 → Pollinations → Pillow), a custom slide compositor with topographic texture, gradient typography, and rounded image cards, plus 4 external APIs integrated with retry logic and structured CSV logging.",
+    viewportLabel: "AUTONOMOUS_CONTENT_PIPELINE",
+    accentColor: "cyan" as const,
+    link: "https://github.com/devendrasaim/AI-Automated-Social-Media-Generator",
+    liveLink: "https://www.instagram.com/myaiguru9/",
+  },
+  {
     moduleId: "MODULE_A",
     title: (
       <>
