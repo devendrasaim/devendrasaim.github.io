@@ -79,7 +79,7 @@ export function HeroSection() {
           >
             <p className="font-mono text-[10px] sm:text-sm md:text-base tracking-[0.1em] sm:tracking-[0.15em] text-muted-foreground">
               <Typewriter
-                text="Full Stack Engineer | MSCS Graduate | AI Researcher"
+                text="MSCS Graduate | Software Engineer | Full Stack Engineer | AI Engineer"
                 speed={30}
                 onComplete={() => setSubtitleComplete(true)}
               />

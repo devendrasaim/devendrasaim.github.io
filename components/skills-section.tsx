@@ -18,7 +18,7 @@ const skillCategories = [
   {
     id: "AI",
     name: "Machine Learning",
-    items: ["PyTorch", "TensorFlow", "Scikit-learn", "Pandas", "NumPy", "Google Gemini API", "NLP"],
+    items: ["PyTorch", "TensorFlow", "Scikit-learn", "Pandas", "NumPy", "Google Gemini API", "Perplexity API", "Imagen 3", "Pillow", "NLP"],
     accent: "rose" as const,
   },
   {
@@ -36,7 +36,7 @@ const skillCategories = [
   {
     id: "CORE",
     name: "Key Concepts",
-    items: ["RESTful APIs", "Distributed Systems", "Data Structures", "System Security", "Agile"],
+    items: ["RESTful APIs", "Multi-API Orchestration", "Autonomous Pipeline Design", "Distributed Systems", "Data Structures", "System Security", "Agile"],
     accent: "amber" as const,
   },
 ];
