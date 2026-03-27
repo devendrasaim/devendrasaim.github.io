@@ -3,9 +3,18 @@
 import { motion } from "framer-motion";
 import { ProjectModule } from "@/components/project-module";
 
+const CATEGORIES = [
+  { key: "web",      label: "WEB APPLICATIONS" },
+  { key: "ai",       label: "AI & MACHINE LEARNING" },
+  { key: "security", label: "SYSTEMS & SECURITY" },
+  { key: "game",     label: "GAME / HACKATHON" },
+] as const;
+type CategoryKey = typeof CATEGORIES[number]["key"];
+
 const projects = [
   {
-    moduleId: "MODULE_E",
+    moduleId: "MODULE_A",
+    category: "web" as CategoryKey,
     title: "GROCERY SQUARE",
     tags: ["Next.js", "Supabase", "PostgreSQL", "GitHub Actions"],
     description:
@@ -16,19 +25,21 @@ const projects = [
     image: "/images/grocery.gif",
   },
   {
-    moduleId: "MODULE_G",
+    moduleId: "MODULE_B",
+    category: "ai" as CategoryKey,
     title: "AI SOCIAL MEDIA GENERATOR",
     tags: ["Python", "Google Gemini API", "Imagen 3", "Pillow", "Perplexity API", "REST APIs", "Instagram Automation"],
     description:
       "Autonomous content pipeline that pulls trending AI topics via Perplexity API, generates captions with Gemini 2.5-Flash, creates images using Imagen 3, and auto-publishes to Instagram — fully scheduled with zero manual steps. Features a multi-tier fallback chain for image generation (Imagen 3 → Pollinations → Pillow), a custom slide compositor with topographic texture, gradient typography, and rounded image cards, plus 4 external APIs integrated with retry logic and structured CSV logging.",
     viewportLabel: "AUTONOMOUS_CONTENT_PIPELINE",
     accentColor: "cyan" as const,
-    link: "https://github.com/devendrasaim/AI-Automated-Social-Media-Generator",
+    link: "https://github.com/devendrasaim/AI-Social-Media-Generator",
     liveLink: "https://www.instagram.com/myaiguru9/",
     flowchart: true,
   },
   {
-    moduleId: "MODULE_A",
+    moduleId: "MODULE_C",
+    category: "security" as CategoryKey,
     title: (
       <>
         PRIVACY PRESERVING
@@ -44,7 +55,8 @@ const projects = [
     pdfUrl: "/docs/secure-deep-learning-sgx.pdf",
   },
   {
-    moduleId: "MODULE_B",
+    moduleId: "MODULE_D",
+    category: "ai" as CategoryKey,
     title: "ACTIVATION STEERING APR",
     tags: ["PyTorch", "CodeLLM", "Activation Steering"],
     description:
@@ -55,7 +67,8 @@ const projects = [
     pdfUrl: "/docs/activation-steering-apr.pdf",
   },
   {
-    moduleId: "MODULE_C",
+    moduleId: "MODULE_E",
+    category: "web" as CategoryKey,
     title: "HOBBY HIVE",
     tags: ["React", "Supabase", "Real-Time Systems"],
     description:
@@ -66,7 +79,8 @@ const projects = [
     image: "/images/hobby-hive.gif",
   },
   {
-    moduleId: "MODULE_D",
+    moduleId: "MODULE_F",
+    category: "game" as CategoryKey,
     title: "BOUNCE STREAK (HACKATHON)",
     tags: ["Reddit Devvit", "Hackathon Project", "Phaser", "TypeScript"],
     description:
@@ -76,9 +90,9 @@ const projects = [
     link: "https://www.reddit.com/r/bounce_streak_dev/comments/1r1adpg/bouncestreak/",
     image: "/images/gameplay.gif",
   },
-
   {
-    moduleId: "MODULE_F",
+    moduleId: "MODULE_G",
+    category: "ai" as CategoryKey,
     title: "FEDERATED FAIRNESS VERIFICATION",
     tags: ["NuSMV", "CTL", "Formal Verification", "Python"],
     description:
@@ -112,15 +126,47 @@ export function ProjectsSection() {
           </h2>
         </motion.div>
 
-        {/* Modules */}
-        <div className="space-y-32">
-          {projects.map((project, index) => (
-            <ProjectModule
-              key={project.moduleId}
-              {...project}
-              reversed={index % 2 !== 0}
-            />
-          ))}
+        {/* Grouped modules */}
+        <div className="space-y-24">
+          {CATEGORIES.map(({ key, label }) => {
+            const catProjects = projects.filter((p) => p.category === key);
+            if (!catProjects.length) return null;
+            return (
+              <div key={key} className="space-y-32">
+                {/* Category divider */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="flex items-center gap-6"
+                >
+                  <div className="h-px flex-1 bg-white/20" />
+                  <span
+                    className="font-mono text-xs tracking-[0.3em] font-bold uppercase text-white"
+                    style={{
+                      textShadow:
+                        "0 0 8px rgba(255,255,255,0.9), 0 0 20px rgba(200,240,255,0.6), 0 0 40px rgba(180,220,255,0.3)",
+                    }}
+                  >
+                    {label}
+                  </span>
+                  <div className="h-px flex-1 bg-white/20" />
+                </motion.div>
+
+                {/* Projects under this category */}
+                <div className="space-y-32">
+                  {catProjects.map((project, idx) => (
+                    <ProjectModule
+                      key={project.moduleId}
+                      {...project}
+                      reversed={idx % 2 !== 0}
+                    />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -5,7 +5,9 @@
       "WebFetch(domain:devendrasaim.github.io)",
       "Bash(git commit:*)",
       "Bash(git push origin main)",
-      "Bash(npm install resend)"
+      "Bash(npm install resend)",
+      "Bash(git add components/workflow-flowchart.tsx components/project-module.tsx components/projects-section.tsx)",
+      "Bash(git add components/workflow-flowchart.tsx)"
     ]
   }
 }

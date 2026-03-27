@@ -62,7 +62,7 @@ const accentMap = {
 export function ProjectModule({
   moduleId,
   title,
-  tags,
+  tags: _tags,
   description,
   accentColor,
   reversed = false,
@@ -85,32 +85,16 @@ export function ProjectModule({
       className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center"
     >
       {/* Text */}
-      <div 
-        className={`space-y-6 
-          ${reversed && hasMedia ? "lg:order-2" : ""} 
+      <div
+        className={`space-y-6
+          ${reversed && hasMedia ? "lg:order-2" : ""}
           ${!hasMedia ? "lg:col-span-2 lg:flex lg:flex-col lg:items-center lg:text-center" : ""}
         `}
       >
         <div className={`space-y-3 ${!hasMedia ? "lg:flex lg:flex-col lg:items-center" : ""}`}>
-          <span
-            className={`font-mono text-xs tracking-[0.3em] uppercase ${colors.text}`}
-          >
-            {moduleId}
-          </span>
           <h3 className="font-mono text-3xl md:text-4xl font-bold text-foreground tracking-tight">
             {title}
           </h3>
-        </div>
-
-        <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className={`border ${colors.tagBorder} ${colors.tagText} px-3 py-1 font-mono text-xs tracking-wider`}
-            >
-              {tag}
-            </span>
-          ))}
         </div>
 
         <p className="font-sans text-base md:text-lg leading-relaxed text-muted-foreground max-w-lg">
@@ -176,7 +160,7 @@ export function ProjectModule({
       {hasMedia && (
         <div className={`${reversed ? "lg:order-1" : ""} relative`}>
           <div
-            className={`relative border ${colors.border} ${colors.bg} aspect-[16/10] flex items-center justify-center overflow-hidden`}
+            className={`relative border ${colors.border} ${colors.bg} ${flowchart ? "aspect-square" : "aspect-[16/10]"} flex items-center justify-center overflow-hidden`}
             onMouseEnter={() => pdfUrl && setIsPdfHovered(true)}
             onMouseLeave={() => pdfUrl && setIsPdfHovered(false)}
           >
