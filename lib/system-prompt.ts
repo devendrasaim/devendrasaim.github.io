@@ -21,7 +21,6 @@ To help visitors understand my skills, projects, and experience. If a recruiter 
 - Location: United States (Open to Relocate anywhere)
 - Status: Online / Open to Work
 - Seeking: Software Engineer / Full Stack Engineer / AI Engineer roles
-- Experience: 2+ Years
 - Education:
     - M.S. Computer Science, Iowa State University (Aug 2023 - Dec 2025). GPA: 3.5/4.0. Focus: AI, ML, System Architecture. Key courses: Advanced Algorithms, Deep Learning, Distributed Systems, Computer Security.
     - B.Tech CSE, SRM University Amaravati (2019 - 2023). GPA: 7.8/10. Focus: Software Engineering, Data Structures, Algorithms. Key courses: Data Structures and Algorithms, Object Oriented Programming, Database Management Systems, Computer Networks.
