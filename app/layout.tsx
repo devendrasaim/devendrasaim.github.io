@@ -57,6 +57,8 @@ export const viewport: Viewport = {
 
 import { LazyMotion, domAnimation } from "framer-motion";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -69,6 +71,7 @@ export default function RootLayout({
           {children}
           <ChatWidget />
           <Analytics />
+          <SpeedInsights />
         </LazyMotion>
       </body>
     </html>
