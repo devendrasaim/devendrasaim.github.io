@@ -46,13 +46,13 @@ export function AboutSection() {
                    // TL;DR
                  </h4>
                   <p className="font-mono text-sm md:text-base text-muted-foreground leading-relaxed">
-                   MSCS Grad '25 @ Iowa State. Full Stack Engineer & AI Researcher. Ship production apps with Next.js, Supabase & CI/CD. Build autonomous AI content pipelines. Steer LLM internals with PyTorch. Seeking SWE / Full Stack / AI roles.
+                   MSCS Grad '25 @ Iowa State. Full Stack Engineer & AI Researcher. Ship production apps with Next.js, Supabase & CI/CD. Build autonomous AI pipelines and multi-agent systems. Steer LLM internals with PyTorch. Seeking SWE / Full Stack / AI roles.
                  </p>
                </div>
 
 
                 <p className="font-sans text-lg md:text-xl leading-relaxed text-muted-foreground mb-8">
-                 I am <span className="text-foreground font-semibold">Devendra Sai Mupparaju</span>, a Master of Science in Computer Science graduate from Iowa State University (December 2025). I build full-stack platforms end-to-end, engineer autonomous AI systems, and research ways to make AI models more reliable — from production Next.js deployments and multi-API automation pipelines to training-free LLM steering techniques.
+                 I am <span className="text-foreground font-semibold">Devendra Sai Mupparaju</span>, a Master of Science in Computer Science graduate from Iowa State University (December 2025). I build full-stack platforms end-to-end, engineer autonomous multi-agent AI systems, and research ways to make AI models more reliable — from production Next.js deployments and multi-agent automation pipelines to training-free LLM steering techniques.
                </p>
 
                <div className="space-y-6">
@@ -74,7 +74,7 @@ export function AboutSection() {
                      AI Engineering & Research
                    </h3>
                    <p className="font-sans text-sm md:text-base leading-relaxed text-muted-foreground">
-                     Developed a training-free Activation Steering method in PyTorch that injects a correctness vector into CodeLLM residual streams during inference, boosting CodeLlama-7B repair accuracy from 48% to 56% and eliminating invalid code generation entirely.
+                     Developed a training-free Activation Steering method in PyTorch that injects a correctness vector into CodeLLM residual streams during inference — boosting CodeLlama-7B repair accuracy from 48% to 56%, Qwen2.5-Coder-7B from 63% to 70%, and eliminating invalid code generation entirely.
                      <br className="mb-2" />
                      Secured deep learning training loops inside Intel SGX enclaves, isolating computation from OS-level vulnerabilities and maintaining 100% data privacy during simulated system compromise scenarios.
                      <br className="mb-2" />
@@ -87,7 +87,9 @@ export function AboutSection() {
                      Autonomous AI Systems
                    </h3>
                    <p className="font-sans text-sm md:text-base leading-relaxed text-muted-foreground">
-                     Built an end-to-end autonomous content pipeline ("The Social Speaker") that researches trending topics via Perplexity API, generates 3-slide Instagram carousel narratives with Gemini 2.5-Flash, creates 1080×1080 dark-mode visuals using Imagen 3, and auto-publishes to Instagram — all without manual intervention.
+                     Built a 5-agent autonomous job application pipeline that scouts roles from LinkedIn/Indeed, scrapes ATS forms, tailors resumes per job description with Gemini, generates cover letters, and submits applications via Playwright browser automation — with human confirmation before each final submit and real-time tracking in a React + Firebase Kanban board.
+                     <br className="mb-2" />
+                     Built an end-to-end autonomous content pipeline ("The Social Speaker") that researches trending topics via Perplexity API, generates 3-slide Instagram carousel narratives with Gemini 2.5-Flash, creates 1080×1080 dark-mode visuals using Imagen 3, and publishes directly to Instagram via instagrapi — all without manual intervention or paid publishing APIs.
                      <br className="mb-2" />
                      Engineered a multi-tier image generation fallback chain (Imagen 3 → Pollinations → Pillow) and integrated 4 external APIs with retry logic and structured CSV logging, scheduled daily via Windows Task Scheduler.
                    </p>

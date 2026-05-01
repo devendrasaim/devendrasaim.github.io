@@ -6,38 +6,62 @@ const skillCategories = [
   {
     id: "LANG",
     name: "Languages",
-    items: ["Python", "C++", "TypeScript", "JavaScript", "Linux/Bash", "SQL"],
+    items: ["Python", "C++", "TypeScript", "JavaScript", "SQL", "Linux/Bash"],
     accent: "cyan" as const,
-  },
-  {
-    id: "OPS",
-    name: "Cloud & Ops",
-    items: ["AWS (EC2, S3, IAM)", "Git", "CI/CD", "Intel SGX", "Docker", "Slurm"],
-    accent: "green" as const,
+    fullWidth: false,
   },
   {
     id: "AI",
-    name: "Machine Learning",
-    items: ["PyTorch", "TensorFlow", "Scikit-learn", "Pandas", "NumPy", "Google Gemini API", "Perplexity API", "Imagen 3", "Pillow", "NLP"],
+    name: "AI & Machine Learning",
+    items: [
+      "PyTorch", "TensorFlow", "Scikit-learn",
+      "LLM Integration", "Prompt Engineering", "Activation Steering",
+      "Agentic Workflow Design", "Multi-Agent Systems",
+      "Gemini API", "OpenAI API", "Perplexity API", "Imagen 3",
+      "Vercel AI SDK", "RAG Architecture", "Browser Automation with Vision Models",
+    ],
     accent: "rose" as const,
-  },
-  {
-    id: "DB",
-    name: "Databases",
-    items: ["PostgreSQL", "Supabase", "Redis", "MySQL"],
-    accent: "amber" as const,
+    fullWidth: false,
   },
   {
     id: "WEB",
-    name: "Web & Tools",
-    items: ["React", "Node.js", "Phaser", "Flask", "Tailwind CSS", "Vite", "Power BI"],
+    name: "Web & Full Stack",
+    items: ["React", "Next.js", "Node.js", "Flask", "Tailwind CSS", "Vite", "Phaser 3", "Framer Motion", "Shadcn UI"],
+    accent: "amber" as const,
+    fullWidth: false,
+  },
+  {
+    id: "OPS",
+    name: "Cloud & DevOps",
+    items: ["AWS (EC2, S3, IAM)", "GitHub Actions", "CI/CD", "Docker", "Slurm (HPC)", "Intel SGX", "Firebase", "Vercel", "Windows Task Scheduler"],
+    accent: "green" as const,
+    fullWidth: false,
+  },
+  {
+    id: "DB",
+    name: "Databases & Storage",
+    items: ["PostgreSQL", "Supabase", "MySQL", "Redis", "pgvector", "Vector Databases", "Embeddings"],
     accent: "cyan" as const,
+    fullWidth: false,
+  },
+  {
+    id: "API",
+    name: "APIs & Services",
+    items: ["Apify", "Notion API", "Gmail IMAP", "Firebase Firestore", "Resend", "instagrapi", "Discord Webhook", "Reddit Devvit SDK"],
+    accent: "amber" as const,
+    fullWidth: false,
   },
   {
     id: "CORE",
     name: "Key Concepts",
-    items: ["RESTful APIs", "Multi-API Orchestration", "Autonomous Pipeline Design", "Distributed Systems", "Data Structures", "System Security", "Agile"],
-    accent: "amber" as const,
+    items: [
+      "Agentic Pipelines", "Multi-API Orchestration", "Fault-Tolerant Systems",
+      "RESTful APIs", "Real-time Systems", "Static Site Generation",
+      "Distributed Systems", "Formal Verification", "System Security",
+      "ATS Resume Optimization", "Agile",
+    ],
+    accent: "rose" as const,
+    fullWidth: true,
   },
 ];
 
@@ -79,8 +103,8 @@ export function SkillsSection() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.1 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className={`border ${accentMap[category.accent].border} bg-background/50 p-5 md:p-8 relative overflow-hidden group`}
+                    transition={{ duration: 0.5, delay: index * 0.08 }}
+                    className={`border ${accentMap[category.accent].border} bg-background/50 p-5 md:p-8 relative overflow-hidden group ${category.fullWidth ? "md:col-span-2" : ""}`}
                 >
                     {/* Background tint on hover */}
                      <div className={`absolute inset-0 ${accentMap[category.accent].bg} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
@@ -92,11 +116,11 @@ export function SkillsSection() {
                                 {category.id}_MODULE
                              </span>
                         </div>
-                        
+
                         <div className="flex flex-wrap gap-2">
                             {category.items.map((item) => (
-                                <span 
-                                    key={item} 
+                                <span
+                                    key={item}
                                     className="px-3 py-1.5 border border-border/60 bg-background/50 text-muted-foreground font-mono text-sm tracking-wide"
                                 >
                                     {item}

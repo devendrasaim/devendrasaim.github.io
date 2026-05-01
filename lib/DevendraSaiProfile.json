@@ -1,0 +1,387 @@
+{
+  "meta": {
+    "version": "1.0",
+    "last_updated": "2026-04-30",
+    "description": "Single source of truth for Devendra Sai Mupparaju. Load into any AI model via system prompt or server action. Keep phone/email in .env for production use."
+  },
+
+  "personal": {
+    "full_name": "Devendra Sai Mupparaju",
+    "first_name": "Devendra",
+    "last_name": "Mupparaju",
+    "email": "mdevendrasai9@gmail.com",
+    "phone": "(515) 916-3383",
+    "location": {
+      "city": "West New York",
+      "state": "New Jersey",
+      "state_abbr": "NJ",
+      "zip": "07093",
+      "country": "United States"
+    },
+    "links": {
+      "portfolio": "https://devendrasaim.vercel.app",
+      "github": "https://github.com/devendrasaim",
+      "linkedin": "https://linkedin.com/in/devendrasaim"
+    },
+    "status": "Open to work, actively job hunting, open to relocation within US"
+  },
+
+  "work_authorization": {
+    "visa_status": "F-1 OPT / STEM OPT",
+    "authorized_to_work_in_us": true,
+    "requires_sponsorship_now": false,
+    "will_require_sponsorship_future": true,
+    "future_sponsorship_type": "H-1B",
+    "stem_opt_eligible": true,
+    "opt_runway_years": 3,
+    "answers": {
+      "are_you_authorized_to_work_in_us": "Yes",
+      "do_you_require_sponsorship_now": "No",
+      "will_you_require_sponsorship_in_future": "Yes",
+      "what_is_your_visa_status": "F-1 OPT — currently authorized to work without sponsorship. Will require H-1B sponsorship in the future.",
+      "are_you_a_us_citizen_or_pr": "No"
+    }
+  },
+
+  "education": [
+    {
+      "institution": "Iowa State University",
+      "location": "Ames, IA",
+      "degree": "Master of Science",
+      "field": "Computer Science",
+      "gpa": "3.5/4.0",
+      "start": "August 2023",
+      "end": "December 2025",
+      "graduated": true,
+      "focus": ["Artificial Intelligence", "Machine Learning", "System Architecture"],
+      "thesis": {
+        "title": "Automatic Program Repair Through Activation Steering",
+        "type": "Creative Component",
+        "advisor": "Prof. Simanta Mitra",
+        "year": 2025
+      }
+    },
+    {
+      "institution": "SRM University Amaravati",
+      "location": "Amaravati, Andhra Pradesh, India",
+      "degree": "Bachelor of Technology",
+      "field": "Computer Science and Engineering",
+      "gpa": "7.8/10",
+      "start": "August 2019",
+      "end": "May 2023",
+      "graduated": true
+    }
+  ],
+
+  "research_experience": [
+    {
+      "title": "Graduate Research — Activation Steering for Automatic Program Repair",
+      "institution": "Iowa State University",
+      "location": "Ames, IA",
+      "type": "Unpaid Research Assistant",
+      "start": "August 2025",
+      "end": "December 2025",
+      "advisor": "Prof. Simanta Mitra",
+      "description": "Designed and implemented a training-free activation steering method in PyTorch to improve CodeLLM reliability for bug-fixing tasks. Ran 40+ experimental configurations across layer-strength hyperparameter grid on HPC Slurm clusters.",
+      "key_results": {
+        "CodeLlama_7B_HumanEval": {
+          "baseline_accuracy": "48.12%",
+          "steered_accuracy": "56.25%",
+          "improvement": "+8.13pp",
+          "invalid_baseline": "4.38%",
+          "invalid_steered": "0.00%"
+        },
+        "Qwen_7B_HumanEval": {
+          "baseline_accuracy": "63.12%",
+          "steered_accuracy": "70.00%",
+          "improvement": "+6.88pp",
+          "invalid_baseline": "0.00%",
+          "invalid_steered": "0.00%"
+        },
+        "Qwen_14B_Defects4J": {
+          "baseline_accuracy": "60.88%",
+          "steered_accuracy": "65.31%",
+          "improvement": "+4.43pp",
+          "dataset_size": "565 real-world Java bugs"
+        }
+      },
+      "tech": ["Python", "PyTorch", "CodeLlama-7B", "Qwen-7B", "Qwen-14B", "HumanEval", "Defects4J", "Slurm"],
+      "novel_finding": "Middle transformer layers optimal for code generation tasks; late layers optimal for repair tasks — suggesting task-dependent reasoning stages in CodeLLM architecture."
+    },
+    {
+      "title": "Graduate Research — Secure Deep Learning & Federated Learning Fairness",
+      "institution": "Iowa State University",
+      "location": "Ames, IA",
+      "type": "Unpaid Research Assistant",
+      "start": "January 2025",
+      "end": "May 2025",
+      "description": "Engineered ML training loops inside Intel SGX enclaves using C++ and the Darknet framework. Formally verified fairness properties in a federated learning protocol using NuSMV model checker and CTL temporal logic.",
+      "key_results": {
+        "sgx_overhead": "~50% training overhead (27.43s vs 41.07s) deemed acceptable for privacy-critical workloads",
+        "sgx_encryption": "AES-GCM encrypted model weights for secure export/import",
+        "federated_properties_verified": ["Starvation-freedom", "Deadlock-freedom", "Eventual fairness across all 3 clients", "Bounded round completion"]
+      },
+      "tech": ["C/C++", "Intel SGX SDK", "Darknet", "NuSMV", "CTL Logic", "Python", "Bash", "Ubuntu 20.04"]
+    }
+  ],
+
+  "skills": {
+    "languages": ["Python", "C++", "TypeScript", "JavaScript", "SQL", "Linux/Bash"],
+    "ai_ml": [
+      "PyTorch", "TensorFlow", "Scikit-learn",
+      "LLM Integration", "Prompt Engineering", "Activation Steering",
+      "Agentic Workflow Design", "Multi-Agent Systems",
+      "Gemini API (2.5 Pro / 2.5 Flash / 1.5 Flash)", "Perplexity API", "Imagen 3",
+      "OpenAI API", "Vercel AI SDK",
+      "RAG Architecture", "Vector Databases", "Embeddings",
+      "Browser Automation with Vision Models"
+    ],
+    "web": ["React", "Next.js", "Node.js", "Flask", "Tailwind CSS", "Vite", "Phaser 3", "Framer Motion", "Shadcn UI"],
+    "cloud_devops": ["AWS (EC2, S3, IAM)", "Docker", "GitHub Actions", "CI/CD", "Slurm (HPC)", "Intel SGX", "Firebase", "Vercel"],
+    "databases": ["PostgreSQL", "Supabase", "MySQL", "Redis", "pgvector"],
+    "apis_and_services": [
+      "Apify (LinkedIn/Indeed scrapers)", "Notion API", "Gmail IMAP",
+      "Firebase Firestore", "Resend (email)", "instagrapi", "Discord Webhook",
+      "Reddit Devvit SDK"
+    ],
+    "concepts": [
+      "Agentic Pipelines", "Multi-API Orchestration", "Fault-Tolerant Systems",
+      "Distributed Systems", "Formal Verification", "System Security",
+      "ATS Resume Optimization", "Real-time Systems", "Static Site Generation"
+    ]
+  },
+
+  "projects": [
+    {
+      "name": "Autonomous Job Application Agent System",
+      "status": "Local — not yet on GitHub",
+      "description": "5-agent pipeline that automates the entire job application lifecycle: discovers jobs from LinkedIn/Indeed/Glassdoor, scrapes and maps ATS form fields, tailors resumes per JD, generates cover letters, fills and submits application forms via browser automation, and tracks everything in Notion + Firebase Kanban board.",
+      "agents": {
+        "agent1_scout": "Apify LinkedIn/Indeed scraper with relevance scoring, skip filters, and deduplication",
+        "agent2_analyzer": "Scrapes Greenhouse/Lever application forms, uses Gemini to map every field by category",
+        "agent3_writer": "Generates tailored cover letter, elevator pitch, and why-company answer per role (Gemini 2.5 Pro)",
+        "agent4_answerer": "Generates answers to every unique form question using candidate profile",
+        "agent5_submitter": "Fills forms via Claude-in-Chrome browser automation, pauses for human confirmation before submitting"
+      },
+      "parallel_systems": {
+        "glassdoor_gmail_finder": "Gmail IMAP watcher — Gemini parses Glassdoor recommendation emails, saves to Notion",
+        "resume_watcher": "Polls Notion every 60s, tailors master resume per JD with Gemini, ATS-scores it, generates PDF, saves back to Notion",
+        "job_tracker_frontend": "React + Firebase Kanban board with Google auth and real-time Firestore sync"
+      },
+      "tech": ["Python", "Apify", "Gemini 2.5 Pro/Flash", "Playwright", "Gmail IMAP", "Notion API", "Firebase Firestore", "React", "TypeScript", "reportlab", "pypdf", "BeautifulSoup"],
+      "highlights": ["End-to-end agentic pipeline", "Human-in-the-loop confirmation before submission", "ATS scoring + PDF generation", "Real-time Kanban tracking"]
+    },
+    {
+      "name": "AI Social Media Generator (The Social Speaker)",
+      "repo": "https://github.com/devendrasaim/AI-Social-Media-Generator",
+      "status": "Public",
+      "description": "Fully autonomous content engine that researches trending topics via Perplexity, writes narrative-driven copy with Gemini, generates dark-mode Instagram carousels using Imagen 3 + Pillow, and publishes directly to Instagram via instagrapi — no external hosting, no paid publishing APIs.",
+      "architecture": "Perplexity/YouTube → Gemini captions → VisualEngine (local JPEGs via Imagen 3 + Pillow) → instagrapi → Instagram",
+      "tech": ["Python", "Gemini 2.5 Flash", "Imagen 3", "Perplexity API", "instagrapi", "Pillow", "Discord Webhook", "Windows Task Scheduler"],
+      "highlights": ["Daily autonomous publishing", "Smart topic queue with auto-refill", "1080x1080 professional carousel generation", "Direct Instagram publish via instagrapi (no paid APIs)", "Discord notification on publish"]
+    },
+    {
+      "name": "Portfolio Website with AI Assistant",
+      "repo": "https://github.com/devendrasaim/devendrasaim.github.io",
+      "live": "https://devendrasaim.vercel.app",
+      "status": "Public, Live",
+      "description": "Personal portfolio built with Next.js and TypeScript. Features a floating AI chatbot (digital twin) that answers recruiter questions about skills, projects, and work authorization in first person, using prompt-engineered Gemini with model fallback.",
+      "chatbot_details": {
+        "type": "System-prompt-engineered AI portfolio assistant (not RAG)",
+        "model_fallback_chain": ["gemini-2.5-pro", "gemini-2.5-flash", "gemini-1.5-flash"],
+        "features": ["First-person persona", "Bridge Technique for unknown questions", "Analytics logging per interaction", "Resend email integration for contact form"]
+      },
+      "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Gemini API", "Resend API", "Vercel"],
+      "highlights": ["73 commits", "Production deployed", "Live recruiter-facing AI assistant"]
+    },
+    {
+      "name": "GrocerySquare",
+      "repo": "https://github.com/devendrasaim/GrocerySquare",
+      "status": "Public",
+      "description": "Production-grade e-commerce grocery storefront with glassmorphism UI, full product catalog, and static site generation.",
+      "tech": ["Next.js App Router", "Supabase", "PostgreSQL", "Tailwind CSS", "Lucide React", "GitHub Actions"],
+      "highlights": ["Deployed via GitHub Actions to GitHub Pages", "generateStaticParams for 20+ pages", "Local mock data fallback for dev without DB"]
+    },
+    {
+      "name": "Hobby Hive",
+      "repo": "https://github.com/devendrasaim/hobby-hive",
+      "status": "Public",
+      "description": "Gamified social platform to connect people through structured hobby journeys. TikTok-style discovery feed, skill badge progression (Seed → Sprout → Bloom), guilds, and honeycomb profile grid.",
+      "tech": ["React 18", "TypeScript", "Vite", "Tailwind CSS", "Shadcn UI", "Supabase", "PostgreSQL", "TanStack Query", "React Hook Form", "Zod"],
+      "highlights": ["Real-time Supabase subscriptions", "Feature-based architecture", "Full auth + CRUD"]
+    },
+    {
+      "name": "Bounce Streak",
+      "repo": "https://github.com/devendrasaim/bounce-streak",
+      "status": "Public",
+      "description": "Competitive soccer-themed 2D physics game built as a Reddit Devvit app. Daily physics modifiers, seed-based deterministic gameplay, community leaderboard.",
+      "tech": ["Phaser 3.87", "Reddit Devvit SDK", "React 19", "TypeScript 5.8", "Express 5", "Redis", "Vite 6", "Tailwind CSS 4", "Gemini API"],
+      "metrics": "3,000+ concurrent users at 60 FPS",
+      "highlights": ["Daily randomized physics parameters", "Seed-based RNG for identical conditions across players", "38px mobile touch zone optimization"]
+    },
+    {
+      "name": "UI Navigator Agent",
+      "repo": "https://github.com/devendrasaim/ui-navigator-agent",
+      "status": "Public",
+      "description": "Web navigation agent that accepts voice or text commands and autonomously interacts with any website using AI vision and browser automation.",
+      "tech": ["Python", "Gemini 1.5 Flash", "Playwright", "SpeechRecognition", "Pillow"],
+      "highlights": ["Set-of-Mark element tagging for AI parsing", "Universal — works across any website", "Voice input support"]
+    },
+    {
+      "name": "Automatic Program Repair via Activation Steering",
+      "repo": "https://github.com/devendrasaim/automatic-program-repair-steering",
+      "status": "Public",
+      "description": "Master's Creative Component. Training-free method using PyTorch forward hooks to inject a correctness steering vector into CodeLLM residual streams at inference time, improving accuracy and eliminating invalid code generation.",
+      "tech": ["Python", "PyTorch", "CodeLlama-7B-Instruct", "Qwen2.5-Coder-7B", "Qwen2.5-Coder-14B", "HumanEval", "Defects4J", "Slurm"],
+      "key_metrics": {
+        "CodeLlama_7B_accuracy_gain": "+8.13pp (48.12% → 56.25%)",
+        "invalid_code_eliminated": "4.38% → 0.00%",
+        "Qwen_7B_accuracy_gain": "+6.88pp (63.12% → 70.00%)",
+        "Qwen_14B_Defects4J_gain": "+4.43pp (60.88% → 65.31%)",
+        "experimental_runs": "40+ configurations per model (layer × strength grid search)"
+      }
+    },
+    {
+      "name": "Secure Deep Learning with Intel SGX",
+      "repo": "https://github.com/devendrasaim/secure-deep-learning-sgx",
+      "status": "Public",
+      "description": "Proof-of-concept for privacy-preserving deep learning by executing a lightweight CNN entirely within Intel SGX hardware enclaves. Protects model weights and training data from the host OS.",
+      "tech": ["C/C++", "Intel SGX SDK", "Darknet", "gcc", "cmake", "Ubuntu 20.04"],
+      "highlights": ["AES-GCM encrypted model weights", "Remote attestation", "~50% training overhead accepted for privacy guarantees"]
+    },
+    {
+      "name": "Federated Fairness Verification",
+      "repo": "https://github.com/devendrasaim/federated-fairness-verification",
+      "status": "Public",
+      "description": "Formally verifies fairness properties in a 3-client federated learning protocol using NuSMV model checker and CTL temporal logic. Proves starvation-freedom and deadlock-freedom mathematically.",
+      "tech": ["NuSMV 2.7+", "Python", "Bash"],
+      "ctl_properties_verified": ["Eventual impact of client updates", "No starvation (AG EF Applied_i)", "Collective fairness across all 3 clients", "Deadlock freedom", "Bounded round completion"]
+    },
+    {
+      "name": "Multi-Agent Pursuit-Evasion Planning",
+      "repo": "https://github.com/devendrasaim/multi-agent-pursuit-evasion",
+      "status": "Public",
+      "description": "Advanced MCTS-based planning system where three agents simultaneously pursue one target while evading another pursuer in a grid environment with obstacles.",
+      "tech": ["Python", "NumPy", "SciPy"],
+      "highlights": ["UCT-based MCTS selection", "Probabilistic action transitions", "LRU caching for performance", "Heuristic-based rollout policies"]
+    },
+    {
+      "name": "Pursue-Escape Planning",
+      "repo": "https://github.com/devendrasaim/pursue-escape-planning",
+      "status": "Public",
+      "description": "Multi-agent pursuit-evasion simulation with Tom, Jerry, and Spike agents using real-time path planning and dynamic obstacle avoidance.",
+      "tech": ["Python", "NumPy", "Matplotlib", "Pandas"],
+      "highlights": ["Tested across 100 task configurations", "Real-time Matplotlib visualization", "Modular per-agent planning modules"]
+    },
+    {
+      "name": "A* Pathfinding",
+      "repo": "https://github.com/devendrasaim/a-star-pathfinding",
+      "status": "Public",
+      "description": "Custom A* pathfinding implementation with optimized heuristics, path validation, priority queue data structures, and visualization tools.",
+      "tech": ["Python", "NumPy", "SciPy"],
+      "highlights": ["Guaranteed optimal path finding", "Custom heuristic functions", "Built-in path validation and visualization"]
+    }
+  ],
+
+  "research_paper": {
+    "title": "Automatic Program Repair Through Activation Steering",
+    "subtitle": "A Research Project on Enhancing Code Generation through Neural Network Steering",
+    "type": "Master's Creative Component",
+    "institution": "Iowa State University",
+    "year": 2025,
+    "advisor": "Prof. Simanta Mitra",
+    "pages": 27,
+    "pdf": "docs/Automatic_Program_Repair_Through_Activation_Steering.pdf",
+    "abstract_summary": "Training-free method for improving CodeLLM reliability using Activation Steering (Representation Engineering). Computes a correctness vector from contrastive buggy/correct code pairs and injects it into residual streams via PyTorch forward hooks at inference time.",
+    "benchmarks": {
+      "HumanEval": "160 programming problems (pass@1)",
+      "Defects4J": "565 real-world Java bugs (pass@1 against full test suite)"
+    },
+    "models_tested": ["codellama/CodeLlama-7b-Instruct-hf", "Qwen/Qwen2.5-Coder-7B-Instruct", "Qwen/Qwen2.5-Coder-14B-Instruct"],
+    "best_results": {
+      "CodeLlama_7B_HumanEval": {"baseline": "48.12%", "steered": "56.25%", "gain": "+8.13pp", "invalid_eliminated": true},
+      "Qwen_7B_HumanEval": {"baseline": "63.12%", "steered": "70.00%", "gain": "+6.88pp"},
+      "Qwen_14B_Defects4J": {"baseline": "60.88%", "steered": "65.31%", "gain": "+4.43pp"}
+    },
+    "novel_findings": [
+      "Code correctness is a steerable, linearly-represented concept in CodeLLM activation space",
+      "Middle layers optimal for generation tasks (HumanEval); late layers optimal for repair tasks (Defects4J)",
+      "Activation steering eliminates invalid/non-compiling output without any model retraining"
+    ],
+    "limitations": ["Requires white-box model access (not usable with GPT-4 API)", "Hyperparameter grid search needed per new model", "Concept entanglement not fully measured"],
+    "future_work": ["Conditional Activation Steering (CAST)", "Multi-concept compositional steering", "Cross-lingual and cross-model vector transfer"]
+  },
+
+  "certifications": [
+    {"name": "Prompt Design in Vertex AI", "issuer": "Google Cloud", "date": "February 2026"},
+    {"name": "Cloud Infrastructure Foundations Associate", "issuer": "Oracle", "date": "2021"},
+    {"name": "Python (Basic)", "issuer": "HackerRank", "date": ""},
+    {"name": "Introduction to Cloud", "issuer": "Cognitive Class (IBM)", "date": ""},
+    {"name": "Hadoop 101", "issuer": "Cognitive Class (IBM)", "date": ""}
+  ],
+
+  "job_search": {
+    "status": "Actively applying",
+    "availability": "Immediate",
+    "start_date": "Immediately / 2 weeks notice",
+    "target_titles": [
+      "AI Engineer",
+      "AI Application Developer",
+      "Generative AI Engineer",
+      "Applied AI Engineer",
+      "LLM Engineer",
+      "Full Stack AI Engineer",
+      "AI Automation Engineer",
+      "Solutions Engineer (AI)"
+    ],
+    "salary_range": {
+      "min": 100000,
+      "max": 120000,
+      "display": "$100,000 – $120,000",
+      "negotiable": true
+    },
+    "job_type": "Full-time",
+    "location_preferences": {
+      "base": "West New York, NJ",
+      "open_to_nyc_commute": true,
+      "open_to_remote": true,
+      "open_to_hybrid": true,
+      "open_to_relocation": true
+    },
+    "target_company_types": [
+      "Series B/C AI startups (50-300 people)",
+      "AI tooling companies",
+      "NYC-based tech with active AI division",
+      "Fintech with AI investment"
+    ],
+    "avoid": ["Senior/Staff/Lead roles", "Pure MLOps/infrastructure roles", "Computer Vision/Robotics/Autonomous Vehicles"]
+  },
+
+  "career_narrative": {
+    "identity": "AI Application Builder — bridges LLM research depth with full-stack shipping ability",
+    "thirty_second_pitch": "I'm an AI engineer who just graduated from Iowa State with a Master's in CS where I did research on activation steering for LLMs — a technique that improves code generation accuracy without any retraining. I reduced invalid code generation to zero on CodeLlama-7B. Outside of research I've shipped full-stack AI products: an autonomous Instagram content pipeline, a browser automation agent using Gemini Vision and Playwright, and a Reddit game with 3,000 concurrent users. Most recently I built a 5-agent system that automates my own job search end-to-end. I'm best at wiring AI capabilities into things that actually run in production.",
+    "key_differentiators": [
+      "LLM internals knowledge (PyTorch hooks, residual streams, activation space) — rare at new grad level",
+      "Full-stack shipping ability — research + production apps",
+      "Agentic pipeline design (5-agent job system, autonomous content pipeline)",
+      "3,000+ concurrent users on an independent project (Bounce Streak)",
+      "Activation steering research eliminates invalid LLM output — publishable-level result"
+    ],
+    "strongest_project_for_interviews": "Autonomous Job Application Agent System (5-agent pipeline)",
+    "strongest_research_for_interviews": "Activation Steering — CodeLlama 48.12% → 56.25%, invalid 4.38% → 0%"
+  },
+
+  "standard_form_answers": {
+    "gender": "Male",
+    "ethnicity": "Asian",
+    "veteran_status": "I am not a veteran",
+    "disability": "I do not have a disability",
+    "background_check": "Yes",
+    "drug_test": "Yes",
+    "willing_to_relocate": "Yes",
+    "work_preference": "Open to remote, hybrid, or onsite",
+    "how_did_you_hear": "LinkedIn",
+    "cover_letter_available": true,
+    "references_available": true
+  }
+}

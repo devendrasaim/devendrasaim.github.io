@@ -27,10 +27,20 @@ const projects = [
   {
     moduleId: "MODULE_B",
     category: "ai" as CategoryKey,
+    title: "AUTONOMOUS JOB APPLICATION AGENT",
+    tags: ["Python", "Gemini 2.5 Pro", "Playwright", "Apify", "Notion API", "Firebase Firestore", "React", "TypeScript"],
+    description:
+      "5-agent pipeline that automates the entire job application lifecycle: Agent 1 scouts jobs from LinkedIn/Indeed via Apify with relevance scoring and deduplication. Agent 2 scrapes ATS forms (Greenhouse/Lever) and maps every field with Gemini. Agent 3 generates tailored cover letters and elevator pitches per role. Agent 4 answers every unique form question from the candidate profile. Agent 5 fills and submits via Playwright browser automation — pausing for human confirmation before final submit. Parallel systems include a Gmail IMAP watcher, a resume tailor with ATS scoring and PDF generation, and a real-time React + Firebase Kanban board.",
+    viewportLabel: "MULTI_AGENT_PIPELINE",
+    accentColor: "rose" as const,
+  },
+  {
+    moduleId: "MODULE_C",
+    category: "ai" as CategoryKey,
     title: "AI SOCIAL MEDIA GENERATOR",
     tags: ["Python", "Google Gemini API", "Imagen 3", "Pillow", "Perplexity API", "REST APIs", "Instagram Automation"],
     description:
-      "Autonomous content pipeline that pulls trending AI topics via Perplexity API, generates captions with Gemini 2.5-Flash, creates images using Imagen 3, and auto-publishes to Instagram — fully scheduled with zero manual steps. Features a multi-tier fallback chain for image generation (Imagen 3 → Pollinations → Pillow), a custom slide compositor with topographic texture, gradient typography, and rounded image cards, plus 4 external APIs integrated with retry logic and structured CSV logging.",
+      "Autonomous content pipeline that pulls trending AI topics via Perplexity API, generates captions with Gemini 2.5-Flash, creates images using Imagen 3, and auto-publishes directly to Instagram via instagrapi — fully scheduled with zero manual steps and no paid publishing APIs. Features a multi-tier fallback chain for image generation (Imagen 3 → Pollinations → Pillow), a custom slide compositor with topographic texture and gradient typography, plus 4 external APIs integrated with retry logic and structured CSV logging.",
     viewportLabel: "AUTONOMOUS_CONTENT_PIPELINE",
     accentColor: "cyan" as const,
     link: "https://github.com/devendrasaim/AI-Social-Media-Generator",
@@ -38,7 +48,18 @@ const projects = [
     flowchart: true,
   },
   {
-    moduleId: "MODULE_C",
+    moduleId: "MODULE_D",
+    category: "ai" as CategoryKey,
+    title: "UI NAVIGATOR AGENT",
+    tags: ["Python", "Gemini 1.5 Flash", "Playwright", "SpeechRecognition", "Pillow"],
+    description:
+      "Web navigation agent that accepts voice or text commands and autonomously interacts with any website using AI vision and browser automation. Uses Set-of-Mark element tagging so Gemini can visually parse and click UI elements — no site-specific scripting required. Works universally across any website with full voice input support.",
+    viewportLabel: "BROWSER_AUTOMATION_VIEWPORT",
+    accentColor: "amber" as const,
+    link: "https://github.com/devendrasaim/ui-navigator-agent",
+  },
+  {
+    moduleId: "MODULE_E",
     category: "security" as CategoryKey,
     title: (
       <>
@@ -55,7 +76,7 @@ const projects = [
     pdfUrl: "/docs/secure-deep-learning-sgx.pdf",
   },
   {
-    moduleId: "MODULE_D",
+    moduleId: "MODULE_F",
     category: "ai" as CategoryKey,
     title: "ACTIVATION STEERING APR",
     tags: ["PyTorch", "CodeLLM", "Activation Steering"],
@@ -67,7 +88,7 @@ const projects = [
     pdfUrl: "/docs/activation-steering-apr.pdf",
   },
   {
-    moduleId: "MODULE_E",
+    moduleId: "MODULE_G",
     category: "web" as CategoryKey,
     title: "HOBBY HIVE",
     tags: ["React", "Supabase", "Real-Time Systems"],
@@ -79,7 +100,7 @@ const projects = [
     image: "/images/hobby-hive.gif",
   },
   {
-    moduleId: "MODULE_F",
+    moduleId: "MODULE_H",
     category: "game" as CategoryKey,
     title: "BOUNCE STREAK (HACKATHON)",
     tags: ["Reddit Devvit", "Hackathon Project", "Phaser", "TypeScript"],
@@ -91,8 +112,8 @@ const projects = [
     image: "/images/gameplay.gif",
   },
   {
-    moduleId: "MODULE_G",
-    category: "ai" as CategoryKey,
+    moduleId: "MODULE_I",
+    category: "security" as CategoryKey,
     title: "FEDERATED FAIRNESS VERIFICATION",
     tags: ["NuSMV", "CTL", "Formal Verification", "Python"],
     description:
