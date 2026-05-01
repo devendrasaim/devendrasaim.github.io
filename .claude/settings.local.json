@@ -8,7 +8,9 @@
       "Bash(npm install resend)",
       "Bash(git add components/workflow-flowchart.tsx components/project-module.tsx components/projects-section.tsx)",
       "Bash(git add components/workflow-flowchart.tsx)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(git -C \"c:/Users/cc/One Drive devm905/OneDrive/Desktop/MyPortfolio\" status)",
+      "Bash(git -C \"c:/Users/cc/One Drive devm905/OneDrive/Desktop/MyPortfolio\" diff components/job-agent-flowchart.tsx)"
     ]
   }
 }

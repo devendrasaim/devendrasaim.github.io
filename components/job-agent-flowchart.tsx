@@ -9,53 +9,84 @@ interface JobAgentFlowchartProps {
   accentColor?: AccentColor;
 }
 
-// ViewBox: 380 × 430  (vertical top-to-bottom flow — identical layout to WorkflowFlowchart)
-// Pipeline: AGENT_SYS.PY → JOB SCOUT → ATS PARSER → fork(WRITER / ANSWERER) → PLAYWRIGHT → SUBMIT
+// ViewBox: 400 × 400  (square — fills container with no letterboxing)
+//
+// Z-CASCADE layout — three horizontal rows, flow changes direction each row:
+//
+//  Row 1 (y=70):  [AGENT_SYS] ──▶ [JOB SCOUT] ──▶ [ATS PARSER]
+//                                                         │
+//                                               ┌─────────┴─────────┐
+//  Row 2 (y=200): [WRITER]                  [ANSWERER]              │
+//                 (cover letter)            (form Q&A)              │
+//                      │                        │                   │
+//                      └──────────┬─────────────┘                  │
+//  Row 3 (y=330):          [PLAYWRIGHT] ──▶ [SUBMIT]
+//                           (browser)       (confirm)
+//
+// Key visual differences from WorkflowFlowchart:
+//  - Square ViewBox (400×400) vs portrait (380×430)
+//  - Horizontal main flow on rows 1 and 3 vs vertical-only
+//  - WRITER + ANSWERER activate simultaneously (true parallel agents)
+//  - Z-shaped path: right → down-left → right
 
-const ROOT_NODE   = { id: "init", label: "AGENT_SYS.PY", sub: "entry point", cx: 190, cy: 44, w: 120, h: 34 };
-const IDLE_CENTER = { x: 190, y: 215 };
+const ROOT_NODE   = { id: "init", label: "AGENT_SYS.PY", sub: "orchestrator", cx: 80,  cy: 70,  w: 110, h: 34 };
+const IDLE_CENTER = { x: 200, y: 200 };
 const IDLE_SCALE  = 2.0;
 
 const OTHER_NODES = [
-  { id: "scout",    label: "JOB SCOUT",   sub: "Apify scraper",  cx: 190, cy: 114, w: 120, h: 34 },
-  { id: "analyze",  label: "ATS PARSER",  sub: "field mapping",  cx: 190, cy: 184, w: 120, h: 34 },
-  { id: "writer",   label: "WRITER",      sub: "cover letter",   cx: 110, cy: 252, w: 120, h: 30 },
-  { id: "answerer", label: "ANSWERER",    sub: "form Q&A",       cx: 270, cy: 252, w: 120, h: 30 },
-  { id: "submit",   label: "PLAYWRIGHT",  sub: "browser fill",   cx: 190, cy: 320, w: 120, h: 34 },
-  { id: "confirm",  label: "SUBMIT",      sub: "human confirm",  cx: 190, cy: 390, w: 120, h: 34 },
+  { id: "scout",    label: "JOB SCOUT",  sub: "Apify scraper",  cx: 210, cy: 70,  w: 110, h: 34 },
+  { id: "analyze",  label: "ATS PARSER", sub: "field mapping",  cx: 340, cy: 70,  w: 110, h: 34 },
+  { id: "writer",   label: "WRITER",     sub: "cover letter",   cx: 130, cy: 200, w: 110, h: 34 },
+  { id: "answerer", label: "ANSWERER",   sub: "form Q&A",       cx: 270, cy: 200, w: 110, h: 34 },
+  { id: "play",     label: "PLAYWRIGHT", sub: "browser fill",   cx: 200, cy: 330, w: 110, h: 34 },
+  { id: "confirm",  label: "SUBMIT",     sub: "human confirm",  cx: 340, cy: 330, w: 110, h: 34 },
 ] as const;
 
+// Node boundaries used to derive edge endpoints:
+//   init:     left=25,  right=135, mid-y=70
+//   scout:    left=155, right=265, mid-y=70
+//   analyze:  left=285, right=395, top=53, bottom=87, mid-y=70
+//   writer:   left=75,  right=185, top=183, bottom=217, mid-x=130
+//   answerer: left=215, right=325, top=183, bottom=217, mid-x=270
+//   play:     left=145, right=255, top=313, bottom=347, mid-x=200, mid-y=330
+//   confirm:  left=285, right=395, top=313, mid-y=330
+
 const EDGES = [
-  { id: "e1",  d: "M 190 61  L 190 97" },
-  { id: "e2",  d: "M 190 131 L 190 167" },
-  { id: "e3l", d: "M 190 201 L 190 219 L 110 219 L 110 237" },
-  { id: "e3r", d: "M 190 201 L 190 219 L 270 219 L 270 237" },
-  { id: "e4l", d: "M 110 267 L 110 283 L 182 283 L 182 303" },
-  { id: "e4r", d: "M 270 267 L 270 283 L 198 283 L 198 303" },
-  { id: "e5",  d: "M 190 337 L 190 373" },
+  // Row 1: left-to-right horizontal flow
+  { id: "e1", d: "M 135 70  L 155 70" },                          // init → scout
+  { id: "e2", d: "M 265 70  L 285 70" },                          // scout → analyze
+  // Fork: analyze bottom forks down then branches to writer and answerer
+  { id: "e3", d: "M 340 87  L 340 135 L 130 135 L 130 183" },    // analyze → writer
+  { id: "e4", d: "M 340 87  L 340 135 L 270 135 L 270 183" },    // analyze → answerer
+  // Converge: writer and answerer both funnel down into playwright
+  { id: "e5", d: "M 130 217 L 130 263 L 196 263 L 196 313" },    // writer → playwright
+  { id: "e6", d: "M 270 217 L 270 263 L 204 263 L 204 313" },    // answerer → playwright
+  // Row 3: left-to-right horizontal flow
+  { id: "e7", d: "M 255 330 L 285 330" },                         // playwright → submit
 ] as const;
 
 const ARROWS = [
-  { edgeId: "e1",  points: "184,91  196,91  190,97"  },
-  { edgeId: "e2",  points: "184,161 196,161 190,167" },
-  { edgeId: "e3l", points: "104,231 116,231 110,237" },
-  { edgeId: "e3r", points: "264,231 276,231 270,237" },
-  { edgeId: "e4l", points: "176,297 188,297 182,303" },
-  { edgeId: "e4r", points: "192,297 204,297 198,303" },
-  { edgeId: "e5",  points: "184,367 196,367 190,373" },
+  { edgeId: "e1", points: "149,64  149,76  155,70"  },   // right-pointing into scout
+  { edgeId: "e2", points: "279,64  279,76  285,70"  },   // right-pointing into analyze
+  { edgeId: "e3", points: "124,177 136,177 130,183" },   // down-pointing into writer
+  { edgeId: "e4", points: "264,177 276,177 270,183" },   // down-pointing into answerer
+  { edgeId: "e5", points: "190,307 202,307 196,313" },   // down-pointing into playwright (left)
+  { edgeId: "e6", points: "198,307 210,307 204,313" },   // down-pointing into playwright (right)
+  { edgeId: "e7", points: "279,324 279,336 285,330" },   // right-pointing into submit
 ] as const;
 
+// WRITER and ANSWERER activate in the same step — true parallel execution
 const PIPELINE: [number, string[], string[]][] = [
-  [0,    ["e1"],         []],
-  [340,  [],             ["scout"]],
-  [680,  ["e2"],         []],
-  [980,  [],             ["analyze"]],
-  [1320, ["e3l", "e3r"], []],
-  [1670, [],             ["writer", "answerer"]],
-  [2020, ["e4l", "e4r"], []],
-  [2370, [],             ["submit"]],
-  [2710, ["e5"],         []],
-  [3010, [],             ["confirm"]],
+  [0,    ["e1"],       []],
+  [340,  [],           ["scout"]],
+  [680,  ["e2"],       []],
+  [980,  [],           ["analyze"]],
+  [1320, ["e3", "e4"], []],                    // fork edges draw simultaneously
+  [1670, [],           ["writer", "answerer"]], // both agents light up at once
+  [2020, ["e5", "e6"], []],                    // convergence edges draw simultaneously
+  [2370, [],           ["play"]],
+  [2710, ["e7"],       []],
+  [3010, [],           ["confirm"]],
 ];
 const PIPELINE_DONE = 3370;
 
@@ -150,7 +181,7 @@ export function JobAgentFlowchart({ accentColor = "rose" }: JobAgentFlowchartPro
       style={{ cursor: phase === "idle" ? "pointer" : "default" }}
     >
       <svg
-        viewBox="0 0 380 430"
+        viewBox="0 0 400 400"
         width="100%"
         height="100%"
         preserveAspectRatio="xMidYMid meet"
@@ -336,7 +367,7 @@ export function JobAgentFlowchart({ accentColor = "rose" }: JobAgentFlowchartPro
             <motion.text
               key={`hint-${animKey}`}
               x={IDLE_CENTER.x}
-              y={IDLE_CENTER.y + 62}
+              y={IDLE_CENTER.y + 52}
               textAnchor="middle"
               initial={{ opacity: 0 }}
               animate={{ opacity: [0.3, 0.8, 0.3] }}
