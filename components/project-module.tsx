@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Crosshair } from "@/components/crosshair";
 import { WorkflowFlowchart } from "@/components/workflow-flowchart";
+import { JobAgentFlowchart } from "@/components/job-agent-flowchart";
 
 interface ProjectModuleProps {
   moduleId: string;
@@ -17,7 +18,7 @@ interface ProjectModuleProps {
   liveLink?: string;
   image?: string;
   pdfUrl?: string;
-  flowchart?: boolean;
+  flowchart?: "social" | "jobagent";
 }
 
 const accentMap = {
@@ -72,7 +73,7 @@ export function ProjectModule({
   pdfUrl,
   flowchart,
 }: ProjectModuleProps) {
-  const hasMedia = !!(image || pdfUrl || flowchart);
+  const hasMedia = !!(image || pdfUrl || flowchart !== undefined);
   const colors = accentMap[accentColor];
   const [isPdfHovered, setIsPdfHovered] = useState(false);
 
@@ -186,8 +187,10 @@ export function ProjectModule({
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover object-center"
               />
-            ) : flowchart ? (
+            ) : flowchart === "social" ? (
               <WorkflowFlowchart accentColor={accentColor} />
+            ) : flowchart === "jobagent" ? (
+              <JobAgentFlowchart accentColor={accentColor} />
             ) : (
               <>
                 {/* PDF Preview (First Page) */}

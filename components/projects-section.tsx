@@ -33,6 +33,7 @@ const projects = [
       "5-agent pipeline that automates the entire job application lifecycle: Agent 1 scouts jobs from LinkedIn/Indeed via Apify with relevance scoring and deduplication. Agent 2 scrapes ATS forms (Greenhouse/Lever) and maps every field with Gemini. Agent 3 generates tailored cover letters and elevator pitches per role. Agent 4 answers every unique form question from the candidate profile. Agent 5 fills and submits via Playwright browser automation — pausing for human confirmation before final submit. Parallel systems include a Gmail IMAP watcher, a resume tailor with ATS scoring and PDF generation, and a real-time React + Firebase Kanban board.",
     viewportLabel: "MULTI_AGENT_PIPELINE",
     accentColor: "rose" as const,
+    flowchart: "jobagent" as const,
   },
   {
     moduleId: "MODULE_C",
@@ -45,7 +46,7 @@ const projects = [
     accentColor: "cyan" as const,
     link: "https://github.com/devendrasaim/AI-Social-Media-Generator",
     liveLink: "https://www.instagram.com/myaiguru9/",
-    flowchart: true,
+    flowchart: "social" as const,
   },
   {
     moduleId: "MODULE_D",
