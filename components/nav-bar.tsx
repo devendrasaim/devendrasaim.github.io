@@ -20,6 +20,30 @@ export function NavBar() {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const rafRef = useRef<number | null>(null);
+  const scrollYRef = useRef(0);
+
+  // Lock body scroll when mobile menu is open (iOS-safe pattern)
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      scrollYRef.current = window.scrollY;
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollYRef.current}px`;
+      document.body.style.width = "100%";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, scrollYRef.current);
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+    };
+  }, [mobileMenuOpen]);
 
   useEffect(() => {
     const sections = ["home", "about", /* "experience", */ "projects", "skills", "education", "certifications", "contact"];
