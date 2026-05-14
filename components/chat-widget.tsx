@@ -120,7 +120,7 @@ export function ChatWidget() {
             <div className="relative bg-background/90 backdrop-blur-md border border-cyan/30 p-4 rounded-sm shadow-[0_0_15px_rgba(6,182,212,0.15)]">
                <div className="flex items-center gap-2 mb-2 border-b border-cyan/10 pb-2">
                   <div className="w-1.5 h-1.5 bg-cyan rounded-full animate-pulse" />
-                  <span className="font-mono text-[10px] tracking-widest text-cyan uppercase">Incoming Transmission</span>
+                  <span className="font-mono text-[10px] tracking-widest text-cyan uppercase">Devendra's AI Assistant</span>
                </div>
               <p className="text-xs font-mono text-muted-foreground leading-relaxed pr-2">
                 "Greetings. I am the system AI. Query me regarding projects or skills."

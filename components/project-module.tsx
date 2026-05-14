@@ -65,6 +65,7 @@ export function ProjectModule({
   title,
   tags: _tags,
   description,
+  viewportLabel,
   accentColor,
   reversed = false,
   link,
@@ -76,6 +77,7 @@ export function ProjectModule({
   const hasMedia = !!(image || pdfUrl || flowchart !== undefined);
   const colors = accentMap[accentColor];
   const [isPdfHovered, setIsPdfHovered] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
     <motion.div
@@ -102,58 +104,69 @@ export function ProjectModule({
           {description}
         </p>
 
-        {link && (
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`inline-flex items-center gap-2 font-mono text-sm tracking-wider ${colors.text} hover:opacity-70 transition-opacity`}
-          >
-            <span className="h-px w-4 bg-current" />
-            {"VIEW_PROJECT"}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M7 17L17 7" />
-              <path d="M7 7h10v10" />
-            </svg>
-          </a>
-        )}
-
-        {liveLink && (
-          <a
-            href={liveLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`inline-flex items-center gap-2 font-mono text-sm tracking-wider ${colors.text} hover:opacity-70 transition-opacity`}
-          >
-            <span className="h-px w-4 bg-current" />
-            {"LIVE_DEMO"}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M7 17L17 7" />
-              <path d="M7 7h10v10" />
-            </svg>
-          </a>
+        {(link || liveLink) && (
+          <div className="flex flex-wrap gap-3 pt-1">
+            {link && (
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`relative inline-flex items-center gap-2 border ${colors.border} ${colors.bg} px-4 py-2 font-mono text-xs tracking-[0.15em] ${colors.text} hover:border-current/70 hover:bg-current/10 transition-all duration-200 group`}
+              >
+                <div className="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-current/50" />
+                <div className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b border-r border-current/50" />
+                {"VIEW_PROJECT"}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="10"
+                  height="10"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                >
+                  <path d="M7 17L17 7" />
+                  <path d="M7 7h10v10" />
+                </svg>
+              </a>
+            )}
+            {liveLink && (
+              <a
+                href={liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`relative inline-flex items-center gap-2 border ${colors.border} ${colors.bg} px-4 py-2 font-mono text-xs tracking-[0.15em] ${colors.text} hover:border-current/70 hover:bg-current/10 transition-all duration-200 group`}
+              >
+                <div className="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-current/50" />
+                <div className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b border-r border-current/50" />
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-current opacity-60" />
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-current" />
+                </span>
+                {"LIVE_DEMO"}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="10"
+                  height="10"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                >
+                  <path d="M7 17L17 7" />
+                  <path d="M7 7h10v10" />
+                </svg>
+              </a>
+            )}
+          </div>
         )}
       </div>
 
@@ -176,17 +189,29 @@ export function ProjectModule({
                 className={`h-1.5 w-1.5 rounded-full ${colors.dot} animate-pulse-slow`}
               />
               <span className="font-mono text-xs tracking-[0.2em] text-muted-foreground/50 uppercase">
-                Active
+                {viewportLabel ?? "Active"}
               </span>
             </div>
 
             {image ? (
-              <img
-                src={image}
-                alt={typeof title === "string" ? `${title} preview` : `${moduleId} preview`}
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover object-center"
-              />
+              <>
+                {!imageLoaded && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 pointer-events-none">
+                    <div className={`w-6 h-6 border border-t-transparent rounded-full animate-spin ${colors.text} opacity-40`} />
+                    <span className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground/40 uppercase">
+                      LOADING_MEDIA
+                    </span>
+                  </div>
+                )}
+                <img
+                  src={image}
+                  alt={typeof title === "string" ? `${title} preview` : `${moduleId} preview`}
+                  loading="lazy"
+                  decoding="async"
+                  onLoad={() => setImageLoaded(true)}
+                  className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-700 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
+                />
+              </>
             ) : flowchart === "social" ? (
               <WorkflowFlowchart accentColor={accentColor} />
             ) : flowchart === "jobagent" ? (

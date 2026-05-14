@@ -8,8 +8,8 @@ const navItems = [
   { label: "HOME", href: "#home" },
   { label: "ABOUT", href: "#about" },
   // { label: "EXPERIENCE", href: "#experience" },
-  { label: "SKILLS", href: "#skills" },
   { label: "PROJECTS", href: "#projects" },
+  { label: "SKILLS", href: "#skills" },
   { label: "EDUCATION", href: "#education" },
   { label: "CERTS", href: "#certifications" },
   { label: "CONTACT", href: "#contact" },
@@ -22,7 +22,7 @@ export function NavBar() {
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const sections = ["home", "about", /* "experience", */ "skills", "projects", "education", "certifications", "contact"];
+    const sections = ["home", "about", /* "experience", */ "projects", "skills", "education", "certifications", "contact"];
     const sectionsReversed = [...sections].reverse();
 
     const handleScroll = () => {
@@ -52,8 +52,10 @@ export function NavBar() {
     const id = href.replace("#", "");
     const el = document.getElementById(id);
     if (el) {
-    setMobileMenuOpen(false);
-      el.scrollIntoView({ behavior: "smooth" });
+      setMobileMenuOpen(false);
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: "smooth" });
+      }, 350);
     }
   };
 
