@@ -20,29 +20,15 @@ export function NavBar() {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const rafRef = useRef<number | null>(null);
-  const scrollYRef = useRef(0);
+  const menuRef = useRef<HTMLDivElement>(null);
 
-  // Lock body scroll when mobile menu is open (iOS-safe pattern)
+  // Prevent page scroll only when touch is inside the menu box
   useEffect(() => {
-    if (mobileMenuOpen) {
-      scrollYRef.current = window.scrollY;
-      document.body.style.overflow = "hidden";
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollYRef.current}px`;
-      document.body.style.width = "100%";
-    } else {
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      window.scrollTo(0, scrollYRef.current);
-    }
-    return () => {
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-    };
+    const el = menuRef.current;
+    if (!el) return;
+    const prevent = (e: TouchEvent) => e.preventDefault();
+    el.addEventListener("touchmove", prevent, { passive: false });
+    return () => el.removeEventListener("touchmove", prevent);
   }, [mobileMenuOpen]);
 
   useEffect(() => {
@@ -158,6 +144,7 @@ export function NavBar() {
       <AnimatePresence>
         {mobileMenuOpen && (
             <motion.div
+                ref={menuRef}
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
