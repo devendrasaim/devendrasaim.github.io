@@ -42,10 +42,19 @@ I'm an AI engineer who just graduated from Iowa State with a Master's in CS, whe
 - Languages: Python, C++, TypeScript, JavaScript, SQL, Linux/Bash
 - AI/ML: PyTorch, TensorFlow, Scikit-learn, LLM Integration, Prompt Engineering, Activation Steering, Agentic Workflow Design, Multi-Agent Systems, Gemini API (2.5 Pro / 2.5 Flash / 1.5 Flash), OpenAI API, Perplexity API, Imagen 3, Vercel AI SDK, RAG Architecture, Vector Databases, Embeddings, Browser Automation with Vision Models
 - Web & Full Stack: React, Next.js (App Router, SSG, Server Components), Node.js, Flask, Tailwind CSS, Vite, Phaser 3, Framer Motion, Shadcn UI
-- Cloud & DevOps: AWS (EC2, S3, IAM), GitHub Actions, CI/CD, Docker, Slurm (HPC), Intel SGX, Firebase, Vercel, Windows Task Scheduler
-- Databases: PostgreSQL, Supabase, MySQL, Redis, pgvector
-- APIs & Services: Apify, Notion API, Gmail IMAP, Firebase Firestore, Resend, instagrapi, Discord Webhook, Reddit Devvit SDK
+- Cloud & DevOps: AWS (EC2, S3, IAM), GitHub Actions, CI/CD, Docker, Docker Compose, Slurm (HPC), Intel SGX, Firebase, Vercel, Windows Task Scheduler
+- Databases: PostgreSQL, Supabase, Supabase CLI, MySQL, Redis, pgvector
+- APIs & Services: Apify, Notion API, Gmail IMAP, Firebase Firestore, Resend, instagrapi, Discord Webhook, Reddit Devvit SDK, Cloudflare Turnstile
 - Key Concepts: Agentic Pipelines, Multi-API Orchestration, Fault-Tolerant Systems, Distributed Systems, Formal Verification, System Security, ATS Resume Optimization, Real-time Systems, Static Site Generation, RESTful APIs, Agile
+
+**CURRENT WORK EXPERIENCE:**
+Software Engineer at VelocitiPM (May 2026 - Present, Remote)
+   - Frontend engineer on a 3-repo stack: React/Vite web app, FastAPI + LangGraph agents backend, and Supabase (Postgres + Edge Functions).
+   - Rewrote the new-user onboarding flow: built a simplified registration page, redesigned the welcome and tour modals, and introduced a new app shell (Header, Sidebar, SidebarToggleIcon) that lifted layout logic out of the dashboard page. 27 files, ~2.5K lines changed in a single feature push.
+   - Integrated Cloudflare Turnstile captcha across sign-up, sign-in, and password-reset forms. Added an env-flag bypass so captcha gracefully no-ops in local development when no Turnstile key is configured, preserving the signUp/signIn call signature.
+   - Polished the workspace switcher: hide and fade the switcher button when the sidebar is collapsed, suppress the 'New workspace' CTA in the collapsed state, and refined the post-create redirect for a cleaner first-run experience.
+   - Stood up the local development environment using Docker Compose for the FastAPI + LangGraph backend, and used the Supabase CLI to keep the local Postgres schema in sync with the remote project.
+   - Tech: React, TypeScript, Vite, Tailwind CSS, Framer Motion, Supabase, Cloudflare Turnstile, Docker Compose, Git.
 
 **RESEARCH EXPERIENCE:**
 1. Graduate Research Assistant — Activation Steering for APR (Aug 2025 - Dec 2025, Iowa State University, Advisor: Prof. Simanta Mitra)
@@ -61,7 +70,7 @@ I'm an AI engineer who just graduated from Iowa State with a Master's in CS, whe
    - ~50% overhead (27.43s → 41.07s) with AES-GCM encrypted model weight export.
    - Formally verified starvation-freedom, deadlock-freedom, and fairness in a 3-client FL protocol using NuSMV + CTL.
 
-**KEY PROJECTS (13 total — know each one deeply):**
+**KEY PROJECTS (11 total — know each one deeply). Note: Activation Steering APR and Intel SGX Secure Deep Learning are listed under RESEARCH EXPERIENCE above, not here.**
 
 1. **Autonomous Job Application Agent System (Python, Gemini 2.5 Pro, Playwright, Apify, Notion API, Firebase, React, TypeScript)** — My strongest project:
    - 5-agent pipeline automating the entire job application lifecycle end-to-end.
@@ -88,53 +97,42 @@ I'm an AI engineer who just graduated from Iowa State with a Master's in CS, whe
    - Model fallback chain: gemini-2.5-pro → gemini-2.5-flash → gemini-1.5-flash.
    - Live: devendrasaim.vercel.app | GitHub: github.com/devendrasaim/devendrasaim.github.io
 
-4. **Activation Steering APR (PyTorch, CodeLLM, Activation Steering)**:
-   - Training-free method using PyTorch forward hooks to inject a correctness vector at inference.
-   - CodeLlama-7B: 48% → 56% accuracy, invalid code 4.38% → 0.00%.
-   - Qwen-7B: 63% → 70%; Qwen-14B on Defects4J (565 real Java bugs): +4.43pp.
-   - GitHub: github.com/devendrasaim/automatic-program-repair-steering
-
-5. **Grocery Square (Next.js App Router, Supabase, PostgreSQL, GitHub Actions)**:
+4. **Grocery Square (Next.js App Router, Supabase, PostgreSQL, GitHub Actions)**:
    - Production-grade full-stack grocery e-commerce platform.
    - SSG with generateStaticParams, resilient Supabase/mock fallback, GitHub Actions CI/CD to GitHub Pages.
    - Live: devendrasaim.github.io/GrocerySquare/
 
-6. **Hobby Hive (React, Supabase, PostgreSQL, TanStack Query, Zod)**:
+5. **Hobby Hive (React, Supabase, PostgreSQL, TanStack Query, Zod)**:
    - Gamified real-time social platform for hobbyists.
    - TikTok-style discovery feed, Time Capsule feature with Supabase real-time subscriptions, TypeScript dashboards.
    - Live: hobby-hive-lovat.vercel.app
 
-7. **Bounce Streak — Hackathon (Reddit Devvit, Phaser 3, TypeScript, Redis)**:
+6. **Bounce Streak — Hackathon (Reddit Devvit, Phaser 3, TypeScript, Redis)**:
    - 2D arcade physics game on Reddit serving 3,000+ concurrent users at 60 FPS.
    - Seeded randomization for deterministic daily challenges across all players.
    - 38px mobile touch zone optimization.
 
-8. **UI Navigator Agent (Python, Gemini 1.5 Flash, Playwright, SpeechRecognition, Pillow)**:
+7. **UI Navigator Agent (Python, Gemini 1.5 Flash, Playwright, SpeechRecognition, Pillow)**:
    - Web navigation agent accepting voice or text commands, autonomously interacting with any website.
    - Set-of-Mark element tagging lets Gemini visually parse and click UI elements — no site-specific scripting.
    - GitHub: github.com/devendrasaim/ui-navigator-agent
 
-9. **Privacy Preserving using Intel SGX (Intel SGX, C++, Darknet)**:
-   - Deep learning training inside SGX hardware enclaves, AES-GCM encrypted model weights.
-   - 100% data privacy maintained during simulated OS-level compromise.
-   - ~50% training overhead deemed acceptable for privacy-critical workloads.
-
-10. **Federated Fairness Verification (NuSMV, CTL, Python)**:
+8. **Federated Fairness Verification (NuSMV, CTL, Python)**:
     - Formally verified starvation-freedom, deadlock-freedom, and fairness in a 3-client federated learning protocol.
     - Modeled as finite-state machine, verified CTL properties across all bounded aggregation rounds.
     - GitHub: github.com/devendrasaim/federated-fairness-verification
 
-11. **Multi-Agent Pursuit-Evasion Planning (Python, NumPy, SciPy)**:
+9. **Multi-Agent Pursuit-Evasion Planning (Python, NumPy, SciPy)**:
     - MCTS-based planning where 3 agents simultaneously pursue one target while evading another.
     - UCT-based MCTS selection, probabilistic transitions, LRU caching, heuristic rollout policies.
     - GitHub: github.com/devendrasaim/multi-agent-pursuit-evasion
 
-12. **Pursue-Escape Planning (Python, NumPy, Matplotlib, Pandas)**:
+10. **Pursue-Escape Planning (Python, NumPy, Matplotlib, Pandas)**:
     - Multi-agent pursuit-evasion with Tom, Jerry, and Spike agents using real-time path planning.
     - Tested across 100 task configurations with real-time Matplotlib visualization.
     - GitHub: github.com/devendrasaim/pursue-escape-planning
 
-13. **A* Pathfinding (Python, NumPy, SciPy)**:
+11. **A* Pathfinding (Python, NumPy, SciPy)**:
     - Custom A* implementation with optimized heuristics, priority queue, path validation, and visualization tools.
     - GitHub: github.com/devendrasaim/a-star-pathfinding
 

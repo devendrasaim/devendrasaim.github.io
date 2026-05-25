@@ -73,6 +73,38 @@
     }
   ],
 
+  "work_experience": [
+    {
+      "title": "Software Engineer",
+      "company": "VelocitiPM",
+      "location": "Remote",
+      "type": "Full-time",
+      "start": "May 2026",
+      "end": "Present",
+      "current": true,
+      "stack_owned": "Frontend (React + TypeScript) on a 3-repo stack: React/Vite web app, FastAPI + LangGraph agents backend, Supabase (Postgres + Edge Functions)",
+      "description": "Shipping onboarding, auth, and workspace UX on VelocitiPM's React frontend while integrating with a FastAPI/LangGraph agent backend and Supabase data layer.",
+      "highlights": [
+        "Rewrote the new-user onboarding flow end to end: built a simplified registration page, redesigned the welcome and tour modals, and introduced a new app shell (Header, Sidebar, SidebarToggleIcon) that lifted layout logic out of the dashboard page. 27 files, ~2.5K lines changed in a single feature push.",
+        "Integrated Cloudflare Turnstile captcha across sign-up, sign-in, and password-reset forms. Added an env-flag bypass so captcha gracefully no-ops in local development when no Turnstile key is configured, preserving the signUp/signIn call signature.",
+        "Polished the workspace switcher: hide and fade the switcher button when the sidebar is collapsed, suppress the 'New workspace' CTA in the collapsed state, and refined the post-create redirect for a cleaner first-run experience.",
+        "Set up the full local development environment using Docker Compose for the FastAPI + LangGraph agents backend, and used the Supabase CLI to keep the local Postgres schema in sync with the remote project."
+      ],
+      "tech": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Supabase",
+        "Cloudflare Turnstile",
+        "Docker",
+        "Docker Compose",
+        "Git"
+      ]
+    }
+  ],
+
   "research_experience": [
     {
       "title": "Graduate Research — Activation Steering for Automatic Program Repair",
@@ -137,12 +169,12 @@
       "Browser Automation with Vision Models"
     ],
     "web": ["React", "Next.js", "Node.js", "Flask", "Tailwind CSS", "Vite", "Phaser 3", "Framer Motion", "Shadcn UI"],
-    "cloud_devops": ["AWS (EC2, S3, IAM)", "Docker", "GitHub Actions", "CI/CD", "Slurm (HPC)", "Intel SGX", "Firebase", "Vercel"],
-    "databases": ["PostgreSQL", "Supabase", "MySQL", "Redis", "pgvector"],
+    "cloud_devops": ["AWS (EC2, S3, IAM)", "Docker", "Docker Compose", "GitHub Actions", "CI/CD", "Slurm (HPC)", "Intel SGX", "Firebase", "Vercel"],
+    "databases": ["PostgreSQL", "Supabase", "Supabase CLI", "MySQL", "Redis", "pgvector"],
     "apis_and_services": [
       "Apify (LinkedIn/Indeed scrapers)", "Notion API", "Gmail IMAP",
       "Firebase Firestore", "Resend (email)", "instagrapi", "Discord Webhook",
-      "Reddit Devvit SDK"
+      "Reddit Devvit SDK", "Cloudflare Turnstile"
     ],
     "concepts": [
       "Agentic Pipelines", "Multi-API Orchestration", "Fault-Tolerant Systems",
@@ -226,28 +258,6 @@
       "description": "Web navigation agent that accepts voice or text commands and autonomously interacts with any website using AI vision and browser automation.",
       "tech": ["Python", "Gemini 1.5 Flash", "Playwright", "SpeechRecognition", "Pillow"],
       "highlights": ["Set-of-Mark element tagging for AI parsing", "Universal — works across any website", "Voice input support"]
-    },
-    {
-      "name": "Automatic Program Repair via Activation Steering",
-      "repo": "https://github.com/devendrasaim/automatic-program-repair-steering",
-      "status": "Public",
-      "description": "Master's Creative Component. Training-free method using PyTorch forward hooks to inject a correctness steering vector into CodeLLM residual streams at inference time, improving accuracy and eliminating invalid code generation.",
-      "tech": ["Python", "PyTorch", "CodeLlama-7B-Instruct", "Qwen2.5-Coder-7B", "Qwen2.5-Coder-14B", "HumanEval", "Defects4J", "Slurm"],
-      "key_metrics": {
-        "CodeLlama_7B_accuracy_gain": "+8.13pp (48.12% → 56.25%)",
-        "invalid_code_eliminated": "4.38% → 0.00%",
-        "Qwen_7B_accuracy_gain": "+6.88pp (63.12% → 70.00%)",
-        "Qwen_14B_Defects4J_gain": "+4.43pp (60.88% → 65.31%)",
-        "experimental_runs": "40+ configurations per model (layer × strength grid search)"
-      }
-    },
-    {
-      "name": "Secure Deep Learning with Intel SGX",
-      "repo": "https://github.com/devendrasaim/secure-deep-learning-sgx",
-      "status": "Public",
-      "description": "Proof-of-concept for privacy-preserving deep learning by executing a lightweight CNN entirely within Intel SGX hardware enclaves. Protects model weights and training data from the host OS.",
-      "tech": ["C/C++", "Intel SGX SDK", "Darknet", "gcc", "cmake", "Ubuntu 20.04"],
-      "highlights": ["AES-GCM encrypted model weights", "Remote attestation", "~50% training overhead accepted for privacy guarantees"]
     },
     {
       "name": "Federated Fairness Verification",

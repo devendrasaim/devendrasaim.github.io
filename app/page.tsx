@@ -4,7 +4,8 @@ import { ProjectsSection } from "@/components/projects-section";
 import { SystemFooter } from "@/components/system-footer";
 import { NavBar } from "@/components/nav-bar";
 import { AboutSection } from "@/components/about-section";
-// import { ExperienceSection } from "@/components/experience-section";
+import { WorkExperienceSection } from "@/components/work-experience-section";
+import { ExperienceSection } from "@/components/experience-section";
 import { SkillsSection } from "@/components/skills-section";
 import { EducationSection } from "@/components/education-section";
 import { CertificationsSection } from "@/components/certifications-section";
@@ -17,7 +18,8 @@ export default function Home() {
         <NavBar />
         <HeroSection />
         <AboutSection />
-        {/* <ExperienceSection /> */}
+        <WorkExperienceSection />
+        <ExperienceSection />
         <ProjectsSection />
         <SkillsSection />
         <EducationSection />

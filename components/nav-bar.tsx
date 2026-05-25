@@ -7,7 +7,8 @@ import { Menu, X } from "lucide-react";
 const navItems = [
   { label: "HOME", href: "#home" },
   { label: "ABOUT", href: "#about" },
-  // { label: "EXPERIENCE", href: "#experience" },
+  { label: "WORK", href: "#work" },
+  { label: "RESEARCH", href: "#research" },
   { label: "PROJECTS", href: "#projects" },
   { label: "SKILLS", href: "#skills" },
   { label: "EDUCATION", href: "#education" },
@@ -32,7 +33,7 @@ export function NavBar() {
   }, [mobileMenuOpen]);
 
   useEffect(() => {
-    const sections = ["home", "about", /* "experience", */ "projects", "skills", "education", "certifications", "contact"];
+    const sections = ["home", "about", "work", "research", "projects", "skills", "education", "certifications", "contact"];
     const sectionsReversed = [...sections].reverse();
 
     const handleScroll = () => {

@@ -1,8 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ResearchViewport } from "@/components/research-viewport";
 
-const experienceData = [
+type AccentColor = "amber" | "cyan" | "green" | "rose";
+
+interface ExperienceEntry {
+  role: string;
+  company: string;
+  advisor: string;
+  period: string;
+  description: string[];
+  tags: string[];
+  viewport?: {
+    viewportLabel: string;
+    accentColor: AccentColor;
+    pdfUrl: string;
+    link?: string;
+  };
+}
+
+const experienceData: ExperienceEntry[] = [
   {
     role: "Graduate Research Assistant — Activation Steering for Automatic Program Repair",
     company: "Iowa State University",
@@ -18,6 +36,12 @@ const experienceData = [
       "Novel finding: middle transformer layers are optimal for code generation tasks; late layers are optimal for repair — revealing task-dependent reasoning stages in CodeLLM architecture.",
     ],
     tags: ["Python", "PyTorch", "CodeLlama-7B", "Qwen2.5-Coder", "HumanEval", "Defects4J", "Slurm", "Activation Steering"],
+    viewport: {
+      viewportLabel: "RESIDUAL_STREAM_MONITOR",
+      accentColor: "cyan",
+      pdfUrl: "/docs/activation-steering-apr.pdf",
+      link: "https://github.com/devendrasaim/automatic-program-repair-steering",
+    },
   },
   {
     role: "Graduate Research Assistant — Secure Deep Learning & Federated Learning Fairness",
@@ -32,12 +56,17 @@ const experienceData = [
       "Encoded and verified liveness, safety, starvation-freedom, deadlock-freedom, and bounded round completion properties across all aggregation rounds.",
     ],
     tags: ["C/C++", "Intel SGX SDK", "Darknet", "NuSMV", "CTL Logic", "Python", "Bash", "Federated Learning"],
+    viewport: {
+      viewportLabel: "ENCRYPTED_TERMINAL_OUTPUT",
+      accentColor: "amber",
+      pdfUrl: "/docs/secure-deep-learning-sgx.pdf",
+    },
   },
 ];
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="relative px-6 py-24 border-t border-border/50">
+    <section id="research" className="relative px-6 py-24 border-t border-border/50">
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -98,6 +127,18 @@ export function ExperienceSection() {
                                     {tag}
                                 </span>
                             ))}
+                        </div>
+                    )}
+
+                    {exp.viewport && (
+                        <div className="mt-6">
+                            <ResearchViewport
+                                viewportLabel={exp.viewport.viewportLabel}
+                                accentColor={exp.viewport.accentColor}
+                                pdfUrl={exp.viewport.pdfUrl}
+                                link={exp.viewport.link}
+                                title={exp.role}
+                            />
                         </div>
                     )}
                 </motion.div>

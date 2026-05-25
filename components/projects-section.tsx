@@ -60,35 +60,6 @@ const projects = [
     link: "https://github.com/devendrasaim/ui-navigator-agent",
   },
   {
-    moduleId: "MODULE_E",
-    category: "security" as CategoryKey,
-    title: (
-      <>
-        PRIVACY PRESERVING
-        <br />
-        USING INTEL SGX
-      </>
-    ),
-    tags: ["Intel SGX", "PyTorch", "C++"],
-    description:
-      "Proved the integrity of sensitive training loops in untrusted environments. By leveraging Intel SGX enclaves, this architecture isolates computation from OS-level vulnerabilities, ensuring privacy was maintained even during simulated system compromise scenarios.",
-    viewportLabel: "ENCRYPTED_TERMINAL_OUTPUT",
-    accentColor: "amber" as const,
-    pdfUrl: "/docs/secure-deep-learning-sgx.pdf",
-  },
-  {
-    moduleId: "MODULE_F",
-    category: "ai" as CategoryKey,
-    title: "ACTIVATION STEERING APR",
-    tags: ["PyTorch", "CodeLLM", "Activation Steering"],
-    description:
-      "A training-free method for enhancing CodeLLM reliability in Automatic Program Repair. Computes a correctness vector from contrastive buggy/fixed code pairs and injects it into the model's residual stream during inference. Eliminated invalid code generation entirely and boosted CodeLlama-7B accuracy from 48% to 56%.",
-    viewportLabel: "RESIDUAL_STREAM_MONITOR",
-    accentColor: "cyan" as const,
-    link: "https://github.com/devendrasaim/automatic-program-repair-steering",
-    pdfUrl: "/docs/activation-steering-apr.pdf",
-  },
-  {
     moduleId: "MODULE_G",
     category: "web" as CategoryKey,
     title: "HOBBY HIVE",

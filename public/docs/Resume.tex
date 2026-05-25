@@ -1,0 +1,220 @@
+%-------------------------
+% Resume in LaTeX
+% Author : Devendra Sai Mupparaju
+% Template : Jake's Resume (https://github.com/jakegut/resume) -- MIT License
+% Notes : Single-column, ATS-friendly. Compile with pdflatex.
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Make PDF machine-readable / ATS-parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Devendra Sai Mupparaju} \\ \vspace{2pt}
+    \small West New York, NJ $|$ (515) 916-3383 $|$ \href{mailto:mdevendrasai9@gmail.com}{mdevendrasai9@gmail.com} $|$
+    \href{https://linkedin.com/in/devendrasaim}{linkedin.com/in/devendrasaim} $|$
+    \href{https://github.com/devendrasaim}{github.com/devendrasaim} $|$
+    \href{https://devendrasaim.vercel.app}{devendrasaim.vercel.app}
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     AI engineer with a Master's in Computer Science from Iowa State who bridges deep LLM research with hands-on product shipping. My graduate research on activation steering raised CodeLlama-7B accuracy on HumanEval from 48\% to 56\% and brought invalid code output down to zero, without retraining the model. On the product side, I have shipped a 5-agent job application system, a Gemini Vision browser agent, an autonomous Instagram content pipeline, and a Reddit game that holds 3{,}000+ concurrent players at 60 FPS. I do my best work when the job is turning AI capabilities into real products people actually use.
+    }}
+ \end{itemize}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Iowa State University}{Ames, IA}
+      {Master of Science in Computer Science, GPA 3.5/4.0}{Aug. 2023 -- Dec. 2025}
+      \resumeItemListStart
+        \resumeItem{Focus: Artificial Intelligence, Machine Learning, System Architecture.}
+        \resumeItem{Creative Component: \textit{Automatic Program Repair Through Activation Steering} (advisor: Prof. Simanta Mitra).}
+      \resumeItemListEnd
+    \resumeSubheading
+      {SRM University Amaravati}{Amaravati, India}
+      {Bachelor of Technology in Computer Science and Engineering, GPA 7.8/10}{Aug. 2019 -- May 2023}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Software Engineer}{May 2026 -- Present}
+      {VelocitiPM}{Remote}
+      \resumeItemListStart
+        \resumeItem{Rebuilt new-user onboarding end to end across a 3-repo React / FastAPI / Supabase stack: simplified the registration page, redesigned welcome and tour modals, and introduced a new app shell (Header, Sidebar, SidebarToggleIcon) that lifted layout logic out of the dashboard page; 27 files and roughly 2.5K lines in a single feature push.}
+        \resumeItem{Wired Cloudflare Turnstile captcha into sign-up, sign-in, and password-reset flows, with an env-flag bypass so captcha gracefully no-ops in local development without changing the underlying signUp/signIn call signature.}
+        \resumeItem{Polished the workspace switcher so it hides and fades when the sidebar collapses, suppresses the ``New workspace'' CTA in the collapsed state, and routes users to a cleaner first-run view after creating a workspace.}
+        \resumeItem{Stood up the full local dev environment using Docker Compose for the FastAPI + LangGraph agents backend, and used the Supabase CLI to keep the local Postgres schema in sync with the remote project.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------RESEARCH EXPERIENCE-----------
+\section{Research Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Graduate Researcher: Activation Steering for Automatic Program Repair}{Aug. 2025 -- Dec. 2025}
+      {Iowa State University (advisor: Prof. Simanta Mitra)}{Ames, IA}
+      \resumeItemListStart
+        \resumeItem{Designed a training-free activation steering method in PyTorch that lifted CodeLlama-7B accuracy on HumanEval from 48.12\% to 56.25\% (+8.13pp) and drove invalid (non-compiling) output from 4.38\% down to 0\%, with no model retraining required.}
+        \resumeItem{Reproduced the gain on Qwen2.5-Coder-7B (63.12\% to 70.00\%) and on Qwen2.5-Coder-14B against Defects4J's 565 real-world Java bugs (60.88\% to 65.31\%), confirming the technique generalizes across model families and benchmarks.}
+        \resumeItem{Ran 40+ layer/strength configurations on a Slurm HPC cluster using PyTorch forward hooks on residual streams; surfaced a novel finding that middle transformer layers are optimal for generation tasks while late layers are optimal for repair, hinting at task-dependent reasoning stages inside CodeLLMs.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Graduate Researcher: Secure Deep Learning \& Federated Learning Fairness}{Jan. 2025 -- May 2025}
+      {Iowa State University}{Ames, IA}
+      \resumeItemListStart
+        \resumeItem{Built ML training loops inside Intel SGX enclaves in C++ on the Darknet framework, with AES-GCM-encrypted model weights for secure import/export; measured a $\sim$50\% overhead (27.43s vs.\ 41.07s) deemed acceptable for privacy-critical workloads.}
+        \resumeItem{Formally verified a 3-client federated learning protocol in NuSMV using CTL temporal logic, mathematically proving starvation-freedom, deadlock-freedom, eventual fairness across all clients, and bounded round completion.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{Autonomous Job Application Agent System}}{}
+          \resumeItemListStart
+            \resumeItem{Built a 5-agent pipeline that handles the full job application lifecycle: an Apify-based scout pulls roles from LinkedIn / Indeed / Glassdoor with relevance scoring and dedupe, while an analyzer scrapes Greenhouse and Lever forms and uses Gemini to classify every field by category.}
+            \resumeItem{A writer agent tailors a cover letter, elevator pitch, and ``why this company'' answer per role; an answerer fills every unique form question from a structured candidate profile; a submitter drives Claude-in-Chrome to fill forms and pause for human confirmation before sending.}
+            \resumeItem{Layered on parallel systems: a Gmail IMAP watcher that parses Glassdoor recommendation emails into Notion, a 60-second resume tailoring loop that ATS-scores and re-renders the PDF per JD, and a React + Firebase Kanban board with real-time Firestore sync for tracking.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{AI Social Media Generator (The Social Speaker)}}{\href{https://github.com/devendrasaim/AI-Social-Media-Generator}{View on GitHub}}
+          \resumeItemListStart
+            \resumeItem{Built an autonomous content engine that researches trending topics via Perplexity, drafts narrative-driven copy with Gemini, generates 1080$\times$1080 dark-mode Instagram carousels with Imagen 3 + Pillow, and publishes directly through instagrapi with no paid publishing APIs and no external hosting.}
+            \resumeItem{Designed a self-refilling topic queue, scheduled daily runs through Windows Task Scheduler, and wired Discord webhook notifications on every successful publish for at-a-glance health checks.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Portfolio Website with AI Assistant}}{\href{https://devendrasaim.vercel.app}{View on Website}}
+          \resumeItemListStart
+            \resumeItem{Shipped a production portfolio featuring a first-person AI chatbot that answers recruiter questions about skills, projects, and work authorization using a prompt-engineered Gemini agent with a 2.5-Pro to 2.5-Flash to 1.5-Flash fallback chain for reliability.}
+            \resumeItem{Layered per-interaction analytics logging, a ``Bridge Technique'' for gracefully handling unknown questions, and a Resend-powered contact form so qualified inbound conversations land directly in my inbox.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{UI Navigator Agent}}{\href{https://github.com/devendrasaim/ui-navigator-agent}{View on GitHub}}
+          \resumeItemListStart
+            \resumeItem{Built a universal web-navigation agent that accepts voice or text commands and autonomously interacts with any website by pairing Gemini Vision with Set-of-Mark element tagging and Playwright-driven browser automation, working across arbitrary sites without per-site selectors.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Bounce Streak}}{\href{https://github.com/devendrasaim/bounce-streak}{View on GitHub}}
+          \resumeItemListStart
+            \resumeItem{Shipped a competitive soccer-themed 2D physics game on Reddit's Devvit platform that has sustained 3{,}000+ concurrent users at a steady 60 FPS, with daily randomized physics modifiers and seed-based RNG so every player faces identical conditions each day.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{GrocerySquare}}{\href{https://github.com/devendrasaim/GrocerySquare}{View on GitHub}}
+          \resumeItemListStart
+            \resumeItem{Built a production-grade grocery storefront with a glassmorphism UI and full product catalog, statically generated for 20+ pages via \texttt{generateStaticParams} and continuously deployed to GitHub Pages via GitHub Actions, with a local mock-data fallback so the app runs without DB access during development.}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, C/C++, TypeScript, JavaScript, SQL, Bash} \\
+     \textbf{AI / ML}{: PyTorch, TensorFlow, Scikit-learn, LLM Integration, Prompt Engineering, Activation Steering, RAG Architecture, Vector Databases (pgvector), Embeddings, Agentic Workflow Design, Multi-Agent Systems, Gemini API, OpenAI API, Vercel AI SDK} \\
+     \textbf{Web \& Frameworks}{: React, Next.js, Node.js, Flask, Tailwind CSS, Vite, Framer Motion, Phaser 3, Shadcn UI} \\
+     \textbf{Cloud \& DevOps}{: AWS (EC2, S3, IAM), Docker, Docker Compose, GitHub Actions, CI/CD, Slurm (HPC), Intel SGX, Firebase, Vercel} \\
+     \textbf{Databases \& APIs}{: PostgreSQL, Supabase, MySQL, Redis, pgvector, Notion API, Gmail IMAP, Apify, Resend, Cloudflare Turnstile}
+    }}
+ \end{itemize}
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     Google Cloud: Prompt Design in Vertex AI (Feb 2026) \quad$\bullet$\quad Oracle: Cloud Infrastructure Foundations Associate (2021) \quad$\bullet$\quad HackerRank: Python (Basic)
+    }}
+ \end{itemize}
+
+\end{document}
