@@ -9,13 +9,15 @@ const workData = [
     location: "Remote",
     period: "May 2026 - Present",
     description: [
-      "Frontend engineer on a 3-repo stack: React/Vite web app, FastAPI + LangGraph agents backend, and Supabase (Postgres + Edge Functions).",
-      "Rewrote the new-user onboarding flow end to end: simplified registration page, redesigned welcome and tour modals, and introduced a new app shell (Header, Sidebar, SidebarToggleIcon) that lifted layout logic out of the dashboard page. 27 files, ~2.5K lines changed in a single feature push.",
-      "Integrated Cloudflare Turnstile captcha across sign-up, sign-in, and password-reset forms. Added an env-flag bypass so captcha gracefully no-ops in local development when no Turnstile key is configured, preserving the signUp/signIn call signature.",
-      "Polished the workspace switcher: hide and fade the switcher button when the sidebar is collapsed, suppress the 'New workspace' CTA in the collapsed state, and refined the post-create redirect for a cleaner first-run experience.",
-      "Stood up the local development environment using Docker Compose for the FastAPI + LangGraph agents backend, and used the Supabase CLI to keep the local Postgres schema in sync with the remote project.",
+      "VelocitiPM is an AI-assisted product management platform: it helps a product manager take an idea from a rough strategy all the way to an engineering-ready ticket, without switching between five different tools to do it. I work full stack on it, across the web app, the AI agent backend, and the database layer.",
+      "Built the step where a product manager turns a validated idea directly into a ready-to-hand-off engineering ticket, complete with a proper user story, in a single flow, replacing what used to be a manual rewrite into a separate ticketing tool.",
+      "Built the piece that carries a feature's actual design and prototype context along with its generated requirements, so a PM (or the engineer picking it up next) can see what was really designed instead of hunting down a separate design link.",
+      "Designed the automation that keeps a feature's status in sync with its parent roadmap item as work moves forward, so a PM's roadmap reflects real progress automatically instead of needing to be updated by hand.",
+      "Rebuilt the first-time experience for a new product manager signing up, from registration through their first guided tour of the platform, to cut down on drop-off in the first few minutes.",
+      "Also worked on the AI agent side that generates the initiatives, user stories, and requirement docs a PM works from, improving how reliably it produces usable output.",
+      "Wrote automated tests alongside nearly every feature to keep the platform dependable as new capabilities shipped quickly.",
     ],
-    tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion", "Supabase", "Cloudflare Turnstile", "Docker Compose", "Git"],
+    tags: ["React", "TypeScript", "Python", "FastAPI", "LangGraph", "Supabase", "PostgreSQL", "Tailwind CSS", "Framer Motion", "Docker Compose", "Git"],
   },
 ];
 
