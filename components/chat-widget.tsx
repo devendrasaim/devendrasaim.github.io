@@ -117,8 +117,8 @@ export function ChatWidget() {
             }}
             className="fixed bottom-24 right-6 z-40 max-w-[220px]"
           >
-            <div className="relative bg-background/90 backdrop-blur-md border border-cyan/30 p-4 rounded-sm shadow-[0_0_15px_rgba(6,182,212,0.15)]">
-               <div className="flex items-center gap-2 mb-2 border-b border-cyan/10 pb-2">
+            <div className="relative bg-background/90 backdrop-blur-md border border-cyan/45 p-4 rounded-sm shadow-[0_0_15px_rgba(6,182,212,0.15)]">
+               <div className="flex items-center gap-2 mb-2 border-b border-cyan/20 pb-2">
                   <div className="w-1.5 h-1.5 bg-cyan rounded-full animate-pulse" />
                   <span className="font-mono text-[10px] tracking-widest text-cyan uppercase">Devendra's AI Assistant</span>
                </div>
@@ -126,7 +126,7 @@ export function ChatWidget() {
                 "Greetings. I am the system AI. Query me regarding projects or skills."
               </p>
               {/* Triangle Tail */}
-              <div className="absolute -bottom-2 right-6 w-4 h-4 bg-background/90 border-b border-r border-cyan/30 transform rotate-45"></div>
+              <div className="absolute -bottom-2 right-6 w-4 h-4 bg-background/90 border-b border-r border-cyan/45 transform rotate-45"></div>
               
               {/* Close Button */}
               <button 
@@ -152,22 +152,15 @@ export function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-6 z-50 w-[90vw] md:w-[400px] h-[550px] max-h-[75vh] flex flex-col rounded-sm overflow-hidden border border-cyan/30 bg-background/95 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+            className="fixed bottom-24 right-6 z-50 w-[90vw] md:w-[400px] h-[550px] max-h-[75vh] flex flex-col rounded-sm overflow-hidden border border-cyan/45 bg-background/95 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.5)]"
           >
-            {/* Terminal Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-cyan/20 bg-cyan/5">
+            {/* Chat Header */}
+            <div className="flex items-center px-4 py-3 border-b border-cyan/35 bg-cyan/5">
               <div className="flex items-center gap-2">
                 <Terminal className="w-4 h-4 text-cyan" />
                 <span className="font-mono text-[11px] tracking-widest text-cyan uppercase">
-                  SYS.NET // LINK ESTABLISHED
+                  DevAI
                 </span>
-              </div>
-              <div className="flex items-center gap-4">
-                  <div className="flex gap-1.5">
-                      <div className="w-2 h-2 rounded-full bg-cyan/20" />
-                      <div className="w-2 h-2 rounded-full bg-cyan/20" />
-                      <div className="w-2 h-2 rounded-full bg-cyan" />
-                  </div>
               </div>
             </div>
 
@@ -187,7 +180,7 @@ export function ChatWidget() {
                   <div
                     className={`max-w-[85%] p-3 rounded-sm text-sm leading-relaxed border ${
                       msg.role === "user"
-                        ? "bg-cyan/10 border-cyan/30 text-cyan-100 rounded-tr-none"
+                        ? "bg-cyan/10 border-cyan/45 text-cyan-100 rounded-tr-none"
                         : "bg-background border-border text-muted-foreground rounded-tl-none"
                     }`}
                   >
@@ -208,7 +201,7 @@ export function ChatWidget() {
                      <button
                        key={i}
                        onClick={() => handleSend(s.label)}
-                       className="flex items-center gap-3 p-3 rounded-sm border border-dashed border-cyan/20 hover:border-cyan/50 hover:bg-cyan/5 transition-all text-left group"
+                       className="flex items-center gap-3 p-3 rounded-sm border border-dashed border-cyan/35 hover:border-cyan/50 hover:bg-cyan/5 transition-all text-left group"
                      >
                        <span className="text-base filter grayscale group-hover:grayscale-0 transition-all">{s.icon}</span>
                        <span className="text-xs font-mono text-muted-foreground group-hover:text-cyan transition-colors">
@@ -231,8 +224,8 @@ export function ChatWidget() {
             </div>
 
             {/* Input Area */}
-            <form onSubmit={handleSubmit} className="p-2 bg-background border-t border-cyan/20">
-              <div className="relative flex items-center gap-2 bg-black/30 border border-cyan/30 rounded-sm px-3 py-2 focus-within:border-cyan/70 focus-within:bg-cyan/5 transition-all">
+            <form onSubmit={handleSubmit} className="p-2 bg-background border-t border-cyan/35">
+              <div className="relative flex items-center gap-2 bg-black/30 border border-cyan/45 rounded-sm px-3 py-2 focus-within:border-cyan/70 focus-within:bg-cyan/5 transition-all">
                 <span className="text-cyan font-mono">{">"}</span>
                 <input
                   type="text"

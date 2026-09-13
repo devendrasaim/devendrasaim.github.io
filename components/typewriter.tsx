@@ -34,7 +34,7 @@ export function Typewriter({
     <span className={className}>
       {displayedText}
       <span
-        className={`inline-block w-[2px] h-[1em] bg-foreground ml-0.5 align-middle ${isComplete ? "animate-blink" : ""}`}
+        className={`inline-block w-[2px] h-[1em] bg-foreground ml-0.5 align-middle ${isComplete ? "hidden" : "animate-blink"}`}
         aria-hidden="true"
       />
     </span>

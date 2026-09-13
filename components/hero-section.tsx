@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Github, FileText as FileIcon } from "lucide-react";
+import { Mail, Github, Linkedin, FileText as FileIcon } from "lucide-react";
 import { Typewriter } from "@/components/typewriter";
 import { Crosshair } from "@/components/crosshair";
 import { SpotlightAvatar } from "@/components/spotlight-avatar";
@@ -10,9 +10,10 @@ import { SpotlightAvatar } from "@/components/spotlight-avatar";
 export function HeroSection() {
   const [nameComplete, setNameComplete] = useState(false);
   const [subtitleComplete, setSubtitleComplete] = useState(false);
+  const [focusComplete, setFocusComplete] = useState(false);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center px-6 py-24 lg:px-10 overflow-hidden">
       {/* Scan line overlay */}
       <div
         className="absolute inset-0 pointer-events-none z-10 overflow-hidden"
@@ -38,28 +39,17 @@ export function HeroSection() {
       <Crosshair position="bottom-left" />
       <Crosshair position="bottom-right" />
 
-      <div className="relative z-20 max-w-3xl mx-auto text-center">
+      <div className="relative z-20 grid w-full max-w-7xl mx-auto items-center gap-4 lg:grid-cols-[minmax(260px,30%)_minmax(0,70%)] lg:gap-12 xl:gap-16">
         {/* Profile Picture with Spotlight */}
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center lg:justify-start">
           <SpotlightAvatar
             src="/images/profile.JPEG"
             alt="Devendra Sai Mupparaju"
-            size={160}
+            size={240}
           />
         </div>
 
-        {/* System label */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mb-8"
-        >
-          <span className="font-mono text-xs tracking-[0.3em] text-muted-foreground uppercase">
-            {"// KERNEL INITIALIZATION"}
-          </span>
-        </motion.div>
-
+        <div className="min-w-0 text-center lg:text-left">
         {/* Name */}
         <h1 className="font-mono text-lg sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-foreground break-words">
           <Typewriter
@@ -75,81 +65,94 @@ export function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className="mb-8 md:mb-10 px-0 sm:px-4"
+            className="mb-8 md:mb-10 px-0"
           >
-            <p className="font-mono text-[10px] sm:text-sm md:text-base tracking-[0.1em] sm:tracking-[0.15em] text-muted-foreground">
+            <p className="font-mono text-xs sm:text-sm md:text-base tracking-[0.1em] sm:tracking-[0.15em] text-foreground">
               <Typewriter
-                text="MSCS Graduate | Software Engineer | Full Stack Engineer | AI Engineer"
+                text="Software Engineer @ VelocitiPM"
                 speed={30}
                 onComplete={() => setSubtitleComplete(true)}
               />
             </p>
+            {subtitleComplete && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                className="mt-3 font-mono text-[10px] sm:text-xs md:text-sm tracking-[0.1em] sm:tracking-[0.15em] text-muted-foreground"
+              >
+                <Typewriter
+                  text="Frontend Systems | Data | AI-Assisted Development"
+                  speed={30}
+                  onComplete={() => setFocusComplete(true)}
+                />
+              </motion.p>
+            )}
           </motion.div>
         )}
 
         {/* Manifesto */}
-        {subtitleComplete && (
+        {focusComplete && (
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-sans text-sm sm:text-base md:text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto mb-8 md:mb-12 px-4"
+            className="font-sans text-sm sm:text-base md:text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-8 md:mb-12 px-4 lg:px-0"
           >
-            I believe in code that feels, not just functions. Built on care and
-            curiosity, my work explores how deep logic shapes simple experiences.
-            From the smooth flow of a game to the quiet safety of a secure
-            system, every project is a connection, grounded in trust and made to
-            last.
+            I build reliable product experiences across frontend systems and
+            data. At VelocitiPM, I turn complex workflows into clear React and
+            TypeScript interfaces, connect them to Supabase and PostgreSQL, and
+            use AI tools to move thoughtfully from idea to production.
           </motion.p>
         )}
 
         {/* CTA Buttons */}
-        {subtitleComplete && (
+        {focusComplete && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-6 md:px-0"
+            className="flex w-full flex-col items-center justify-center gap-4 px-6 md:px-0 lg:items-start"
           >
             <a
               href="mailto:mdevendrasai9@gmail.com"
-              className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 border border-foreground/20 px-8 py-3 font-mono text-sm tracking-wider text-foreground transition-all hover:border-foreground hover:bg-foreground hover:text-background"
+              className="group relative inline-flex w-fit items-center justify-center gap-2 border border-foreground/20 px-3 py-3 font-mono text-sm tracking-wider text-foreground transition-all duration-200 hover:scale-105 hover:border-foreground hover:bg-foreground hover:text-background"
             >
               <Mail className="h-4 w-4" />
-              Contact Me
-            </a>
-            <a
-              href="https://github.com/devendrasaim"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 border border-foreground/10 px-8 py-3 font-mono text-sm tracking-wider text-muted-foreground transition-all hover:border-foreground/30 hover:text-foreground"
-            >
-              <Github className="h-4 w-4" />
-              Access Repository
+              mdevendrasai9@gmail.com
             </a>
             <a
               href="/docs/Resume.pdf?v=updated"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 border border-foreground/10 px-8 py-3 font-mono text-sm tracking-wider text-muted-foreground transition-all hover:border-foreground/30 hover:text-foreground"
+              className="group relative inline-flex w-fit items-center justify-center gap-2 border border-foreground/10 px-3 py-3 font-mono text-sm tracking-wider text-muted-foreground transition-all duration-200 hover:scale-105 hover:border-foreground hover:bg-foreground hover:text-background"
             >
               <FileIcon className="h-4 w-4" />
               Resume
             </a>
+            <div className="flex items-center justify-center gap-4 lg:justify-start">
+              <a
+                href="https://www.linkedin.com/in/devendrasaim/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="group relative inline-flex h-12 w-12 items-center justify-center rounded-full border border-foreground/10 text-muted-foreground transition-all duration-200 hover:scale-110 hover:border-foreground/40 hover:bg-foreground hover:text-background"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href="https://github.com/devendrasaim"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="group relative inline-flex h-12 w-12 items-center justify-center rounded-full border border-foreground/10 text-muted-foreground transition-all duration-200 hover:scale-110 hover:border-foreground/40 hover:bg-foreground hover:text-background"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+            </div>
           </motion.div>
         )}
-
-        {/* System status line */}
-        {subtitleComplete && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1 }}
-            className="mt-16 font-mono text-[10px] tracking-[0.2em] text-muted-foreground/40 uppercase"
-          >
-            {"SYS.INIT > ALL MODULES LOADED > READY"}
-          </motion.div>
-        )}
+        </div>
       </div>
     </section>
   );

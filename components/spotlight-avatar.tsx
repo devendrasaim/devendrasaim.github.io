@@ -41,7 +41,7 @@ export function SpotlightAvatar({ src, alt, size = 180 }: SpotlightAvatarProps) 
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative flex items-center justify-center cursor-pointer"
-        style={{ width: size * 1.8, height: size * 1.8 }}
+        style={{ width: size * 1.8, height: size * 2.05 }}
         onClick={() => setIsOpen(true)}
         role="button"
         tabIndex={0}
@@ -50,7 +50,7 @@ export function SpotlightAvatar({ src, alt, size = 180 }: SpotlightAvatarProps) 
       >
         {/* Outermost soft glow */}
         <div
-          className="absolute inset-0 rounded-full"
+          className="absolute inset-0 rounded-[1.75rem]"
           style={{
             background:
               "radial-gradient(circle, hsla(0, 0%, 100%, 0.03) 0%, hsla(0, 0%, 100%, 0.01) 40%, transparent 70%)",
@@ -86,14 +86,14 @@ export function SpotlightAvatar({ src, alt, size = 180 }: SpotlightAvatarProps) 
 
         {/* Thin border ring */}
         <div
-          className="absolute rounded-full border border-border/40"
-          style={{ width: size + 8, height: size + 8 }}
+          className="absolute rounded-[2rem] border border-border/40"
+          style={{ width: size + 8, height: size * 1.3 + 8 }}
         />
 
         {/* Profile image */}
         <div
-          className="relative rounded-full overflow-hidden"
-          style={{ width: size, height: size }}
+          className="relative rounded-[1.75rem] overflow-hidden"
+          style={{ width: size, height: size * 1.3 }}
         >
           <img
             src={src}
@@ -103,7 +103,7 @@ export function SpotlightAvatar({ src, alt, size = 180 }: SpotlightAvatarProps) 
 
           {/* Subtle inner shadow for depth */}
           <div
-            className="absolute inset-0 rounded-full"
+            className="absolute inset-0 rounded-[1.75rem]"
             style={{
               boxShadow: "inset 0 0 20px hsla(0, 0%, 0%, 0.4)",
             }}
@@ -143,7 +143,7 @@ export function SpotlightAvatar({ src, alt, size = 180 }: SpotlightAvatarProps) 
               />
 
               {/* Border ring */}
-              <div className="relative rounded-full overflow-hidden border-2 border-border/30 w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px]">
+              <div className="relative rounded-[2rem] overflow-hidden border-2 border-border/30 w-[260px] h-[340px] sm:w-[320px] sm:h-[416px] md:w-[360px] md:h-[468px]">
                 <img
                   src={src}
                   alt={alt}
@@ -152,7 +152,7 @@ export function SpotlightAvatar({ src, alt, size = 180 }: SpotlightAvatarProps) 
 
                 {/* Inner shadow for depth */}
                 <div
-                  className="absolute inset-0 rounded-full"
+                  className="absolute inset-0 rounded-[1.75rem]"
                   style={{
                     boxShadow: "inset 0 0 40px hsla(0, 0%, 0%, 0.3)",
                   }}
