@@ -4,59 +4,84 @@
 
 @layer base {
   :root {
-    --background: 240 14% 1%;
-    --foreground: 0 0% 92%;
-    --card: 240 10% 4%;
-    --card-foreground: 0 0% 92%;
-    --popover: 240 10% 4%;
-    --popover-foreground: 0 0% 92%;
-    --primary: 0 0% 92%;
-    --primary-foreground: 240 14% 1%;
-    --secondary: 240 5% 10%;
-    --secondary-foreground: 0 0% 92%;
-    --muted: 240 5% 10%;
-    --muted-foreground: 0 0% 55%;
-    --accent: 240 5% 10%;
-    --accent-foreground: 0 0% 92%;
-    --destructive: 0 84% 60%;
+    /* Surfaces. Off-black rather than pure black so borders and cards read as depth. */
+    --background: 240 9% 4%;
+    --surface: 240 8% 6%;
+    --surface-raised: 240 7% 8%;
+    --card: 240 8% 6%;
+    --card-foreground: 0 0% 93%;
+    --popover: 240 8% 6%;
+    --popover-foreground: 0 0% 93%;
+
+    --foreground: 0 0% 93%;
+    --muted: 240 6% 11%;
+    --muted-foreground: 0 0% 62%;
+    --faint: 0 0% 44%;
+
+    --primary: 0 0% 93%;
+    --primary-foreground: 240 9% 4%;
+    --secondary: 240 6% 11%;
+    --secondary-foreground: 0 0% 93%;
+    --accent: 240 6% 11%;
+    --accent-foreground: 0 0% 93%;
+    --destructive: 0 72% 58%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5% 12%;
-    --input: 240 5% 12%;
-    --ring: 0 0% 92%;
+
+    --border: 240 6% 15%;
+    --border-strong: 240 6% 22%;
+    --input: 240 6% 15%;
+    --ring: 187 88% 52%;
     --radius: 0.25rem;
 
+    /* Single locked accent. The other hues stay defined for legacy props but are
+       no longer assigned to content. */
+    --cyan: 187 88% 52%;
     --amber: 45 100% 51%;
-    --cyan: 187 100% 50%;
     --green: 142 76% 46%;
     --rose: 350 89% 60%;
 
-    --chart-1: 45 100% 51%;
-    --chart-2: 187 100% 50%;
-    --chart-3: 142 76% 46%;
-    --chart-4: 0 0% 55%;
-    --chart-5: 0 0% 30%;
-
-    --sidebar-background: 240 14% 1%;
-    --sidebar-foreground: 0 0% 92%;
-    --sidebar-primary: 0 0% 92%;
-    --sidebar-primary-foreground: 240 14% 1%;
-    --sidebar-accent: 240 5% 10%;
-    --sidebar-accent-foreground: 0 0% 92%;
-    --sidebar-border: 240 5% 12%;
-    --sidebar-ring: 0 0% 92%;
+    --sidebar-background: 240 9% 4%;
+    --sidebar-foreground: 0 0% 93%;
+    --sidebar-primary: 0 0% 93%;
+    --sidebar-primary-foreground: 240 9% 4%;
+    --sidebar-accent: 240 6% 11%;
+    --sidebar-accent-foreground: 0 0% 93%;
+    --sidebar-border: 240 6% 15%;
+    --sidebar-ring: 187 88% 52%;
   }
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Sections are anchor targets under a fixed nav. */
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
   }
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     overflow-x: hidden;
+    font-feature-settings: "kern" 1;
+  }
+  /* Visible keyboard focus everywhere. Pointer clicks stay clean. */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  ::selection {
+    background: hsl(var(--cyan) / 0.25);
+    color: hsl(0 0% 100%);
+  }
+  /* Headings are mono by design; keep the optical tightening in one place. */
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
   }
 }
 
@@ -68,29 +93,79 @@
     will-change: transform;
     transform: translateZ(0);
   }
+  /* Hairline rule used to separate sections without a hard border. */
+  .rule-top {
+    background-image: linear-gradient(
+      to right,
+      transparent,
+      hsl(var(--border-strong)) 12%,
+      hsl(var(--border-strong)) 88%,
+      transparent
+    );
+  }
+
+  /* Certificate preview on the certification cards.
+     These are scans of white certificates, so unmasked their body text sits
+     behind the card title as grey scramble. At rest the mask keeps the scan in
+     the outer corner as texture; on hover the mask grows past the card so the
+     whole document reveals. Growing mask-size rather than swapping images means
+     the reveal wipes open from the corner instead of cross-fading, and it stays
+     a single request. */
+  .cert-preview {
+    /* The gradient carries its own explicit 125% radii and fades from 0%, so at
+       mask-size 100% the rest state is exactly the tight corner crop. Anything
+       with a solid core lets the scan bleed under the title on the wide card,
+       whose aspect stretches a farthest-corner circle right across it. */
+    -webkit-mask-image: radial-gradient(125% 125% at 100% 100%, #000 0%, transparent 62%);
+    mask-image: radial-gradient(125% 125% at 100% 100%, #000 0%, transparent 62%);
+    -webkit-mask-position: 100% 100%;
+    mask-position: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    transition:
+      opacity 500ms ease-out,
+      filter 500ms ease-out,
+      -webkit-mask-size 700ms cubic-bezier(0.16, 1, 0.3, 1),
+      mask-size 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  /* Grown this far, the gradient's transparent stop sits well outside the card,
+     so the whole scan is inside the opaque region: a full reveal. */
+  .group\/card:hover .cert-preview {
+    -webkit-mask-size: 420% 420%;
+    mask-size: 420% 420%;
+  }
 }
 
-/* Custom Scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
-
 ::-webkit-scrollbar-track {
   background: hsl(var(--background));
 }
-
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--border));
-  border-radius: 4px;
+  background: hsl(var(--border-strong));
+  border: 3px solid hsl(var(--background));
+  border-radius: 999px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground));
 }
 
-/* Custom Selection */
-::selection {
-  background: hsl(var(--cyan) / 0.2);
-  color: hsl(var(--cyan));
+/* Motion is decorative here, so all of it collapses when the OS asks. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

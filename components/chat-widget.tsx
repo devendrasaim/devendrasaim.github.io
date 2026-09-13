@@ -89,13 +89,13 @@ export function ChatWidget() {
         className={`fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-2xl border transition-all duration-300 group
           ${isOpen 
             ? "bg-destructive text-destructive-foreground border-destructive/50" 
-            : "bg-background/80 backdrop-blur-md text-cyan border-cyan/50 hover:bg-cyan/10 hover:shadow-[0_0_20px_rgba(6,182,212,0.3)]"
+            : "bg-background/80 backdrop-blur-md text-cyan border-cyan/50 hover:bg-cyan/10"
           }
         `}
       >
         {isOpen ? <X className="w-6 h-6" /> : <Terminal className="w-6 h-6" />}
         {!isOpen && (
-           <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
+           <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-cyan" />
         )}
       </motion.button>
 
@@ -117,13 +117,13 @@ export function ChatWidget() {
             }}
             className="fixed bottom-24 right-6 z-40 max-w-[220px]"
           >
-            <div className="relative bg-background/90 backdrop-blur-md border border-cyan/45 p-4 rounded-sm shadow-[0_0_15px_rgba(6,182,212,0.15)]">
+            <div className="relative border border-border-strong bg-surface/95 p-4 backdrop-blur-md">
                <div className="flex items-center gap-2 mb-2 border-b border-cyan/20 pb-2">
                   <div className="w-1.5 h-1.5 bg-cyan rounded-full animate-pulse" />
                   <span className="font-mono text-[10px] tracking-widest text-cyan uppercase">Devendra's AI Assistant</span>
                </div>
               <p className="text-xs font-mono text-muted-foreground leading-relaxed pr-2">
-                "Greetings. I am the system AI. Query me regarding projects or skills."
+                "Hi. Ask me anything about Devendra's work."
               </p>
               {/* Triangle Tail */}
               <div className="absolute -bottom-2 right-6 w-4 h-4 bg-background/90 border-b border-r border-cyan/45 transform rotate-45"></div>
@@ -152,7 +152,7 @@ export function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-6 z-50 w-[90vw] md:w-[400px] h-[550px] max-h-[75vh] flex flex-col rounded-sm overflow-hidden border border-cyan/45 bg-background/95 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+            className="fixed bottom-24 right-6 z-50 flex h-[550px] max-h-[75vh] w-[90vw] flex-col overflow-hidden border border-border-strong bg-background/95 backdrop-blur-xl md:w-[400px]"
           >
             {/* Chat Header */}
             <div className="flex items-center px-4 py-3 border-b border-cyan/35 bg-cyan/5">
@@ -174,8 +174,8 @@ export function ChatWidget() {
                   key={i}
                   className={`flex flex-col ${msg.role === "user" ? "items-end" : "items-start"}`}
                 >
-                    <span className={`text-[10px] font-mono tracking-wider mb-1 ${msg.role === "user" ? "text-cyan/60" : "text-green/60"}`}>
-                        {msg.role === "user" ? "USER.CMD" : "SYS.RESPONSE"}
+                    <span className={`text-[10px] font-mono tracking-wider mb-1 ${msg.role === "user" ? "text-cyan/60" : "text-faint"}`}>
+                        {msg.role === "user" ? "You" : "Assistant"}
                     </span>
                   <div
                     className={`max-w-[85%] p-3 rounded-sm text-sm leading-relaxed border ${
@@ -214,7 +214,7 @@ export function ChatWidget() {
 
               {isLoading && (
                 <div className="flex flex-col items-start">
-                    <span className="text-[10px] font-mono tracking-wider mb-1 text-green/60">SYS.PROCESSING</span>
+                    <span className="text-[10px] font-mono tracking-wider mb-1 text-faint">Thinking</span>
                   <div className="bg-background border border-border p-3 rounded-sm rounded-tl-none flex items-center gap-2">
                     <Loader2 className="w-3.5 h-3.5 text-cyan animate-spin" />
                     <span className="text-xs font-mono text-cyan animate-pulse">Computing response...</span>

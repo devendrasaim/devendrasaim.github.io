@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Section, SectionHeading } from "@/components/section";
 
 const educationData = [
   {
@@ -23,29 +24,11 @@ const educationData = [
 
 export function EducationSection() {
   return (
-    <section id="education" className="relative px-6 py-24 border-t border-border/50">
-      <div className="max-w-4xl mx-auto">
-        {/* Section Header */}
-        <motion.div
-           initial={{ opacity: 0 }}
-           whileInView={{ opacity: 1 }}
-           viewport={{ once: true }}
-           transition={{ duration: 0.6 }}
-           className="mb-16"
-        >
-          <div className="flex items-center gap-4 mb-4">
-             <div className="h-px flex-1 max-w-[60px] bg-muted-foreground/20" />
-            <span className="font-mono text-xs tracking-[0.3em] text-muted-foreground uppercase">
-              {"// KNOWLEDGE BASE"}
-            </span>
-          </div>
-          <h2 className="font-mono text-2xl md:text-3xl font-bold text-foreground tracking-tight">
-            Education
-          </h2>
-        </motion.div>
+    <Section id="education" width="default">
+        <SectionHeading title="Education" />
 
         {/* Timeline/List */}
-        <div className="space-y-12">
+        <div className="space-y-14 md:space-y-20">
             {educationData.map((edu, index) => (
                 <motion.div
                     key={index}
@@ -53,29 +36,29 @@ export function EducationSection() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="relative pl-8 border-l border-border/50"
+                    className="relative border-l border-border pl-7 md:pl-10"
                 >
-                    {/* Timeline Dot */}
-                    <div className="absolute left-[-5px] top-0 h-2.5 w-2.5 rounded-full bg-foreground" />
-                    
-                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-2">
-                        <h3 className="font-mono text-xl font-bold text-foreground">{edu.school}</h3>
-                        <span className="font-mono text-sm text-muted-foreground/80">{edu.period}</span>
-                    </div>
-                    
-                    <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-4">
-                        <span className="text-lg text-foreground/90">{edu.degree}</span>
-                         <span className="text-sm text-muted-foreground font-mono">|  {edu.location}</span>
+                    {/* Marker on the timeline rule */}
+                    <div className="absolute left-[-3px] top-2 h-1.5 w-1.5 bg-cyan" aria-hidden="true" />
+
+                    <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+                        <h3 className="font-mono text-lg font-bold text-foreground md:text-xl">{edu.school}</h3>
+                        <span className="shrink-0 font-mono text-xs tabular-nums text-faint">{edu.period}</span>
                     </div>
 
-                    <p className="font-sans text-base text-muted-foreground leading-relaxed mb-4 max-w-2xl">
+                    <div className="mb-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                        <span className="font-mono text-sm text-cyan">{edu.degree}</span>
+                        <span className="font-mono text-sm text-faint">{edu.location}</span>
+                    </div>
+
+                    <p className="mb-5 max-w-[68ch] font-sans text-[15px] leading-relaxed text-muted-foreground">
                         {edu.description}
                     </p>
 
                     {edu.courses.length > 0 && (
                          <div className="flex flex-wrap gap-2">
                             {edu.courses.map(course => (
-                                <span key={course} className="text-xs font-mono border border-border px-2 py-0.5 text-muted-foreground">
+                                <span key={course} className="border border-border/70 px-2.5 py-1 font-mono text-[11px] tracking-wide text-faint">
                                     {course}
                                 </span>
                             ))}
@@ -84,7 +67,6 @@ export function EducationSection() {
                 </motion.div>
             ))}
         </div>
-      </div>
-    </section>
+    </Section>
   );
 }

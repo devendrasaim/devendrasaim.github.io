@@ -256,7 +256,7 @@ export function WorkflowFlowchart({ accentColor = "cyan" }: WorkflowFlowchartPro
                     letterSpacing: "0.03em",
                     pointerEvents: "none",
                   }}
-                >{"// " + node.sub}</text>
+                >{node.sub}</text>
               </motion.g>
             </g>
           );
@@ -336,7 +336,7 @@ export function WorkflowFlowchart({ accentColor = "cyan" }: WorkflowFlowchartPro
                 letterSpacing: "0.03em",
                 pointerEvents: "none",
               }}
-            >{"// " + ROOT_NODE.sub}</text>
+            >{ROOT_NODE.sub}</text>
           </motion.g>
         </motion.g>
 

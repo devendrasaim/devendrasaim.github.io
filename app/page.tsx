@@ -1,4 +1,5 @@
 import { ClientShell } from "@/components/client-shell";
+import { Ambient } from "@/components/ambient";
 import { HeroSection } from "@/components/hero-section";
 import { ProjectsSection } from "@/components/projects-section";
 import { SystemFooter } from "@/components/system-footer";
@@ -14,7 +15,11 @@ import { ContactSection } from "@/components/contact-section";
 export default function Home() {
   return (
     <ClientShell>
-      <main className="relative min-h-screen bg-background text-foreground">
+      <main className="relative min-h-[100dvh] bg-background text-foreground">
+        {/* Ambient layers first: the light paints over the page background and
+            under every section, which are positioned and come later in tree
+            order. */}
+        <Ambient />
         <NavBar />
         <HeroSection />
         <AboutSection />

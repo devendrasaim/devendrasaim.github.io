@@ -1,18 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Section, SectionHeading } from "@/components/section";
 import { Award, ExternalLink } from "lucide-react";
 
-// Placeholder data - User to replace later
 const certifications = [
   {
     id: "CERT-01",
-    title: "Python (Basic)",
+    title: "Python",
     issuer: "HackerRank",
     date: "Aug 2021",
     link: "https://www.hackerrank.com/certificates/43a02e24af20",
     image: "/images/certs/python.jpg",
-    color: "cyan",
   },
   {
     id: "CERT-02",
@@ -21,16 +20,14 @@ const certifications = [
     date: "May 2022",
     link: "https://courses.cognitiveclass.ai/certificates/61d27c39769b442ba7a6cdca7a358003",
     image: "/images/certs/cloud.jpg",
-    color: "amber",
   },
   {
     id: "CERT-03",
-    title: "Hadoop 101",
+    title: "Hadoop",
     issuer: "Cognitive Class",
     date: "May 2022",
     link: "https://courses.cognitiveclass.ai/certificates/698d8725e4074f5086a4e07875777c7a",
     image: "/images/certs/hadoop.jpg",
-    color: "green",
   },
   {
     id: "CERT-04",
@@ -39,7 +36,6 @@ const certifications = [
     date: "Feb 2022",
     link: "/docs/oracle.pdf",
     image: "/images/certs/oracle.png",
-    color: "rose",
   },
   {
     id: "CERT-05",
@@ -48,42 +44,30 @@ const certifications = [
     date: "Feb 19, 2026",
     link: "https://www.credly.com/badges/cf2ac668-e79e-4297-8bfe-a9636da3d68d",
     image: "/images/certs/Prompt Design in Vertex AI Google Cloud.png",
-    color: "cyan",
   },
 ];
 
-const accentMap = {
-    cyan: "border-cyan/40 bg-cyan/5 text-cyan hover:border-cyan/80",
-    amber: "border-amber/40 bg-amber/5 text-amber hover:border-amber/80",
-    rose: "border-rose/40 bg-rose/5 text-rose hover:border-rose/80",
-    green: "border-green/40 bg-green/5 text-green hover:border-green/80",
+/* The trailing row has to fill exactly. Left alone, five cards in a three
+   column grid leave a dead cell in the corner, which reads as an accident
+   rather than a composition. Widening the last card closes the row, and doing
+   it arithmetically means the grid stays whole as the list grows. */
+function trailingSpan(index: number, total: number) {
+    if (index !== total - 1) return "";
+
+    const spans: string[] = [];
+    if (total % 2 === 1) spans.push("sm:col-span-2");
+    if (total % 3 === 2) spans.push("lg:col-span-2");
+    if (total % 3 === 1) spans.push("lg:col-span-3");
+    return spans.join(" ");
 }
 
 export function CertificationsSection() {
   return (
-    <section id="certifications" className="relative px-6 py-24 border-t border-border/50">
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <motion.div
-           initial={{ opacity: 0 }}
-           whileInView={{ opacity: 1 }}
-           viewport={{ once: true }}
-           transition={{ duration: 0.6 }}
-           className="mb-16"
-        >
-          <div className="flex items-center gap-4 mb-4">
-             <div className="h-px flex-1 max-w-[60px] bg-muted-foreground/20" />
-            <span className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground uppercase">
-              {"// CREDENTIAL VALIDATION"}
-            </span>
-          </div>
-          <h2 className="font-mono text-xl md:text-2xl font-bold text-foreground tracking-tight">
-            Certifications
-          </h2>
-        </motion.div>
+    <Section id="certifications" width="wide">
+        <SectionHeading title="Certifications" />
 
         {/* Grid Cards Container */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl mx-auto py-10">
+        <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {certifications.map((cert, index) => (
                 <motion.a
                     href={cert.link}
@@ -94,52 +78,57 @@ export function CertificationsSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{ y: -3 }}
                     className={`
-                        relative w-full h-[180px]
-                        rounded-lg border overflow-hidden p-6 flex flex-col justify-between
-                        transition-all duration-300 ease-out cursor-pointer group/card
-                        ${accentMap[cert.color as keyof typeof accentMap]}
-                        hover:shadow-lg
+                        relative h-[176px] w-full ${trailingSpan(index, certifications.length)}
+                        overflow-hidden border border-border bg-surface p-6 flex flex-col justify-between
+                        transition-colors duration-300 ease-out group/card
+                        text-foreground hover:border-cyan/60
                     `}
                 >
-                    {/* Background Image Preview */}
+                    {/* Certificate preview, held to the outer corner. Decorative:
+                        the link already names the certificate. */}
                     {cert.image && (
-                        <div className="absolute inset-0 z-0">
-                            <img 
-                                src={cert.image} 
-                                alt={`${cert.title} preview`}
-                                className="w-full h-full object-cover opacity-20 group-hover/card:opacity-40 transition-opacity grayscale group-hover/card:grayscale-0"
+                        <div aria-hidden="true" className="absolute inset-0 z-0">
+                            {/* Masking, sizing and the reveal transition live in
+                                the .cert-preview class; opacity and colour are
+                                the Tailwind hover pair. */}
+                            <img
+                                src={cert.image}
+                                alt=""
+                                loading="lazy"
+                                className="cert-preview h-full w-full object-cover opacity-[0.18] grayscale group-hover/card:opacity-[0.42] group-hover/card:grayscale-0"
                             />
-                            <div className="absolute inset-0 bg-background/80 group-hover/card:bg-background/40 transition-colors" />
+                            {/* Graded scrim rather than a flat wash, so the type sits on
+                                near-solid surface at rest. It lifts on hover to let the
+                                document through, but never fully: the title still has to
+                                be readable over it. */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-surface via-surface/90 to-surface/40 transition-opacity duration-500 ease-out group-hover/card:opacity-[0.45]" />
                         </div>
                     )}
 
                     <div className="relative z-10 flex justify-between items-start">
-                        <Award className="h-8 w-8 opacity-80" />
-                        <span className="font-mono text-[10px] opacity-60 border border-current px-1 py-0.5 rounded bg-background/50 backdrop-blur-sm">
+                        <Award className="h-6 w-6 text-faint transition-colors duration-300 group-hover/card:text-cyan" />
+                        <span className="border border-border bg-background/70 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground backdrop-blur-sm">
                             {cert.date}
                         </span>
                     </div>
                     
                     <div className="relative z-10">
-                        <h3 className="font-bold text-lg leading-tight mb-1 line-clamp-2 drop-shadow-md">
+                        <h3 className="mb-1 line-clamp-2 font-mono text-base font-bold leading-snug text-foreground">
                             {cert.title}
                         </h3>
                         <div className="flex items-center justify-between">
-                            <span className="text-xs opacity-70 font-mono">
+                            <span className="font-mono text-xs text-muted-foreground">
                                 {cert.issuer}
                             </span>
-                            <ExternalLink className="h-3 w-3 opacity-0 group-hover/card:opacity-100 transition-opacity" />
+                            <ExternalLink className="h-3.5 w-3.5 text-cyan opacity-0 transition-opacity group-hover/card:opacity-100" />
                         </div>
                     </div>
 
-                    {/* Hover glow effect per card */}
-                    <div className="absolute inset-0 bg-current opacity-0 hover:opacity-5 transition-opacity pointer-events-none z-20" />
                 </motion.a>
             ))}
         </div>
-      </div>
-    </section>
+    </Section>
   );
 }

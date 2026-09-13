@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Section, SectionHeading } from "@/components/section";
 
 const workData = [
   {
@@ -23,29 +24,11 @@ const workData = [
 
 export function WorkExperienceSection() {
   return (
-    <section id="work" className="relative px-6 py-24 border-t border-border/50">
-      <div className="max-w-4xl mx-auto">
-        {/* Section Header */}
-        <motion.div
-           initial={{ opacity: 0 }}
-           whileInView={{ opacity: 1 }}
-           viewport={{ once: true }}
-           transition={{ duration: 0.6 }}
-           className="mb-16"
-        >
-          <div className="flex items-center gap-4 mb-4">
-             <div className="h-px flex-1 max-w-[60px] bg-muted-foreground/20" />
-            <span className="font-mono text-xs tracking-[0.3em] text-muted-foreground uppercase">
-              {"// WORK TIMELINE"}
-            </span>
-          </div>
-          <h2 className="font-mono text-2xl md:text-3xl font-bold text-foreground tracking-tight">
-            Work Experience
-          </h2>
-        </motion.div>
+    <Section id="work" width="default">
+        <SectionHeading title="Work Experience" />
 
         {/* Timeline/List */}
-        <div className="space-y-12">
+        <div className="space-y-14 md:space-y-20">
             {workData.map((exp, index) => (
                 <motion.div
                     key={index}
@@ -53,25 +36,28 @@ export function WorkExperienceSection() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="relative pl-8 border-l border-border/50"
+                    className="relative border-l border-border pl-7 md:pl-10"
                 >
-                    {/* Timeline Dot */}
-                    <div className="absolute left-[-5px] top-0 h-2.5 w-2.5 rounded-full bg-cyan shadow-[0_0_10px_rgba(6,182,212,0.5)]" />
+                    {/* Marker on the timeline rule */}
+                    <div className="absolute left-[-3px] top-2 h-1.5 w-1.5 bg-cyan" aria-hidden="true" />
 
-                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-2">
-                        <h3 className="font-mono text-base font-bold text-foreground leading-snug max-w-xl">{exp.role}</h3>
-                        <span className="font-mono text-sm text-cyan shrink-0">{exp.period}</span>
+                    <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+                        <h3 className="max-w-2xl font-mono text-lg font-bold leading-snug text-foreground md:text-xl">{exp.role}</h3>
+                        <span className="shrink-0 font-mono text-xs tabular-nums text-faint">{exp.period}</span>
                     </div>
 
-                    <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-4 mb-4">
-                        <span className="text-base text-foreground/90">{exp.company}</span>
-                        <span className="text-sm text-muted-foreground font-mono">| {exp.location}</span>
+                    <div className="mb-6 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                        <span className="font-mono text-sm text-cyan">{exp.company}</span>
+                        <span className="font-mono text-sm text-faint">{exp.location}</span>
                     </div>
 
-                    <ul className="list-none space-y-2 mb-6 font-sans text-sm text-muted-foreground leading-relaxed max-w-2xl">
+                    <ul className="mb-6 max-w-[68ch] space-y-3 font-sans text-[15px] leading-relaxed text-muted-foreground">
                         {exp.description.map((bullet, i) => (
-                           <li key={i} className="flex items-start gap-2">
-                             <span className="text-cyan/70 mt-1 font-mono text-sm shrink-0">{">"}</span>
+                           <li key={i} className="flex items-start gap-3">
+                             <span
+                               aria-hidden="true"
+                               className="mt-[0.6em] h-px w-3 shrink-0 bg-border-strong"
+                             />
                              <span>{bullet}</span>
                            </li>
                         ))}
@@ -80,7 +66,7 @@ export function WorkExperienceSection() {
                     {exp.tags.length > 0 && (
                          <div className="flex flex-wrap gap-2">
                             {exp.tags.map(tag => (
-                                <span key={tag} className="text-xs font-mono border border-cyan/30 px-2 py-0.5 text-cyan/90 bg-cyan/5 rounded-sm">
+                                <span key={tag} className="border border-border/70 px-2.5 py-1 font-mono text-[11px] tracking-wide text-faint">
                                     {tag}
                                 </span>
                             ))}
@@ -89,7 +75,6 @@ export function WorkExperienceSection() {
                 </motion.div>
             ))}
         </div>
-      </div>
-    </section>
+    </Section>
   );
 }

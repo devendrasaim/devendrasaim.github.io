@@ -2,19 +2,21 @@ import React from "react"
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/react";
 
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Geist, JetBrains_Mono } from "next/font/google";
 import { ChatWidget } from "@/components/chat-widget";
 
 import "./globals.css";
 
-const inter = Inter({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-geist",
+  display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains-mono",
+  display: "swap",
 });
 
 const siteUrl = "https://devendrasaim-portfolio.vercel.app";
@@ -32,7 +34,7 @@ export const metadata: Metadata = {
     siteName: "Devendra Sai Mupparaju",
     images: [
       {
-        url: "/images/profile.JPEG",
+        url: "/images/profile-og.jpg",
         width: 400,
         height: 400,
         alt: "Devendra Sai Mupparaju",
@@ -46,7 +48,7 @@ export const metadata: Metadata = {
     title: "Devendra Sai Mupparaju | Full Stack Engineer & AI Researcher",
     description:
       "MSCS Graduate from Iowa State. Building production full-stack platforms and researching training-free LLM steering techniques.",
-    images: ["/images/profile.JPEG"],
+    images: ["/images/profile-og.jpg"],
   },
   manifest: "/manifest.json",
 };
@@ -65,7 +67,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}>
+    <html lang="en" className={`${geist.variable} ${jetbrainsMono.variable} scroll-smooth`}>
       <body suppressHydrationWarning className="font-sans antialiased">
         <LazyMotion features={domAnimation}>
           {children}

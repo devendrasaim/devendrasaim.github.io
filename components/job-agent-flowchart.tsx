@@ -29,7 +29,7 @@ interface JobAgentFlowchartProps {
 //  - WRITER + ANSWERER activate simultaneously (true parallel agents)
 //  - Z-shaped path: right → down-left → right
 
-const ROOT_NODE   = { id: "init", label: "AGENT_SYS.PY", sub: "orchestrator", cx: 80,  cy: 70,  w: 110, h: 34 };
+const ROOT_NODE   = { id: "init", label: "MAIN", sub: "orchestrator", cx: 80,  cy: 70,  w: 110, h: 34 };
 const IDLE_CENTER = { x: 200, y: 200 };
 const IDLE_SCALE  = 2.0;
 
@@ -277,7 +277,7 @@ export function JobAgentFlowchart({ accentColor = "rose" }: JobAgentFlowchartPro
                     letterSpacing: "0.03em",
                     pointerEvents: "none",
                   }}
-                >{"// " + node.sub}</text>
+                >{node.sub}</text>
               </motion.g>
             </g>
           );
@@ -357,7 +357,7 @@ export function JobAgentFlowchart({ accentColor = "rose" }: JobAgentFlowchartPro
                 letterSpacing: "0.03em",
                 pointerEvents: "none",
               }}
-            >{"// " + ROOT_NODE.sub}</text>
+            >{ROOT_NODE.sub}</text>
           </motion.g>
         </motion.g>
 

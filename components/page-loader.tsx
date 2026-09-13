@@ -3,13 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const BOOT_LINES = [
-  { text: "BIOS_CHECK.............. OK", delay: 0 },
-  { text: "MEMORY_SCAN............. OK", delay: 200 },
-  { text: "DISPLAY_INIT............ OK", delay: 380 },
-  { text: "LOADING PORTFOLIO.....", delay: 560 },
-];
-
 const BAR_SEGMENTS = 28;
 
 interface PageLoaderProps {
@@ -19,20 +12,15 @@ interface PageLoaderProps {
 export function PageLoader({ onComplete }: PageLoaderProps) {
   const [visible, setVisible] = useState(true);
   const [progress, setProgress] = useState(0);
-  const [visibleLines, setVisibleLines] = useState(0);
   const [powering, setPowering] = useState(false);
   const startRef = useRef<number | null>(null);
   const rafRef = useRef<number | null>(null);
-  const DURATION = 2000;
+  const DURATION = 1100;
 
   useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     const timers: ReturnType<typeof setTimeout>[] = [];
-
-    BOOT_LINES.forEach((line, i) => {
-      timers.push(
-        setTimeout(() => setVisibleLines((v) => Math.max(v, i + 1)), line.delay)
-      );
-    });
 
     const animate = (ts: number) => {
       if (startRef.current === null) startRef.current = ts;
@@ -58,6 +46,7 @@ export function PageLoader({ onComplete }: PageLoaderProps) {
     rafRef.current = requestAnimationFrame(animate);
 
     return () => {
+      document.body.style.overflow = previousOverflow;
       timers.forEach(clearTimeout);
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
     };
@@ -77,7 +66,9 @@ export function PageLoader({ onComplete }: PageLoaderProps) {
               : { opacity: 0 }
           }
           style={{ transformOrigin: "center", zIndex: 9999 }}
-          className="fixed inset-0 bg-background flex items-center justify-center"
+          role="status"
+          aria-label="Loading"
+          className="fixed inset-0 flex items-center justify-center bg-background"
         >
           {/* Grid background */}
           <div
@@ -108,21 +99,13 @@ export function PageLoader({ onComplete }: PageLoaderProps) {
           <div className="relative flex flex-col items-center gap-8 px-8 max-w-sm w-full">
             {/* Title */}
             <div className="text-center">
-              <motion.p
-                className="font-mono text-[10px] tracking-[0.4em] text-cyan/50 uppercase mb-2"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.1 }}
-              >
-                SYSTEM BOOT
-              </motion.p>
               <motion.h1
                 className="font-mono text-2xl font-bold tracking-[0.2em] text-foreground"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: [0, 1, 0.7, 1] }}
                 transition={{ duration: 0.4, delay: 0.05 }}
               >
-                DSM_PORTFOLIO
+                DEVENDRA SAI
                 <motion.span
                   className="text-cyan ml-1"
                   animate={{ opacity: [1, 0] }}
@@ -131,31 +114,6 @@ export function PageLoader({ onComplete }: PageLoaderProps) {
                   █
                 </motion.span>
               </motion.h1>
-            </div>
-
-            {/* Boot log */}
-            <div className="w-full font-mono text-[11px] space-y-1 min-h-[80px]">
-              {BOOT_LINES.slice(0, visibleLines).map((line, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -8 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.15 }}
-                  className="text-muted-foreground/60 tracking-wider"
-                >
-                  <span className="text-cyan/40 mr-2">{">"}</span>
-                  {line.text}
-                  {i === visibleLines - 1 && progress < 1 && (
-                    <motion.span
-                      className="text-cyan ml-1"
-                      animate={{ opacity: [1, 0] }}
-                      transition={{ duration: 0.4, repeat: Infinity, repeatType: "reverse" }}
-                    >
-                      _
-                    </motion.span>
-                  )}
-                </motion.div>
-              ))}
             </div>
 
             {/* Progress bar */}
@@ -194,8 +152,8 @@ export function PageLoader({ onComplete }: PageLoaderProps) {
               </div>
 
               <div className="flex justify-between">
-                <span className="font-mono text-[9px] text-cyan/40 tracking-widest">
-                  LOADING SYS
+                <span className="font-mono text-[9px] text-cyan/40 tracking-widest uppercase">
+                  Loading
                 </span>
                 <span className="font-mono text-[9px] text-cyan/60 tracking-widest">
                   {Math.round(progress * 100)}%

@@ -8,21 +8,21 @@ type AccentColor = "amber" | "cyan" | "green" | "rose";
 
 interface ResearchViewportProps {
   viewportLabel: string;
-  accentColor: AccentColor;
+  /** Retained for data compatibility; the page uses one locked accent. */
+  accentColor?: AccentColor;
   pdfUrl: string;
   title: string;
   link?: string;
 }
 
-const accentMap: Record<AccentColor, { text: string; border: string; bg: string; dot: string }> = {
-  amber: { text: "text-amber", border: "border-amber/30", bg: "bg-amber/5", dot: "bg-amber" },
-  cyan:  { text: "text-cyan",  border: "border-cyan/30",  bg: "bg-cyan/5",  dot: "bg-cyan"  },
-  green: { text: "text-green", border: "border-green/30", bg: "bg-green/5", dot: "bg-green" },
-  rose:  { text: "text-rose",  border: "border-rose/30",  bg: "bg-rose/5",  dot: "bg-rose"  },
+// One locked accent for the page; the prop is kept for data compatibility.
+const colors = {
+  text: "text-cyan",
+  border: "border-border",
+  bg: "bg-surface",
 };
 
-export function ResearchViewport({ viewportLabel, accentColor, pdfUrl, title, link }: ResearchViewportProps) {
-  const colors = accentMap[accentColor];
+export function ResearchViewport({ viewportLabel, pdfUrl, title, link }: ResearchViewportProps) {
   const [isPdfHovered, setIsPdfHovered] = useState(false);
 
   return (
@@ -33,14 +33,11 @@ export function ResearchViewport({ viewportLabel, accentColor, pdfUrl, title, li
         onMouseLeave={() => setIsPdfHovered(false)}
       >
         <Crosshair position="top-left" />
-        <Crosshair position="top-right" />
-        <Crosshair position="bottom-left" />
         <Crosshair position="bottom-right" />
 
         {/* Active dot + label */}
-        <div className="absolute top-3 left-8 flex items-center gap-2 z-10">
-          <div className={`h-1.5 w-1.5 rounded-full ${colors.dot} animate-pulse-slow`} />
-          <span className="font-mono text-xs tracking-[0.2em] text-muted-foreground/50 uppercase">
+        <div className="absolute left-8 top-3 z-10">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-faint">
             {viewportLabel}
           </span>
         </div>
@@ -66,7 +63,7 @@ export function ResearchViewport({ viewportLabel, accentColor, pdfUrl, title, li
           >
             <div className="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-current/50" />
             <div className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b border-r border-current/50" />
-            {"VIEW_PROJECT"}
+            {"View project"}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="10"
@@ -103,9 +100,8 @@ export function ResearchViewport({ viewportLabel, accentColor, pdfUrl, title, li
             <div className={`h-full border ${colors.border} bg-background/95 backdrop-blur-sm flex flex-col overflow-hidden`}>
               <div className={`flex items-center justify-between px-4 py-2 border-b ${colors.border}`}>
                 <div className="flex items-center gap-2">
-                  <div className={`h-1.5 w-1.5 rounded-full ${colors.dot}`} />
-                  <span className={`font-mono text-[9px] tracking-[0.2em] uppercase ${colors.text}`}>
-                    {"REPORT_VIEWER"}
+                          <span className={`font-mono text-[9px] tracking-[0.2em] uppercase ${colors.text}`}>
+                    {"Report preview"}
                   </span>
                 </div>
                 <a
@@ -114,7 +110,7 @@ export function ResearchViewport({ viewportLabel, accentColor, pdfUrl, title, li
                   rel="noopener noreferrer"
                   className={`font-mono text-[9px] tracking-wider ${colors.text} hover:opacity-70 transition-opacity`}
                 >
-                  {"OPEN_FULL"}
+                  {"Open full report"}
                 </a>
               </div>
               <div className="flex-1 overflow-hidden">

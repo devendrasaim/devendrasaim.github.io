@@ -3,6 +3,16 @@
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+/* Tube geometry, px. The standoff is what makes it read as a light fixture
+   around the photo rather than a glowing border on it, and it gives the tube's
+   inward spill somewhere to land. Radii stay concentric with the photo's own
+   1.75rem corners: each ring's radius is the one inside it plus its offset. */
+const PHOTO_RADIUS = 28;
+const TUBE_GAP = 18;
+const TUBE_THICKNESS = 8;
+const TUBE_OUTER_RADIUS = PHOTO_RADIUS + TUBE_GAP + TUBE_THICKNESS;
+const TUBE_CORE_INSET = 2.5;
+
 interface SpotlightAvatarProps {
   src: string;
   alt: string;
@@ -41,7 +51,11 @@ export function SpotlightAvatar({ src, alt, size = 180 }: SpotlightAvatarProps) 
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative flex items-center justify-center cursor-pointer"
-        style={{ width: size * 1.8, height: size * 2.05 }}
+        /* maxWidth matters: this wrapper only exists to give the glow rings room,
+           but at size 240 it is 432px wide, which overflows a phone viewport and
+           gets clipped by the body's overflow-x, pushing the photo off centre.
+           The rings are absolutely positioned and can still spill past the edge. */
+        style={{ width: size * 1.8, height: size * 2.05, maxWidth: "100%" }}
         onClick={() => setIsOpen(true)}
         role="button"
         tabIndex={0}
@@ -84,11 +98,58 @@ export function SpotlightAvatar({ src, alt, size = 180 }: SpotlightAvatarProps) 
           }}
         />
 
-        {/* Thin border ring */}
+        {/* Fluorescent tube. Two concentric rings, not one bordered box: a real
+            tube is a thick glass body with a hot core burning down the middle
+            of that thickness, and a single border can only ever be a flat line.
+            The whole fixture animates on opacity alone, so the blooms rasterise
+            once and the strike costs nothing per frame. */}
         <div
-          className="absolute rounded-[2rem] border border-border/40"
-          style={{ width: size + 8, height: size * 1.3 + 8 }}
-        />
+          aria-hidden="true"
+          className="pointer-events-none absolute animate-tube-strike motion-reduce:!animate-none motion-reduce:opacity-100"
+          style={{
+            width: size + 2 * (TUBE_GAP + TUBE_THICKNESS),
+            height: size * 1.3 + 2 * (TUBE_GAP + TUBE_THICKNESS),
+            willChange: "opacity",
+          }}
+        >
+          {/* Glass body. The inset shadows are the point of the standoff gap:
+              they throw light inward across it, so the tube lights the space
+              around the photo instead of just outlining it. */}
+          <div
+            className="absolute inset-0"
+            style={{
+              borderRadius: TUBE_OUTER_RADIUS,
+              /* Saturated enough that the glass itself carries the accent. Pale
+                 phosphor-white is truer to a real tube, but then the only cyan
+                 on screen is the outer bloom and it stops reading as the
+                 theme's colour. */
+              border: `${TUBE_THICKNESS}px solid hsl(187 88% 74% / 0.95)`,
+              boxShadow: [
+                "0 0 8px hsl(var(--cyan) / 0.9)",
+                "0 0 20px hsl(var(--cyan) / 0.7)",
+                "0 0 45px hsl(var(--cyan) / 0.5)",
+                "0 0 90px hsl(var(--cyan) / 0.28)",
+                "0 0 150px hsl(var(--cyan) / 0.14)",
+                "inset 0 0 14px hsl(var(--cyan) / 0.6)",
+                "inset 0 0 34px hsl(var(--cyan) / 0.3)",
+              ].join(", "),
+            }}
+          />
+
+          {/* Hot core, inset so it sits inside the glass rather than on its edge. */}
+          <div
+            className="absolute"
+            style={{
+              inset: TUBE_CORE_INSET,
+              borderRadius: TUBE_OUTER_RADIUS - TUBE_CORE_INSET,
+              /* Kept thin and near-white: the hottest part of a tube is the
+                 whitest, and leaving glass visible either side of it is what
+                 gives the ring depth instead of flatness. */
+              border: "2.5px solid hsl(187 100% 97%)",
+              boxShadow: "0 0 8px hsl(187 100% 92% / 0.95)",
+            }}
+          />
+        </div>
 
         {/* Profile image */}
         <div

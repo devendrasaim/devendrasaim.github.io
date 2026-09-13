@@ -12,70 +12,46 @@ interface ProjectModuleProps {
   tags: string[];
   description: string;
   viewportLabel?: string;
-  accentColor: "amber" | "cyan" | "green" | "rose";
+  /** Retained for data compatibility; the page uses one locked accent. */
+  accentColor?: "amber" | "cyan" | "green" | "rose";
   reversed?: boolean;
   link?: string;
   liveLink?: string;
   image?: string;
+  /** Looping demo clip. Replaces the multi-megabyte GIFs these previews used to
+      be: same visual, a fraction of the bytes, and it streams progressively
+      instead of showing nothing until the whole file has arrived. */
+  video?: string;
+  /** Still frame shown instantly while the clip loads. */
+  poster?: string;
   pdfUrl?: string;
   flowchart?: "social" | "jobagent";
 }
 
-const accentMap = {
-  amber: {
-    text: "text-amber",
-    border: "border-amber/30",
-    bg: "bg-amber/5",
-    dot: "bg-amber",
-    tagBorder: "border-amber/20",
-    tagText: "text-amber/80",
-    line: "bg-amber/20",
-  },
-  cyan: {
-    text: "text-cyan",
-    border: "border-cyan/30",
-    bg: "bg-cyan/5",
-    dot: "bg-cyan",
-    tagBorder: "border-cyan/20",
-    tagText: "text-cyan/80",
-    line: "bg-cyan/20",
-  },
-  green: {
-    text: "text-green",
-    border: "border-green/30",
-    bg: "bg-green/5",
-    dot: "bg-green",
-    tagBorder: "border-green/20",
-    tagText: "text-green/80",
-    line: "bg-green/20",
-  },
-  rose: {
-    text: "text-rose",
-    border: "border-rose/30",
-    bg: "bg-rose/5",
-    dot: "bg-rose",
-    tagBorder: "border-rose/20",
-    tagText: "text-rose/80",
-    line: "bg-rose/20",
-  },
+const colors = {
+  text: "text-cyan",
+  border: "border-border",
+  bg: "bg-surface",
+  tagBorder: "border-border",
 };
 
 export function ProjectModule({
   moduleId,
   title,
-  tags: _tags,
+  tags,
+  accentColor = "cyan",
   description,
   viewportLabel,
-  accentColor,
   reversed = false,
   link,
   liveLink,
   image,
+  video,
+  poster,
   pdfUrl,
   flowchart,
 }: ProjectModuleProps) {
-  const hasMedia = !!(image || pdfUrl || flowchart !== undefined);
-  const colors = accentMap[accentColor];
+  const hasMedia = !!(image || video || pdfUrl || flowchart !== undefined);
   const [isPdfHovered, setIsPdfHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -95,14 +71,27 @@ export function ProjectModule({
         `}
       >
         <div className={`space-y-3 ${!hasMedia ? "lg:flex lg:flex-col lg:items-center" : ""}`}>
-          <h3 className="font-mono text-3xl md:text-4xl font-bold text-foreground tracking-tight">
+          <h3 className="font-mono text-2xl md:text-3xl font-bold tracking-tight text-foreground">
             {title}
           </h3>
         </div>
 
-        <p className="font-sans text-base md:text-lg leading-relaxed text-muted-foreground max-w-lg">
+        <p className="max-w-[58ch] font-sans text-base leading-relaxed text-muted-foreground md:text-[17px]">
           {description}
         </p>
+
+        {tags.length > 0 && (
+          <ul className={`flex flex-wrap gap-2 ${!hasMedia ? "lg:justify-center" : ""}`}>
+            {tags.map((tag) => (
+              <li
+                key={tag}
+                className="border border-border/70 px-2.5 py-1 font-mono text-[11px] tracking-wide text-faint"
+              >
+                {tag}
+              </li>
+            ))}
+          </ul>
+        )}
 
         {(link || liveLink) && (
           <div className="flex flex-wrap gap-3 pt-1">
@@ -111,11 +100,9 @@ export function ProjectModule({
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`relative inline-flex items-center gap-2 border ${colors.border} ${colors.bg} px-4 py-2 font-mono text-xs tracking-[0.15em] ${colors.text} hover:border-current/70 hover:bg-current/10 transition-all duration-200 group`}
+                className="group inline-flex items-center gap-2 border border-border-strong px-4 py-2.5 font-mono text-xs tracking-[0.12em] text-muted-foreground transition-colors duration-200 hover:border-foreground hover:text-foreground"
               >
-                <div className="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-current/50" />
-                <div className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b border-r border-current/50" />
-                {"VIEW_PROJECT"}
+                {"View project"}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="10"
@@ -139,15 +126,9 @@ export function ProjectModule({
                 href={liveLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`relative inline-flex items-center gap-2 border ${colors.border} ${colors.bg} px-4 py-2 font-mono text-xs tracking-[0.15em] ${colors.text} hover:border-current/70 hover:bg-current/10 transition-all duration-200 group`}
+                className="group inline-flex items-center gap-2 border border-border-strong px-4 py-2.5 font-mono text-xs tracking-[0.12em] text-muted-foreground transition-colors duration-200 hover:border-foreground hover:text-foreground"
               >
-                <div className="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-current/50" />
-                <div className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b border-r border-current/50" />
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-current opacity-60" />
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-current" />
-                </span>
-                {"LIVE_DEMO"}
+                {"Live demo"}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="10"
@@ -179,21 +160,41 @@ export function ProjectModule({
             onMouseLeave={() => pdfUrl && setIsPdfHovered(false)}
           >
             <Crosshair position="top-left" />
-            <Crosshair position="top-right" />
-            <Crosshair position="bottom-left" />
             <Crosshair position="bottom-right" />
 
-            {/* Active dot */}
-            <div className="absolute top-3 left-8 flex items-center gap-2 z-10">
-              <div
-                className={`h-1.5 w-1.5 rounded-full ${colors.dot} animate-pulse-slow`}
-              />
-              <span className="font-mono text-xs tracking-[0.2em] text-muted-foreground/50 uppercase">
-                {viewportLabel ?? "Active"}
+            <div className="absolute left-8 top-3 z-10">
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-faint">
+                {viewportLabel ?? "Preview"}
               </span>
             </div>
 
-            {image ? (
+            {video ? (
+              <>
+                {!imageLoaded && !poster && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 pointer-events-none">
+                    <div className={`w-6 h-6 border border-t-transparent rounded-full animate-spin ${colors.text} opacity-40`} />
+                    <span className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground/40 uppercase">
+                      LOADING_MEDIA
+                    </span>
+                  </div>
+                )}
+                <video
+                  src={video}
+                  poster={poster}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  /* No preload: nothing is fetched until the browser decides to
+                     autoplay it, which it only does once the module is on
+                     screen. The poster covers the gap. */
+                  preload="none"
+                  aria-label={typeof title === "string" ? `${title} demo` : `${moduleId} demo`}
+                  onLoadedData={() => setImageLoaded(true)}
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                />
+              </>
+            ) : image ? (
               <>
                 {!imageLoaded && (
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 pointer-events-none">
@@ -253,23 +254,18 @@ export function ProjectModule({
                     <div
                       className={`flex items-center justify-between px-4 py-2 border-b ${colors.border}`}
                     >
-                      <div className="flex items-center gap-2">
-                        <div
-                          className={`h-1.5 w-1.5 rounded-full ${colors.dot}`}
-                        />
-                        <span
-                          className={`font-mono text-[9px] tracking-[0.2em] uppercase ${colors.text}`}
-                        >
-                          {"REPORT_VIEWER"}
-                        </span>
-                      </div>
+                      <span
+                        className={`font-mono text-[10px] uppercase tracking-[0.18em] ${colors.text}`}
+                      >
+                        {"Report preview"}
+                      </span>
                       <a
                         href={pdfUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={`font-mono text-[9px] tracking-wider ${colors.text} hover:opacity-70 transition-opacity`}
                       >
-                        {"OPEN_FULL"}
+                        {"Open full report"}
                       </a>
                     </div>
 
