@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Section, SectionHeading } from "@/components/section";
 import { ResearchViewport } from "@/components/research-viewport";
+import { neonChip } from "@/components/neon-chips";
 
 type AccentColor = "amber" | "cyan" | "green" | "rose";
 
@@ -108,8 +109,8 @@ export function ExperienceSection() {
 
                     {exp.tags.length > 0 && (
                          <div className="flex flex-wrap gap-2">
-                            {exp.tags.map(tag => (
-                                <span key={tag} className="border border-border/70 px-2.5 py-1 font-mono text-[11px] tracking-wide text-faint">
+                            {exp.tags.map((tag, i) => (
+                                <span key={tag} className={`border border-border/70 px-2.5 py-1 font-mono text-[11px] tracking-wide text-faint transition-all duration-200 ${neonChip(i)}`}>
                                     {tag}
                                 </span>
                             ))}

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Section, SectionHeading } from "@/components/section";
+import { neonChip } from "@/components/neon-chips";
 
 const educationData = [
   {
@@ -57,8 +58,8 @@ export function EducationSection() {
 
                     {edu.courses.length > 0 && (
                          <div className="flex flex-wrap gap-2">
-                            {edu.courses.map(course => (
-                                <span key={course} className="border border-border/70 px-2.5 py-1 font-mono text-[11px] tracking-wide text-faint">
+                            {edu.courses.map((course, i) => (
+                                <span key={course} className={`border border-border/70 px-2.5 py-1 font-mono text-[11px] tracking-wide text-faint transition-all duration-200 ${neonChip(i)}`}>
                                     {course}
                                 </span>
                             ))}

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Crosshair } from "@/components/crosshair";
 import { WorkflowFlowchart } from "@/components/workflow-flowchart";
 import { JobAgentFlowchart } from "@/components/job-agent-flowchart";
+import { neonChip, NEON_BUTTON } from "@/components/neon-chips";
 
 interface ProjectModuleProps {
   moduleId: string;
@@ -82,10 +83,10 @@ export function ProjectModule({
 
         {tags.length > 0 && (
           <ul className={`flex flex-wrap gap-2 ${!hasMedia ? "lg:justify-center" : ""}`}>
-            {tags.map((tag) => (
+            {tags.map((tag, i) => (
               <li
                 key={tag}
-                className="border border-border/70 px-2.5 py-1 font-mono text-[11px] tracking-wide text-faint"
+                className={`border border-border/70 px-2.5 py-1 font-mono text-[11px] tracking-wide text-faint transition-all duration-200 ${neonChip(i)}`}
               >
                 {tag}
               </li>
@@ -100,7 +101,7 @@ export function ProjectModule({
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 border border-border-strong px-4 py-2.5 font-mono text-xs tracking-[0.12em] text-muted-foreground transition-colors duration-200 hover:border-foreground hover:text-foreground"
+                className={`group inline-flex items-center gap-2 border border-foreground/50 px-4 py-2.5 font-mono text-xs tracking-[0.12em] text-foreground transition-all duration-200 ${NEON_BUTTON[accentColor]}`}
               >
                 {"View project"}
                 <svg
@@ -126,7 +127,7 @@ export function ProjectModule({
                 href={liveLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 border border-border-strong px-4 py-2.5 font-mono text-xs tracking-[0.12em] text-muted-foreground transition-colors duration-200 hover:border-foreground hover:text-foreground"
+                className={`group inline-flex items-center gap-2 border border-foreground/50 px-4 py-2.5 font-mono text-xs tracking-[0.12em] text-foreground transition-all duration-200 ${NEON_BUTTON[accentColor]}`}
               >
                 {"Live demo"}
                 <svg

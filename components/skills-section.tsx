@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Section, SectionHeading } from "@/components/section";
+import { neonChip } from "@/components/neon-chips";
 
 const skillCategories = [
   {
@@ -144,10 +145,10 @@ export function SkillsSection() {
                         </div>
 
                         <div className="flex flex-wrap gap-2">
-                            {category.items.map((item) => (
+                            {category.items.map((item, i) => (
                                 <span
                                     key={item}
-                                    className="border border-border/70 bg-background/60 px-3 py-1.5 font-mono text-[13px] tracking-wide text-muted-foreground transition-colors duration-200 group-hover:border-border-strong"
+                                    className={`border border-border/70 bg-background/60 px-3 py-1.5 font-mono text-[13px] tracking-wide text-muted-foreground transition-all duration-200 ${neonChip(i)}`}
                                 >
                                     {item}
                                 </span>

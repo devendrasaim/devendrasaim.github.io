@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Section, SectionHeading } from "@/components/section";
+import { neonChip } from "@/components/neon-chips";
 
 const workData = [
   {
@@ -10,7 +11,7 @@ const workData = [
     location: "Remote",
     period: "May 2026 - Present",
     description: [
-      "VelocitiPM is an AI-assisted product management platform: it helps a product manager take an idea from a rough strategy all the way to an engineering-ready ticket, without switching between five different tools to do it. I work full stack on it, across the web app, the AI agent backend, and the database layer.",
+      "VelocitiPM builds Velociti — an AI operating system for product management. A PM walks in with a rough idea and walks out with a validated strategy and engineering-ready work in one session, instead of switching between five tools to get there. I work full stack on it, across the web app, the AI agent backend, and the database layer.",
       "Built the step where a product manager turns a validated idea directly into a ready-to-hand-off engineering ticket, complete with a proper user story, in a single flow, replacing what used to be a manual rewrite into a separate ticketing tool.",
       "Built the piece that carries a feature's actual design and prototype context along with its generated requirements, so a PM (or the engineer picking it up next) can see what was really designed instead of hunting down a separate design link.",
       "Designed the automation that keeps a feature's status in sync with its parent roadmap item as work moves forward, so a PM's roadmap reflects real progress automatically instead of needing to be updated by hand.",
@@ -65,8 +66,8 @@ export function WorkExperienceSection() {
 
                     {exp.tags.length > 0 && (
                          <div className="flex flex-wrap gap-2">
-                            {exp.tags.map(tag => (
-                                <span key={tag} className="border border-border/70 px-2.5 py-1 font-mono text-[11px] tracking-wide text-faint">
+                            {exp.tags.map((tag, i) => (
+                                <span key={tag} className={`border border-border/70 px-2.5 py-1 font-mono text-[11px] tracking-wide text-faint transition-all duration-200 ${neonChip(i)}`}>
                                     {tag}
                                 </span>
                             ))}

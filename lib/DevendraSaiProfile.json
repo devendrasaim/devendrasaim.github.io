@@ -1,10 +1,9 @@
 {
   "meta": {
     "version": "1.0",
-    "last_updated": "2026-04-30",
+    "last_updated": "2026-09-28",
     "description": "Single source of truth for Devendra Sai Mupparaju. Load into any AI model via system prompt or server action. Keep phone/email in .env for production use."
   },
-
   "personal": {
     "full_name": "Devendra Sai Mupparaju",
     "first_name": "Devendra",
@@ -12,10 +11,10 @@
     "email": "mdevendrasai9@gmail.com",
     "phone": "(515) 916-3383",
     "location": {
-      "city": "West New York",
-      "state": "New Jersey",
-      "state_abbr": "NJ",
-      "zip": "07093",
+      "city": "Austin",
+      "state": "Texas",
+      "state_abbr": "TX",
+      "zip": "",
       "country": "United States"
     },
     "links": {
@@ -25,7 +24,6 @@
     },
     "status": "Open to work, actively job hunting, open to relocation within US"
   },
-
   "work_authorization": {
     "visa_status": "F-1 OPT / STEM OPT",
     "authorized_to_work_in_us": true,
@@ -42,7 +40,6 @@
       "are_you_a_us_citizen_or_pr": "No"
     }
   },
-
   "education": [
     {
       "institution": "Iowa State University",
@@ -53,7 +50,11 @@
       "start": "August 2023",
       "end": "December 2025",
       "graduated": true,
-      "focus": ["Artificial Intelligence", "Machine Learning", "System Architecture"],
+      "focus": [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "System Architecture"
+      ],
       "thesis": {
         "title": "Automatic Program Repair Through Activation Steering",
         "type": "Creative Component",
@@ -72,7 +73,6 @@
       "graduated": true
     }
   ],
-
   "work_experience": [
     {
       "title": "Software Engineer",
@@ -82,20 +82,36 @@
       "start": "May 2026",
       "end": "Present",
       "current": true,
-      "stack_owned": "Primarily frontend (React + TypeScript) with regular contributions into the backend and data layers, across a 3-repo stack: React/Vite web app, FastAPI + LangGraph agents backend, Supabase (Postgres + Edge Functions)",
-      "description": "Full-stack contributor on VelocitiPM's product: owns most of the onboarding, auth, and AI-agent UX on the React frontend, and regularly reaches into the FastAPI/LangGraph agents backend and the Supabase Postgres/Edge Function layer to ship features end to end rather than stopping at the API boundary.",
+      "product": {
+        "name": "Velociti",
+        "one_liner": "The AI operating system for product management. A PM walks in with an idea and walks out with validated strategy and shippable work — in one session.",
+        "what_it_does": "A product manager enters a product overview. Velo AI generates the canvas, problem map, story map and initiatives, then turns prioritized initiatives into user stories, Jira-ready backlog tickets, working web-app prototypes and Context PRDs on one click. A continuous context layer keeps every artifact linked, so a shift in strategy traces all the way down to the ticket.",
+        "who_buys_it": "Product managers, VPs of Product, technical PMs and startup founders — teams buried in reactive delivery with no time left for structured discovery.",
+        "the_wedge": "AI coding tools made shipping fast. They did not make shipping the right thing any easier. Velociti builds the context the coding agents are missing and delivers it where they work.",
+        "competitive_frame": "Jira, Aha! and Productboard manage what comes out of discovery. Velociti automates the discovery."
+      },
+      "stack_owned": "Primarily frontend (React + TypeScript), with regular work in the backend and data layers: React/Vite web app, FastAPI + LangGraph agents backend, Supabase (Postgres + Edge Functions).",
+      "description": "Owns the surfaces where Velociti's promise is either kept or broken: the first ninety seconds a trial user judges the product on, the Velo AI drawer where the agent has to visibly earn its keep, and the export path that converts AI output into tickets a team actually ships. Works the full width of the stack — most onboarding, auth and AI-agent UX on the React frontend, and follows a feature straight through the FastAPI/LangGraph agents backend and the Supabase Postgres/Edge Function layer rather than stopping at the API boundary.",
+      "simple_summary": "I work as a Software Engineer at VelocitiPM, on a tool called Velociti that helps product managers focus on what actually matters instead of getting buried in busywork — it turns a product idea into a validated plan and ready-to-ship work automatically. I'm mainly a frontend developer, but I also work on the backend and manage the database. On the frontend, I redesigned the sign-up and login experience, the onboarding flow, and the AI assistant panel so it feels trustworthy and easy to use. On the backend and database side, I connect those same features to the data layer and set up automation so that when one part of the product changes, related parts update on their own. Overall, I take a feature from the screen the user sees all the way down to the database, instead of just working on one piece of it.",
+      "simple_highlights": [
+        "Redesigned the sign-up, login, and onboarding experience so new users understand the product faster.",
+        "Improved the AI assistant panel so it feels reliable and clearly shows what it's doing.",
+        "Simplified how AI-generated results turn into tickets, so teams can act on them faster.",
+        "Connected frontend features to the backend and database so status updates flow through automatically.",
+        "Work across the full stack — frontend, backend, and database — rather than staying in just one layer."
+      ],
       "highlights": [
-        "Rewrote the new-user onboarding flow end to end: a fresh registration and login page, a redesigned welcome and product tour, and a new app shell (Header, Sidebar, collapsible navigation) that pulled layout logic out of the dashboard page. Landed as a single 27-file, roughly 2,500-line change.",
-        "Integrated Cloudflare Turnstile captcha across sign-up, sign-in, and password-reset, with an environment flag that lets captcha no-op cleanly in local development when no Turnstile key is configured, without changing the underlying auth call signatures.",
-        "Iterated the onboarding checklist and product tour through several rounds: closed a race condition in how visited pages were tracked, rebuilt the checklist to derive its completion state fresh on every render so progress no longer went stale when switching workspaces, then replaced it with an Onboarding 2.0 flow that persists tour progress and workspace-setup state to the backend.",
-        "Built out the Velo AI side drawer, the in-app assistant that runs and reports on agent tasks: added task persistence so in-progress and completed runs survive a closed drawer or a tab switch, and fixed a bug where every past agent action stayed pinned in view instead of just the one most recently selected.",
-        "Redesigned the Jira ticket creation flow, collapsing a multi-tab modal into a single user-story-first flow, and added the ability to save tickets internally without exporting to Jira, complete with a clickable detail view. Centralized metadata handling that had been duplicated across components into two shared utility libraries.",
-        "Added filtering to initiative tracking by status, owner, and ticket type, with a dedicated toolbar filter menu and the query and filtering logic behind it, then populated the dashboard's summary cards with live workspace data in place of placeholder content.",
-        "Designed and shipped automated status and stage progression for Initiatives (VPD-607): a completed Prototype or Context Loop job, or a newly created ticket, now automatically advances an Initiative's status, which cascades to its linked Strategy Theme, and manual status changes on a tracked ticket cascade upward the same way. Wired the automation to wait for the real job-completion signal instead of racing the initial API call, and added cache invalidation so the dashboard's recent activity reflects changes immediately.",
-        "On the agents backend (FastAPI + LangGraph), added design-asset packaging to Context Loop exports so generated PRDs carry their design context through the full pipeline, normalized inconsistent LLM content-block response shapes so downstream parsing stopped breaking on certain model outputs, and trimmed oversized DynamoDB log entries written by the export workflow.",
-        "On the Supabase layer, wrote the migration and edge function support for a new deferred initiative status, added a shared Gemini-backed user story generation function, and renamed the Context PRD concept to Context Loop consistently across edge functions to match the renamed frontend feature.",
-        "Paired nearly every feature with automated tests in the same commit, from 100 to over 250 lines of new coverage at a time, for checklist state derivation, Jira ticket creation and export, Velo AI drawer behavior, and initiative status automation.",
-        "Set up the full local development environment using Docker Compose for the FastAPI + LangGraph agents backend, and used the Supabase CLI to keep the local Postgres schema in sync with the remote project."
+        "Rebuilt the entire front door. A trial user decides in ninety seconds whether Velociti gets a second session — so the registration and login pages, the welcome and product tour, and a new app shell (Header, Sidebar, collapsible navigation) were rewritten end to end, with layout logic pulled out of the dashboard page into a real shell. Shipped as one 27-file, ~2,500-line change.",
+        "Hardened the top of the funnel without taxing real users. Cloudflare Turnstile now sits across sign-up, sign-in and password reset, behind an environment flag that lets captcha no-op cleanly in local development when no key is configured — so bot abuse stops at the door while the team's own auth call signatures stay untouched.",
+        "Turned activation from a screen into a system. Drove the onboarding checklist and product tour through several rounds: closed a race condition in visited-page tracking, rebuilt the checklist to derive completion state fresh on every render so progress stopped going stale when users switched workspaces, then shipped Onboarding 2.0, which persists tour progress and workspace-setup state to the backend so a returning user picks up exactly where they left off.",
+        "Made the AI agent believable. Velo AI is the whole reason a buyer signs up, and the side drawer is where they watch it work. Added task persistence so in-progress and completed runs survive a closed drawer or a tab switch, and killed a bug that pinned every past agent action in view instead of the one just selected — the difference between an assistant that looks in control and one that looks confused.",
+        "Shortened the path from AI output to real work. Redesigned Jira ticket creation, collapsing a multi-tab modal into a single user-story-first flow, and added the ability to save tickets internally without exporting to Jira, with a clickable detail view — so a team can evaluate what the agent produced before committing it to their board. Consolidated metadata handling that had been copy-pasted across components into two shared utility libraries.",
+        "Replaced the demo-ware. Dashboard summary cards now render live workspace data instead of placeholder content, and initiative tracking filters by status, owner and ticket type through a dedicated toolbar filter menu, with the query and filtering logic behind it.",
+        "Delivered the core pitch in code. Velociti sells strategy that stays connected to execution automatically; VPD-607 made that literally true. A completed Prototype or Context Loop job, or a newly created ticket, now advances an Initiative's status, which cascades to its linked Strategy Theme — and a manual status change on a tracked ticket cascades upward the same way. Wired the automation to wait on the real job-completion signal rather than racing the initial API call, and added cache invalidation so recent activity on the dashboard reflects the change immediately.",
+        "Went where the agents run. On the FastAPI + LangGraph backend: added design-asset packaging to Context Loop exports so generated PRDs carry their design context through the full pipeline, normalized inconsistent LLM content-block response shapes that were breaking downstream parsing on certain model outputs, and trimmed oversized DynamoDB log entries written by the export workflow.",
+        "And into the data layer. On Supabase: wrote the migration and edge function support for a new deferred initiative status, added a shared Gemini-backed user story generation function, and renamed the Context PRD concept to Context Loop consistently across edge functions to match the renamed frontend feature.",
+        "Shipped features with their tests attached. Nearly every feature landed with automated coverage in the same commit — 100 to 250+ lines at a time — across checklist state derivation, Jira ticket creation and export, Velo AI drawer behavior and initiative status automation.",
+        "Made the stack runnable. Stood up the full local development environment with Docker Compose for the FastAPI + LangGraph agents backend, and used the Supabase CLI to keep the local Postgres schema in sync with the remote project."
       ],
       "tech": [
         "React",
@@ -116,7 +132,6 @@
       ]
     }
   ],
-
   "research_experience": [
     {
       "title": "Graduate Research — Activation Steering for Automatic Program Repair",
@@ -126,7 +141,9 @@
       "start": "August 2025",
       "end": "December 2025",
       "advisor": "Prof. Simanta Mitra",
-      "description": "Designed and implemented a training-free activation steering method in PyTorch to improve CodeLLM reliability for bug-fixing tasks. Ran 40+ experimental configurations across layer-strength hyperparameter grid on HPC Slurm clusters.",
+      "description": "Applied and implemented a training-free activation steering technique (representation engineering, from published research) in PyTorch to improve CodeLLM reliability for bug-fixing. Hands-on work was tuning the steering strength per model across 40+ layer-and-strength configurations on an HPC Slurm cluster, and evaluating on HumanEval and Defects4J across CodeLlama and Qwen. No model weights were retrained.",
+      "plain_summary": "I took an existing method called activation steering — nudging a model's internal signals as it generates, without retraining it — and applied it to two open-source coding models, CodeLlama and Qwen. My hands-on work was dialing in the steering strength for each model and testing it against a standard coding benchmark (HumanEval) and a set of real-world software bugs (Defects4J) until the models produced more correct, reliably compiling code. It raised first-try success by about 8 points on CodeLlama and cut invalid, non-compiling output to near zero, holding across both model families.",
+      "contribution_scope": "Applied and tuned a published technique; the method itself (activation steering / representation engineering) is prior work, not my own invention.",
       "key_results": {
         "CodeLlama_7B_HumanEval": {
           "baseline_accuracy": "48.12%",
@@ -149,7 +166,16 @@
           "dataset_size": "565 real-world Java bugs"
         }
       },
-      "tech": ["Python", "PyTorch", "CodeLlama-7B", "Qwen-7B", "Qwen-14B", "HumanEval", "Defects4J", "Slurm"],
+      "tech": [
+        "Python",
+        "PyTorch",
+        "CodeLlama-7B",
+        "Qwen-7B",
+        "Qwen-14B",
+        "HumanEval",
+        "Defects4J",
+        "Slurm"
+      ],
       "novel_finding": "Middle transformer layers optimal for code generation tasks; late layers optimal for repair tasks — suggesting task-dependent reasoning stages in CodeLLM architecture."
     },
     {
@@ -163,43 +189,130 @@
       "key_results": {
         "sgx_overhead": "~50% training overhead (27.43s vs 41.07s) deemed acceptable for privacy-critical workloads",
         "sgx_encryption": "AES-GCM encrypted model weights for secure export/import",
-        "federated_properties_verified": ["Starvation-freedom", "Deadlock-freedom", "Eventual fairness across all 3 clients", "Bounded round completion"]
+        "federated_properties_verified": [
+          "Starvation-freedom",
+          "Deadlock-freedom",
+          "Eventual fairness across all 3 clients",
+          "Bounded round completion"
+        ]
       },
-      "tech": ["C/C++", "Intel SGX SDK", "Darknet", "NuSMV", "CTL Logic", "Python", "Bash", "Ubuntu 20.04"]
+      "tech": [
+        "C/C++",
+        "Intel SGX SDK",
+        "Darknet",
+        "NuSMV",
+        "CTL Logic",
+        "Python",
+        "Bash",
+        "Ubuntu 20.04"
+      ]
     }
   ],
-
   "skills": {
-    "languages": ["Python", "C++", "TypeScript", "JavaScript", "SQL", "Linux/Bash"],
+    "languages": [
+      "Python",
+      "C++",
+      "TypeScript",
+      "JavaScript",
+      "SQL",
+      "Linux/Bash"
+    ],
     "ai_ml": [
-      "PyTorch", "TensorFlow", "Scikit-learn",
-      "LLM Integration", "Prompt Engineering", "Activation Steering",
-      "Agentic Workflow Design", "Multi-Agent Systems",
-      "Gemini API (2.5 Pro / 2.5 Flash / 1.5 Flash)", "Perplexity API", "Imagen 3",
-      "OpenAI API", "Vercel AI SDK",
-      "RAG Architecture", "Vector Databases", "Embeddings",
+      "PyTorch",
+      "TensorFlow",
+      "Scikit-learn",
+      "LLM Integration",
+      "Prompt Engineering",
+      "Activation Steering",
+      "Agentic Workflow Design",
+      "Multi-Agent Systems",
+      "Gemini API (2.5 Pro / 2.5 Flash / 1.5 Flash)",
+      "Perplexity API",
+      "Imagen 3",
+      "OpenAI API",
+      "Vercel AI SDK",
+      "RAG Architecture",
+      "Vector Databases",
+      "Embeddings",
       "Browser Automation with Vision Models"
     ],
-    "web": ["React", "Next.js", "Node.js", "Flask", "Tailwind CSS", "Vite", "Phaser 3", "Framer Motion", "Shadcn UI"],
-    "cloud_devops": ["AWS (EC2, S3, IAM)", "Docker", "Docker Compose", "GitHub Actions", "CI/CD", "Slurm (HPC)", "Intel SGX", "Firebase", "Vercel"],
-    "databases": ["PostgreSQL", "Supabase", "Supabase CLI", "MySQL", "Redis", "pgvector"],
+    "ai_dev_tools": [
+      "Cursor",
+      "Claude Code",
+      "Codex",
+      "Hermes Agent"
+    ],
+    "web": [
+      "React",
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "Flask",
+      "Tailwind CSS",
+      "Vite",
+      "Phaser 3",
+      "Framer Motion",
+      "Shadcn UI"
+    ],
+    "cloud_devops": [
+      "AWS (EC2, S3, IAM)",
+      "Google Cloud Platform (Vertex AI, Gemini API)",
+      "Docker",
+      "Docker Compose",
+      "GitHub Actions",
+      "CI/CD",
+      "Slurm (HPC)",
+      "Intel SGX",
+      "Firebase",
+      "Vercel",
+      "Vercel Serverless Functions",
+      "Vercel Edge Network",
+      "Vercel GitHub CI/CD (preview + production deployments)"
+    ],
+    "databases": [
+      "PostgreSQL",
+      "Supabase",
+      "Supabase CLI",
+      "MySQL",
+      "Redis",
+      "pgvector"
+    ],
     "apis_and_services": [
-      "Apify (LinkedIn/Indeed scrapers)", "Notion API", "Gmail IMAP",
-      "Firebase Firestore", "Resend (email)", "instagrapi", "Discord Webhook",
-      "Reddit Devvit SDK", "Cloudflare Turnstile"
+      "Apify (LinkedIn/Indeed scrapers)",
+      "Notion API",
+      "Gmail IMAP",
+      "Firebase Firestore",
+      "Resend (email)",
+      "instagrapi",
+      "Discord Webhook",
+      "Reddit Devvit SDK",
+      "Cloudflare Turnstile",
+      "Web Speech API (SpeechRecognition + SpeechSynthesis)",
+      "OpenRouter API",
+      "Gmail API",
+      "Google Calendar API",
+      "Tailscale"
     ],
     "concepts": [
-      "Agentic Pipelines", "Multi-API Orchestration", "Fault-Tolerant Systems",
-      "Distributed Systems", "Formal Verification", "System Security",
-      "ATS Resume Optimization", "Real-time Systems", "Static Site Generation"
+      "Agentic Pipelines",
+      "Multi-API Orchestration",
+      "Fault-Tolerant Systems",
+      "Distributed Systems",
+      "Formal Verification",
+      "System Security",
+      "ATS Resume Optimization",
+      "Real-time Systems",
+      "Static Site Generation",
+      "Model Context Protocol (MCP)",
+      "Agent Skill Authoring (SKILL.md)",
+      "OAuth 2.0 Flow Implementation"
     ]
   },
-
   "projects": [
     {
       "name": "Autonomous Job Application Agent System",
       "status": "Local — not yet on GitHub",
-      "description": "5-agent pipeline that automates the entire job application lifecycle: discovers jobs from LinkedIn/Indeed/Glassdoor, scrapes and maps ATS form fields, tailors resumes per JD, generates cover letters, fills and submits application forms via browser automation, and tracks everything in Notion + Firebase Kanban board.",
+      "description": "A Python system that automates the entire job hunt from scratch. It scouts fresh roles from LinkedIn, Indeed, and Glassdoor, tailors a resume and cover letter for each one, fills out the application form, and pauses before hitting submit so you can review what it is about to send. Every application lands on a real-time Kanban board in Notion so nothing slips through.",
       "agents": {
         "agent1_scout": "Apify LinkedIn/Indeed scraper with relevance scoring, skip filters, and deduplication",
         "agent2_analyzer": "Scrapes Greenhouse/Lever application forms, uses Gemini to map every field by category",
@@ -212,99 +325,328 @@
         "resume_watcher": "Polls Notion every 60s, tailors master resume per JD with Gemini, ATS-scores it, generates PDF, saves back to Notion",
         "job_tracker_frontend": "React + Firebase Kanban board with Google auth and real-time Firestore sync"
       },
-      "tech": ["Python", "Apify", "Gemini 2.5 Pro/Flash", "Playwright", "Gmail IMAP", "Notion API", "Firebase Firestore", "React", "TypeScript", "reportlab", "pypdf", "BeautifulSoup"],
-      "highlights": ["End-to-end agentic pipeline", "Human-in-the-loop confirmation before submission", "ATS scoring + PDF generation", "Real-time Kanban tracking"]
+      "tech": [
+        "Python",
+        "Apify",
+        "Gemini 2.5 Pro/Flash",
+        "Playwright",
+        "Gmail IMAP",
+        "Notion API",
+        "Firebase Firestore",
+        "React",
+        "TypeScript",
+        "reportlab",
+        "pypdf",
+        "BeautifulSoup"
+      ],
+      "highlights": [
+        "End-to-end agentic pipeline",
+        "Human-in-the-loop confirmation before submission",
+        "ATS scoring + PDF generation",
+        "Real-time Kanban tracking"
+      ]
     },
     {
       "name": "AI Social Media Generator (The Social Speaker)",
       "repo": "https://github.com/devendrasaim/AI-Social-Media-Generator",
       "status": "Public",
-      "description": "Fully autonomous content engine that researches trending topics via Perplexity, writes narrative-driven copy with Gemini, generates dark-mode Instagram carousels using Imagen 3 + Pillow, and publishes directly to Instagram via instagrapi — no external hosting, no paid publishing APIs.",
+      "description": "A Python script that wakes up each morning, picks a trending topic, writes a caption, generates a dark-mode carousel image, and posts it straight to Instagram. No scheduling tool, no manual step. One script handles the full loop from research to publish, with no paid publishing API required.",
       "architecture": "Perplexity/YouTube → Gemini captions → VisualEngine (local JPEGs via Imagen 3 + Pillow) → instagrapi → Instagram",
-      "tech": ["Python", "Gemini 2.5 Flash", "Imagen 3", "Perplexity API", "instagrapi", "Pillow", "Discord Webhook", "Windows Task Scheduler"],
-      "highlights": ["Daily autonomous publishing", "Smart topic queue with auto-refill", "1080x1080 professional carousel generation", "Direct Instagram publish via instagrapi (no paid APIs)", "Discord notification on publish"]
+      "tech": [
+        "Python",
+        "Gemini 2.5 Flash",
+        "Imagen 3",
+        "Perplexity API",
+        "instagrapi",
+        "Pillow",
+        "Discord Webhook",
+        "Windows Task Scheduler"
+      ],
+      "highlights": [
+        "Daily autonomous publishing",
+        "Smart topic queue with auto-refill",
+        "1080x1080 professional carousel generation",
+        "Direct Instagram publish via instagrapi (no paid APIs)",
+        "Discord notification on publish"
+      ]
     },
     {
       "name": "Portfolio Website with AI Assistant",
       "repo": "https://github.com/devendrasaim/devendrasaim.github.io",
       "live": "https://devendrasaim.vercel.app",
-      "status": "Public, Live",
-      "description": "Personal portfolio built with Next.js and TypeScript. Features a floating AI chatbot (digital twin) that answers recruiter questions about skills, projects, and work authorization in first person, using prompt-engineered Gemini with model fallback.",
+      "status": "Public, Live — Production on Vercel",
+      "description": "Personal portfolio built with Next.js and TypeScript, live at devendrasaim.vercel.app. Deployed on Vercel with zero-config CI/CD: every push to main ships instantly via Vercel's GitHub integration, with automatic preview deployments on every pull request branch so changes can be reviewed at a unique URL before going live. The AI chatbot runs through Next.js API routes deployed as Vercel Serverless Functions — Gemini API keys stay server-side and never reach the browser. The contact form uses a separate API route wired to Resend. Static assets (images, fonts, JS bundles) are served from Vercel's global edge network. This is a real production app that recruiters land on, not a demo.",
+      "vercel_deployment_details": {
+        "deployment_method": "Vercel GitHub integration — push to main triggers automatic production deploy",
+        "preview_deployments": "Every PR branch gets a unique preview URL before merging",
+        "serverless_functions": [
+          "Next.js API route for Gemini chatbot (protects API key server-side)",
+          "Next.js API route for Resend contact form"
+        ],
+        "infrastructure": "Vercel Edge Network for static asset delivery, serverless runtime for API routes",
+        "environment_management": "Production and preview environment variables managed through Vercel dashboard"
+      },
       "chatbot_details": {
         "type": "System-prompt-engineered AI portfolio assistant (not RAG)",
-        "model_fallback_chain": ["gemini-2.5-pro", "gemini-2.5-flash", "gemini-1.5-flash"],
-        "features": ["First-person persona", "Bridge Technique for unknown questions", "Analytics logging per interaction", "Resend email integration for contact form"]
+        "model_fallback_chain": [
+          "gemini-2.5-pro",
+          "gemini-2.5-flash",
+          "gemini-1.5-flash"
+        ],
+        "features": [
+          "First-person persona",
+          "Bridge Technique for unknown questions",
+          "Analytics logging per interaction",
+          "Resend email integration for contact form"
+        ]
       },
-      "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Gemini API", "Resend API", "Vercel"],
-      "highlights": ["73 commits", "Production deployed", "Live recruiter-facing AI assistant"]
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Gemini API",
+        "Resend API",
+        "Vercel",
+        "Vercel Serverless Functions",
+        "Vercel Edge Network",
+        "Vercel GitHub CI/CD"
+      ],
+      "highlights": [
+        "73 commits, production live on Vercel — ships on every push to main",
+        "Gemini chatbot runs through a Next.js API route (Vercel Serverless Function) so API keys never reach the client",
+        "Automatic preview deployments on every PR branch via Vercel GitHub integration",
+        "Contact form handled by a dedicated API route wired to Resend — no third-party form service needed",
+        "Static assets served from Vercel's global edge network"
+      ]
     },
     {
       "name": "GrocerySquare",
       "repo": "https://github.com/devendrasaim/GrocerySquare",
+      "live": "https://devendrasaim.github.io/GrocerySquare/",
       "status": "Public",
-      "description": "Production-grade e-commerce grocery storefront with glassmorphism UI, full product catalog, and static site generation.",
-      "tech": ["Next.js App Router", "Supabase", "PostgreSQL", "Tailwind CSS", "Lucide React", "GitHub Actions"],
-      "highlights": ["Deployed via GitHub Actions to GitHub Pages", "generateStaticParams for 20+ pages", "Local mock data fallback for dev without DB"]
+      "description": "A grocery e-commerce storefront with a full product catalog, category browsing, and a frosted-glass design. Every product page is pre-built at deploy time so the site loads fast with no server in the loop. A GitHub Actions pipeline deploys to GitHub Pages automatically on every push.",
+      "tech": [
+        "Next.js App Router",
+        "Supabase",
+        "PostgreSQL",
+        "Tailwind CSS",
+        "Lucide React",
+        "GitHub Actions"
+      ],
+      "highlights": [
+        "Deployed via GitHub Actions to GitHub Pages",
+        "generateStaticParams for 20+ pages",
+        "Local mock data fallback for dev without DB"
+      ]
     },
     {
       "name": "Hobby Hive",
       "repo": "https://github.com/devendrasaim/hobby-hive",
-      "status": "Public",
-      "description": "Gamified social platform to connect people through structured hobby journeys. TikTok-style discovery feed, skill badge progression (Seed → Sprout → Bloom), guilds, and honeycomb profile grid.",
-      "tech": ["React 18", "TypeScript", "Vite", "Tailwind CSS", "Shadcn UI", "Supabase", "PostgreSQL", "TanStack Query", "React Hook Form", "Zod"],
-      "highlights": ["Real-time Supabase subscriptions", "Feature-based architecture", "Full auth + CRUD"]
+      "live": "https://hobby-hive-lovat.vercel.app/discover",
+      "status": "Public, Live — Production on Vercel",
+      "description": "A social platform where people find others who share their hobbies and level up together. The discovery feed works like TikTok, skills progress through badge tiers (Seed to Sprout to Bloom), and groups form around shared interests. Live on Vercel, ships automatically on every push to main.",
+      "tech": [
+        "React 18",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Shadcn UI",
+        "Supabase",
+        "PostgreSQL",
+        "TanStack Query",
+        "React Hook Form",
+        "Zod"
+      ],
+      "highlights": [
+        "Real-time Supabase subscriptions",
+        "Feature-based architecture",
+        "Full auth + CRUD"
+      ]
     },
     {
       "name": "Bounce Streak",
       "repo": "https://github.com/devendrasaim/bounce-streak",
+      "live": "https://www.reddit.com/r/bounce_streak_dev/comments/1r1adpg/bouncestreak/",
       "status": "Public",
-      "description": "Competitive soccer-themed 2D physics game built as a Reddit Devvit app. Daily physics modifiers, seed-based deterministic gameplay, community leaderboard.",
-      "tech": ["Phaser 3.87", "Reddit Devvit SDK", "React 19", "TypeScript 5.8", "Express 5", "Redis", "Vite 6", "Tailwind CSS 4", "Gemini API"],
+      "description": "A competitive 2D physics game built natively inside Reddit. The physics rules change every day, but every player that day gets identical conditions so the leaderboard reflects skill rather than luck. Peaked at 3,000+ concurrent users.",
+      "tech": [
+        "Phaser 3.87",
+        "Reddit Devvit SDK",
+        "React 19",
+        "TypeScript 5.8",
+        "Express 5",
+        "Redis",
+        "Vite 6",
+        "Tailwind CSS 4",
+        "Gemini API"
+      ],
       "metrics": "3,000+ concurrent users at 60 FPS",
-      "highlights": ["Daily randomized physics parameters", "Seed-based RNG for identical conditions across players", "38px mobile touch zone optimization"]
+      "highlights": [
+        "Daily randomized physics parameters",
+        "Seed-based RNG for identical conditions across players",
+        "38px mobile touch zone optimization"
+      ]
     },
     {
       "name": "UI Navigator Agent",
       "repo": "https://github.com/devendrasaim/ui-navigator-agent",
       "status": "Public",
-      "description": "Web navigation agent that accepts voice or text commands and autonomously interacts with any website using AI vision and browser automation.",
-      "tech": ["Python", "Gemini 1.5 Flash", "Playwright", "SpeechRecognition", "Pillow"],
-      "highlights": ["Set-of-Mark element tagging for AI parsing", "Universal — works across any website", "Voice input support"]
+      "description": "A voice or text-driven agent that navigates any website on your behalf. You describe what you want, the agent tags every interactive element on the page, and a vision model picks the right one to click. Works across any site without any site-specific setup.",
+      "tech": [
+        "Python",
+        "Gemini 1.5 Flash",
+        "Playwright",
+        "SpeechRecognition",
+        "Pillow"
+      ],
+      "highlights": [
+        "Set-of-Mark element tagging for AI parsing",
+        "Universal — works across any website",
+        "Voice input support"
+      ]
     },
     {
       "name": "Federated Fairness Verification",
       "repo": "https://github.com/devendrasaim/federated-fairness-verification",
       "status": "Public",
-      "description": "Formally verifies fairness properties in a 3-client federated learning protocol using NuSMV model checker and CTL temporal logic. Proves starvation-freedom and deadlock-freedom mathematically.",
-      "tech": ["NuSMV 2.7+", "Python", "Bash"],
-      "ctl_properties_verified": ["Eventual impact of client updates", "No starvation (AG EF Applied_i)", "Collective fairness across all 3 clients", "Deadlock freedom", "Bounded round completion"]
+      "description": "A graduate research tool that mathematically proves no participant in a collaborative AI training system can ever be permanently cut out or ignored. Written in NuSMV, it checks five formal guarantees including that the system can never deadlock and that every client's contributions eventually count.",
+      "tech": [
+        "NuSMV 2.7+",
+        "Python",
+        "Bash"
+      ],
+      "ctl_properties_verified": [
+        "Eventual impact of client updates",
+        "No starvation (AG EF Applied_i)",
+        "Collective fairness across all 3 clients",
+        "Deadlock freedom",
+        "Bounded round completion"
+      ]
     },
     {
       "name": "Multi-Agent Pursuit-Evasion Planning",
       "repo": "https://github.com/devendrasaim/multi-agent-pursuit-evasion",
       "status": "Public",
-      "description": "Advanced MCTS-based planning system where three agents simultaneously pursue one target while evading another pursuer in a grid environment with obstacles.",
-      "tech": ["Python", "NumPy", "SciPy"],
-      "highlights": ["UCT-based MCTS selection", "Probabilistic action transitions", "LRU caching for performance", "Heuristic-based rollout policies"]
+      "description": "A planning system where three AI agents coordinate to chase one target on a grid while simultaneously dodging a pursuer coming after them. Each agent makes decisions in real time using Monte Carlo Tree Search, treating the whole scenario as a game tree.",
+      "tech": [
+        "Python",
+        "NumPy",
+        "SciPy"
+      ],
+      "highlights": [
+        "UCT-based MCTS selection",
+        "Probabilistic action transitions",
+        "LRU caching for performance",
+        "Heuristic-based rollout policies"
+      ]
     },
     {
       "name": "Pursue-Escape Planning",
       "repo": "https://github.com/devendrasaim/pursue-escape-planning",
       "status": "Public",
-      "description": "Multi-agent pursuit-evasion simulation with Tom, Jerry, and Spike agents using real-time path planning and dynamic obstacle avoidance.",
-      "tech": ["Python", "NumPy", "Matplotlib", "Pandas"],
-      "highlights": ["Tested across 100 task configurations", "Real-time Matplotlib visualization", "Modular per-agent planning modules"]
+      "description": "A simulation where Tom, Jerry, and Spike each run their own path-planning logic in real time: one chases, one flees, one complicates things for everyone. Each agent reroutes around obstacles on the fly. Tested across 100 task configurations with live visualization.",
+      "tech": [
+        "Python",
+        "NumPy",
+        "Matplotlib",
+        "Pandas"
+      ],
+      "highlights": [
+        "Tested across 100 task configurations",
+        "Real-time Matplotlib visualization",
+        "Modular per-agent planning modules"
+      ]
     },
     {
       "name": "A* Pathfinding",
       "repo": "https://github.com/devendrasaim/a-star-pathfinding",
       "status": "Public",
       "description": "Custom A* pathfinding implementation with optimized heuristics, path validation, priority queue data structures, and visualization tools.",
-      "tech": ["Python", "NumPy", "SciPy"],
-      "highlights": ["Guaranteed optimal path finding", "Custom heuristic functions", "Built-in path validation and visualization"]
+      "tech": [
+        "Python",
+        "NumPy",
+        "SciPy"
+      ],
+      "highlights": [
+        "Guaranteed optimal path finding",
+        "Custom heuristic functions",
+        "Built-in path validation and visualization"
+      ]
+    },
+    {
+      "name": "Personal AI Agent System (Hermes)",
+      "source": "NextWork Guided Projects (4-part series)",
+      "status": "Completed — July–August 2026",
+      "description": "Four progressively connected projects that turned a local AI agent into a personal assistant. First: installed it on Windows for free using a model from OpenRouter. Second: made it reachable from an iPhone anywhere via a private VPN. Third: wired it to Gmail and Google Calendar so it can read, draft, and send on command with a confirmation step before anything goes out. Fourth: taught it a custom skill that compiles a weekly digest of GitHub commits and calendar events and delivers it automatically every Friday.",
+      "phases": {
+        "phase_1_setup": "Installed Hermes Agent v0.18.2 on Windows, connected the nvidia/nemotron-3-super-120b-a12b free model through OpenRouter, and ran the terminal TUI. Prompted the agent to build a Pomodoro timer app — it used 27 tools autonomously and produced a working app. Exported the full session as a JSONL audit log.",
+        "phase_2_mobile": "Launched Hermes WebUI via bootstrap.py with HERMES_WEBUI_HOST set to 0.0.0.0 so the server accepted LAN connections. Configured Tailscale to create a private mesh network between the Windows machine and iPhone. Installed Hermex on iOS to reach the agent from anywhere on the tailnet.",
+        "phase_3_google_workspace": "Created a Google Cloud project, enabled Gmail API, Google Calendar API, and Google People API, and completed the OAuth2 flow. Fixed a Testing mode blocker by adding the account as an approved test user in the OAuth consent screen. Used natural language to search, read, and send emails, with the agent waiting for manual confirmation before delivery. Created calendar events using timezone-aware ISO 8601 timestamps.",
+        "phase_4_skill_automation": "Connected GitHub to the agent through the MCP GitHub server with a tools.include list to limit active tools and preserve context. Found that raw API access alone produced generic responses with no structure. Authored a custom SKILL.md that gave the agent procedural formatting rules: pull GitHub commits and calendar events, filter noise, and compile a structured Markdown weekly review. Scheduled it to run autonomously every Friday at 5 PM UTC (cron: 0 17 * * 5), delivering results directly to the Hermex mobile app."
+      },
+      "engineering_notes": [
+        "tools.include in the Hermes config restricts which MCP tools are active, keeping context focused and reducing token waste",
+        "SKILL.md files give the agent explicit procedural rules — without them, it defaults to generic clarifying questions rather than taking structured action",
+        "Setting HERMES_WEBUI_HOST to 0.0.0.0 is what allows Tailscale devices to reach the locally running WebUI",
+        "OAuth2 testing mode blocks all accounts by default; adding the account as an approved test user in the Google Cloud Console consent screen is required before the flow can complete"
+      ],
+      "tech": [
+        "Hermes Agent v0.18.2",
+        "OpenRouter API (nvidia/nemotron-3-super-120b-a12b free tier)",
+        "Tailscale (mesh VPN)",
+        "WSL2 (Windows port forwarding)",
+        "Hermex (iOS app)",
+        "Google Cloud Console",
+        "Gmail API",
+        "Google Calendar API",
+        "Google People API",
+        "OAuth 2.0",
+        "Model Context Protocol (MCP)",
+        "GitHub MCP server",
+        "Custom SKILL.md (agent skill authoring)",
+        "Cron scheduling",
+        "JSONL session logging"
+      ],
+      "highlights": [
+        "Agent built a working Pomodoro timer app autonomously using 27 tools in one session",
+        "Mobile-accessible agent anywhere on the tailnet via Tailscale and Hermex iOS",
+        "Gmail and Calendar connected via OAuth2 with human-in-the-loop confirmation before any email send",
+        "Custom weekly-review skill pulls GitHub commits and calendar data, compiles a structured Markdown report, and runs every Friday via cron"
+      ]
+    },
+    {
+      "name": "AI English Speaking Trainer",
+      "source": "NextWork Guided Project",
+      "nextwork_url": "https://nextwork.ai/projects/d1d85b88-9b2f-42fd-b2f2-c6adb7f2f399",
+      "status": "Completed",
+      "description": "An English speaking coach that runs entirely in the browser with no app install required. The user picks casual conversation practice or a mock interview for a specific role, speaks through the microphone, and hears the AI trainer reply aloud. The session ends with a scored report across grammar, vocabulary, clarity, and relevance, with up to five specific corrections and suggested next steps.",
+      "architecture": "Express.js 5 backend with three POST endpoints: start, turn, and evaluate. Conversation state lives in Gemini's Interactions API via previous_interaction_id, removing the need to forward a growing history array on every turn. The evaluate endpoint attaches a JSON Schema to the request, so Gemini returns a parseable structured report with no string parsing on the server.",
+      "engineering_notes": [
+        "Three-model fallback chain (primary then two backups) keeps the app running if one Gemini model is unavailable",
+        "JSON Schema on the evaluation request guarantees structured output with typed fields: overallScore, categoryScores, corrections, strengths, nextSteps",
+        "Web Speech API (SpeechRecognition + SpeechSynthesis) handles voice input and audio output entirely in the browser with no third-party speech service",
+        "Input sanitization on all endpoints: conversation history capped at 20 turns and 2,000 chars per turn; role field normalized and capped at 100 chars"
+      ],
+      "tech": [
+        "Node.js",
+        "Express.js 5",
+        "Google Gemini API (@google/genai)",
+        "Gemini Interactions API",
+        "Web Speech API (SpeechRecognition + SpeechSynthesis)",
+        "JSON Schema (structured LLM output)",
+        "Vanilla JavaScript",
+        "HTML5",
+        "CSS3"
+      ],
+      "highlights": [
+        "Stateful multi-turn conversation via Gemini Interactions API — no manual context window management",
+        "Structured coaching report with 4 scored categories, corrections, strengths, and next steps",
+        "In-browser voice input and AI voice output with no paid speech APIs",
+        "Three-model fallback chain for API reliability"
+      ]
     }
   ],
-
   "research_paper": {
     "title": "Automatic Program Repair Through Activation Steering",
     "subtitle": "A Research Project on Enhancing Code Generation through Neural Network Steering",
@@ -319,29 +661,72 @@
       "HumanEval": "160 programming problems (pass@1)",
       "Defects4J": "565 real-world Java bugs (pass@1 against full test suite)"
     },
-    "models_tested": ["codellama/CodeLlama-7b-Instruct-hf", "Qwen/Qwen2.5-Coder-7B-Instruct", "Qwen/Qwen2.5-Coder-14B-Instruct"],
+    "models_tested": [
+      "codellama/CodeLlama-7b-Instruct-hf",
+      "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "Qwen/Qwen2.5-Coder-14B-Instruct"
+    ],
     "best_results": {
-      "CodeLlama_7B_HumanEval": {"baseline": "48.12%", "steered": "56.25%", "gain": "+8.13pp", "invalid_eliminated": true},
-      "Qwen_7B_HumanEval": {"baseline": "63.12%", "steered": "70.00%", "gain": "+6.88pp"},
-      "Qwen_14B_Defects4J": {"baseline": "60.88%", "steered": "65.31%", "gain": "+4.43pp"}
+      "CodeLlama_7B_HumanEval": {
+        "baseline": "48.12%",
+        "steered": "56.25%",
+        "gain": "+8.13pp",
+        "invalid_eliminated": true
+      },
+      "Qwen_7B_HumanEval": {
+        "baseline": "63.12%",
+        "steered": "70.00%",
+        "gain": "+6.88pp"
+      },
+      "Qwen_14B_Defects4J": {
+        "baseline": "60.88%",
+        "steered": "65.31%",
+        "gain": "+4.43pp"
+      }
     },
     "novel_findings": [
       "Code correctness is a steerable, linearly-represented concept in CodeLLM activation space",
       "Middle layers optimal for generation tasks (HumanEval); late layers optimal for repair tasks (Defects4J)",
       "Activation steering eliminates invalid/non-compiling output without any model retraining"
     ],
-    "limitations": ["Requires white-box model access (not usable with GPT-4 API)", "Hyperparameter grid search needed per new model", "Concept entanglement not fully measured"],
-    "future_work": ["Conditional Activation Steering (CAST)", "Multi-concept compositional steering", "Cross-lingual and cross-model vector transfer"]
+    "limitations": [
+      "Requires white-box model access (not usable with GPT-4 API)",
+      "Hyperparameter grid search needed per new model",
+      "Concept entanglement not fully measured"
+    ],
+    "future_work": [
+      "Conditional Activation Steering (CAST)",
+      "Multi-concept compositional steering",
+      "Cross-lingual and cross-model vector transfer"
+    ]
   },
-
   "certifications": [
-    {"name": "Prompt Design in Vertex AI", "issuer": "Google Cloud", "date": "February 2026"},
-    {"name": "Cloud Infrastructure Foundations Associate", "issuer": "Oracle", "date": "2021"},
-    {"name": "Python (Basic)", "issuer": "HackerRank", "date": ""},
-    {"name": "Introduction to Cloud", "issuer": "Cognitive Class (IBM)", "date": ""},
-    {"name": "Hadoop 101", "issuer": "Cognitive Class (IBM)", "date": ""}
+    {
+      "name": "Prompt Design in Vertex AI",
+      "issuer": "Google Cloud",
+      "date": "February 2026"
+    },
+    {
+      "name": "Cloud Infrastructure Foundations Associate",
+      "issuer": "Oracle",
+      "date": "2021"
+    },
+    {
+      "name": "Python (Basic)",
+      "issuer": "HackerRank",
+      "date": ""
+    },
+    {
+      "name": "Introduction to Cloud",
+      "issuer": "Cognitive Class (IBM)",
+      "date": ""
+    },
+    {
+      "name": "Hadoop 101",
+      "issuer": "Cognitive Class (IBM)",
+      "date": ""
+    }
   ],
-
   "job_search": {
     "status": "Actively applying",
     "availability": "Immediate",
@@ -364,8 +749,8 @@
     },
     "job_type": "Full-time",
     "location_preferences": {
-      "base": "West New York, NJ",
-      "open_to_nyc_commute": true,
+      "base": "Austin, TX",
+      "open_to_nyc_commute": false,
       "open_to_remote": true,
       "open_to_hybrid": true,
       "open_to_relocation": true
@@ -373,12 +758,15 @@
     "target_company_types": [
       "Series B/C AI startups (50-300 people)",
       "AI tooling companies",
-      "NYC-based tech with active AI division",
+      "Austin-based tech with active AI division",
       "Fintech with AI investment"
     ],
-    "avoid": ["Senior/Staff/Lead roles", "Pure MLOps/infrastructure roles", "Computer Vision/Robotics/Autonomous Vehicles"]
+    "avoid": [
+      "Senior/Staff/Lead roles",
+      "Pure MLOps/infrastructure roles",
+      "Computer Vision/Robotics/Autonomous Vehicles"
+    ]
   },
-
   "career_narrative": {
     "identity": "AI Application Builder — bridges LLM research depth with full-stack shipping ability",
     "thirty_second_pitch": "I'm an AI engineer who just graduated from Iowa State with a Master's in CS where I did research on activation steering for LLMs — a technique that improves code generation accuracy without any retraining. I reduced invalid code generation to zero on CodeLlama-7B. Outside of research I've shipped full-stack AI products: an autonomous Instagram content pipeline, a browser automation agent using Gemini Vision and Playwright, and a Reddit game with 3,000 concurrent users. Most recently I built a 5-agent system that automates my own job search end-to-end. I'm best at wiring AI capabilities into things that actually run in production.",
@@ -387,12 +775,11 @@
       "Full-stack shipping ability — research + production apps",
       "Agentic pipeline design (5-agent job system, autonomous content pipeline)",
       "3,000+ concurrent users on an independent project (Bounce Streak)",
-      "Activation steering research eliminates invalid LLM output — publishable-level result"
+      "Hands-on activation-steering work: applied a published technique and tuned the steering strength to cut invalid LLM code output to near zero on the benchmark, model-behavior tuning that is uncommon at new-grad level"
     ],
     "strongest_project_for_interviews": "Autonomous Job Application Agent System (5-agent pipeline)",
     "strongest_research_for_interviews": "Activation Steering — CodeLlama 48.12% → 56.25%, invalid 4.38% → 0%"
   },
-
   "standard_form_answers": {
     "gender": "Male",
     "ethnicity": "Asian",

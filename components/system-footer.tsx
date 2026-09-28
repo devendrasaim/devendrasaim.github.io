@@ -6,7 +6,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
 const facts = [
   { label: "Now", value: "Software Engineer at VelocitiPM" },
   { label: "Study", value: "MS Computer Science, Iowa State" },
-  { label: "Location", value: "West New York, NJ. Open to relocate." },
+  { label: "Location", value: "Austin, TX. Open to relocate." },
 ];
 
 const links = [

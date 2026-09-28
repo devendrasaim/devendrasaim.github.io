@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Crosshair } from "@/components/crosshair";
+import { NEON_BUTTON } from "@/components/neon-chips";
 
 type AccentColor = "amber" | "cyan" | "green" | "rose";
 
@@ -22,7 +23,7 @@ const colors = {
   bg: "bg-surface",
 };
 
-export function ResearchViewport({ viewportLabel, pdfUrl, title, link }: ResearchViewportProps) {
+export function ResearchViewport({ viewportLabel, pdfUrl, title, link, accentColor = "cyan" }: ResearchViewportProps) {
   const [isPdfHovered, setIsPdfHovered] = useState(false);
 
   return (
@@ -59,7 +60,7 @@ export function ResearchViewport({ viewportLabel, pdfUrl, title, link }: Researc
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className={`relative inline-flex items-center gap-2 border ${colors.border} ${colors.bg} px-4 py-2 font-mono text-xs tracking-[0.15em] ${colors.text} hover:bg-current/10 transition-all duration-200 group`}
+            className={`group relative inline-flex items-center gap-2 border border-foreground/50 px-4 py-2 font-mono text-xs tracking-[0.15em] text-foreground transition-all duration-200 ${NEON_BUTTON[accentColor]}`}
           >
             <div className="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-current/50" />
             <div className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b border-r border-current/50" />

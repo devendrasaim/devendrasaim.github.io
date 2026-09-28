@@ -35,7 +35,7 @@ const projects = [
     description:
       "5-agent pipeline that automates the entire job application lifecycle: Agent 1 scouts jobs from LinkedIn/Indeed via Apify with relevance scoring and deduplication. Agent 2 scrapes ATS forms (Greenhouse/Lever) and maps every field with Gemini. Agent 3 generates tailored cover letters and elevator pitches per role. Agent 4 answers every unique form question from the candidate profile. Agent 5 fills and submits via Playwright browser automation, pausing for human confirmation before the final submit. Running alongside the pipeline are a Gmail IMAP watcher, a resume tailor with ATS scoring and PDF generation, and a real-time React + Firebase Kanban board.",
     viewportLabel: "Pipeline diagram",
-    accentColor: "cyan" as const,
+    accentColor: "green" as const,
     flowchart: "jobagent" as const,
   },
   {
@@ -46,7 +46,7 @@ const projects = [
     description:
       "Autonomous content pipeline that pulls trending AI topics via Perplexity API, generates captions with Gemini 2.5-Flash, creates images using Imagen 3, and publishes straight to Instagram via instagrapi. The whole thing runs on a schedule with no manual steps and no paid publishing APIs. Image generation falls back through Imagen 3 → Pollinations → Pillow, and a custom slide compositor handles the topographic texture and gradient typography. Four external APIs are wired in with retry logic and structured CSV logging.",
     viewportLabel: "Pipeline diagram",
-    accentColor: "cyan" as const,
+    accentColor: "amber" as const,
     link: "https://github.com/devendrasaim/AI-Social-Media-Generator",
     liveLink: "https://www.instagram.com/myaiguru9/",
     flowchart: "social" as const,
@@ -59,8 +59,27 @@ const projects = [
     description:
       "Web navigation agent that takes voice or text commands and works through any website on its own, using AI vision and browser automation. Set-of-Mark element tagging lets Gemini visually parse and click UI elements, so no site-specific scripting is required and it works on any site. Voice input is supported throughout.",
     viewportLabel: "Browser automation",
-    accentColor: "cyan" as const,
+    accentColor: "rose" as const,
     link: "https://github.com/devendrasaim/ui-navigator-agent",
+  },
+  {
+    moduleId: "hermes-agent",
+    category: "ai" as CategoryKey,
+    title: "PERSONAL AI AGENT (HERMES)",
+    tags: ["Hermes Agent", "OpenRouter", "Model Context Protocol", "Tailscale", "Gmail API", "Google Calendar API", "OAuth 2.0", "SKILL.md"],
+    description:
+      "A local AI agent turned into a personal assistant across four connected builds. It runs a free OpenRouter model on Windows and stays reachable from an iPhone anywhere over a private Tailscale mesh. Wired to Gmail and Google Calendar through OAuth2, it reads, drafts, and sends on command, always pausing for confirmation before anything goes out. A custom SKILL.md taught it to compile a weekly digest of GitHub commits and calendar events and deliver it to the phone automatically every Friday via cron — the difference between raw API access and an agent that actually formats useful output.",
+    accentColor: "cyan" as const,
+  },
+  {
+    moduleId: "english-trainer",
+    category: "ai" as CategoryKey,
+    title: "AI ENGLISH SPEAKING TRAINER",
+    tags: ["Node.js", "Express 5", "Gemini API", "Web Speech API", "JSON Schema"],
+    description:
+      "An English speaking coach that runs entirely in the browser, no install. Pick casual practice or a mock interview for a specific role, speak through the mic, and hear the AI reply aloud. Conversation state lives in Gemini's Interactions API server-side, so there's no growing history to forward on every turn. Each session ends with a scored report — grammar, vocabulary, clarity, relevance — returned as structured JSON through a schema attached to the request, with no string parsing on the server. Voice in and out runs through the Web Speech API with no paid speech service.",
+    accentColor: "rose" as const,
+    link: "https://nextwork.ai/projects/d1d85b88-9b2f-42fd-b2f2-c6adb7f2f399",
   },
   {
     moduleId: "hobby-hive",
@@ -70,7 +89,7 @@ const projects = [
     description:
       "A 'Time Capsule' feature built on Supabase, which pushes video updates instantly and gave me a way to test how the real-time data scaled. The TypeScript dashboards update as data comes in and make complex hobby progress readable at a glance.",
     viewportLabel: "Live demo",
-    accentColor: "cyan" as const,
+    accentColor: "green" as const,
     link: "https://hobby-hive-lovat.vercel.app/",
     video: "/videos/hobby-hive.mp4",
     poster: "/images/posters/hobby-hive.webp",
@@ -83,7 +102,7 @@ const projects = [
     description:
       "A 2D arcade physics engine tuned to run fast in mobile browsers. 'Cushion' collision detection keeps it smooth at 60 FPS. The daily challenge is deterministic: seeded randomization gives thousands of concurrent players identical physics conditions.",
     viewportLabel: "Gameplay",
-    accentColor: "cyan" as const,
+    accentColor: "amber" as const,
     link: "https://www.reddit.com/r/bounce_streak_dev/comments/1r1adpg/bouncestreak/",
     video: "/videos/gameplay.mp4",
     poster: "/images/posters/gameplay.webp",
@@ -96,7 +115,7 @@ const projects = [
     description:
       "Formal verification of fairness properties in a 3-client federated learning protocol. Models the FL workflow as a finite-state machine in NuSMV, encodes CTL properties for liveness, safety, and fairness, then automatically verifies no client is starved and no deadlocks occur across bounded aggregation rounds.",
     viewportLabel: "Verification model",
-    accentColor: "cyan" as const,
+    accentColor: "rose" as const,
     link: "https://github.com/devendrasaim/federated-fairness-verification",
   },
 ];

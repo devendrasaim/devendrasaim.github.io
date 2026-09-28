@@ -221,7 +221,7 @@ export function ContactSection() {
                 <dl className="border border-border bg-surface/60 p-6">
                     <div className="flex items-baseline justify-between gap-4 border-b border-border pb-3">
                         <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-faint">Based in</dt>
-                        <dd className="font-mono text-sm text-foreground">West New York, NJ</dd>
+                        <dd className="font-mono text-sm text-foreground">Austin, TX</dd>
                     </div>
                     <div className="flex items-baseline justify-between gap-4 pt-3">
                         <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-faint">Relocation</dt>
