@@ -155,6 +155,35 @@
   background: hsl(var(--muted-foreground));
 }
 
+/* Scroll focus glow. A .glow-scope gets data-focus="true" from useScrollFocus
+   while it crosses the middle of the viewport; its headings fade to neon cyan
+   and its body text to bright white, then fade back as it scrolls past. The
+   slow ease-out keeps the fade visible as a trail rather than a blink. */
+.glow-neon,
+.glow-white,
+.glow-mark {
+  transition-property: color, text-shadow, background-color, box-shadow;
+  transition-duration: 700ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glow-scope[data-focus="true"] .glow-neon {
+  color: hsl(var(--cyan));
+  text-shadow:
+    0 0 1px hsl(var(--cyan) / 0.9),
+    0 0 12px hsl(var(--cyan) / 0.6),
+    0 0 32px hsl(var(--cyan) / 0.3);
+}
+.glow-scope[data-focus="true"] .glow-white {
+  color: hsl(0 0% 100%);
+  text-shadow:
+    0 0 10px hsl(0 0% 100% / 0.35),
+    0 0 26px hsl(0 0% 100% / 0.12);
+}
+.glow-scope[data-focus="true"] .glow-mark {
+  background-color: hsl(var(--cyan));
+  box-shadow: 0 0 10px hsl(var(--cyan) / 0.8);
+}
+
 /* Motion is decorative here, so all of it collapses when the OS asks. */
 @media (prefers-reduced-motion: reduce) {
   html {

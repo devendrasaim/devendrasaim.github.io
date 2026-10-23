@@ -70,12 +70,13 @@ export function HeroSection() {
             className={revealed ? "" : "invisible"}
           >
             <p className="mt-5 font-mono text-sm tracking-[0.12em] text-cyan sm:text-base">
-              Software Engineer at VelocitiPM
+              Founding Software &amp; AI Engineer at VelocitiPM
             </p>
 
             <p className="mx-auto mt-6 max-w-[52ch] font-sans text-base leading-relaxed text-muted-foreground sm:text-lg lg:mx-0">
-              I build the React and TypeScript interfaces people work in day to
-              day, along with the Supabase and PostgreSQL layer underneath them.
+              About three years of shipping AI features in real products, from
+              enterprise service desks at ServiceNow to the React front end and
+              Python AI service of an early-stage SaaS app.
             </p>
 
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row lg:items-start lg:justify-start">
@@ -87,7 +88,7 @@ export function HeroSection() {
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
               </a>
               <a
-                href="/docs/Resume.pdf?v=updated"
+                href="/docs/Resume.pdf?v=2026-10"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex w-full items-center justify-center gap-2 border border-border-strong px-6 py-3.5 font-mono text-sm tracking-wider text-muted-foreground transition-colors duration-200 hover:border-foreground hover:text-foreground sm:w-auto"

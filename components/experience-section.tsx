@@ -3,7 +3,9 @@
 import { motion } from "framer-motion";
 import { Section, SectionHeading } from "@/components/section";
 import { ResearchViewport } from "@/components/research-viewport";
-import { neonChip } from "@/components/neon-chips";
+import { SlideChips } from "@/components/slide-chips";
+import { useScrollFocus } from "@/components/use-scroll-focus";
+import { GlowBullet } from "@/components/glow-bullet";
 
 type AccentColor = "amber" | "cyan" | "green" | "rose";
 
@@ -29,12 +31,12 @@ const experienceData: ExperienceEntry[] = [
     advisor: "Advisor: Prof. Simanta Mitra",
     period: "Aug 2025 - Dec 2025",
     description: [
-      "Designed and implemented a training-free activation steering method in PyTorch to improve CodeLLM reliability for automatic bug-fixing tasks.",
+      "Applied activation steering in PyTorch to improve code generation and bug repair in CodeLlama and Qwen models without changing model weights.",
       "Computed a correctness vector from contrastive buggy/fixed code pairs and injected it into the model's residual stream during inference using PyTorch forward hooks.",
-      "Boosted CodeLlama-7B repair accuracy from 48.12% to 56.25% (+8.13pp) and eliminated invalid code generation entirely (4.38% → 0.00%).",
-      "Improved Qwen2.5-Coder-7B accuracy from 63.12% to 70.00% (+6.88pp) on HumanEval benchmarks.",
-      "Achieved +4.43pp accuracy gain on Qwen2.5-Coder-14B across 565 real-world Java bugs in the Defects4J dataset.",
-      "Ran 40+ experimental configurations across a layer-strength hyperparameter grid on HPC Slurm clusters.",
+      "Raised CodeLlama-7B's HumanEval accuracy from 48.12% to 56.25% (+8.13pp) and cut its invalid outputs from 4.38% to zero.",
+      "Improved Qwen2.5-Coder-7B's HumanEval accuracy from 63.12% to 70.00% (+6.88pp).",
+      "Improved Qwen2.5-Coder-14B repair accuracy on Defects4J, a set of 565 real-world Java bugs, from 60.88% to 65.31%.",
+      "Ran 40+ layer and steering-strength configurations on a Slurm HPC cluster.",
       "Novel finding: middle transformer layers are optimal for code generation tasks, while late layers are optimal for repair. That points to task-dependent reasoning stages in CodeLLM architecture.",
     ],
     tags: ["Python", "PyTorch", "CodeLlama-7B", "Qwen2.5-Coder", "HumanEval", "Defects4J", "Slurm", "Activation Steering"],
@@ -74,63 +76,64 @@ export function ExperienceSection() {
         {/* Timeline/List */}
         <div className="space-y-14 md:space-y-20">
             {experienceData.map((exp, index) => (
-                <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="relative border-l border-border pl-7 md:pl-10"
-                >
-                    {/* Marker on the timeline rule */}
-                    <div className="absolute left-[-3px] top-2 h-1.5 w-1.5 bg-cyan" aria-hidden="true" />
-
-                    <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
-                        <h3 className="max-w-2xl font-mono text-lg font-bold leading-snug text-foreground md:text-xl">{exp.role}</h3>
-                        <span className="shrink-0 font-mono text-xs tabular-nums text-faint">{exp.period}</span>
-                    </div>
-
-                    <div className="mb-6 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                        <span className="font-mono text-sm text-cyan">{exp.company}</span>
-                        <span className="font-mono text-sm text-faint">{exp.advisor}</span>
-                    </div>
-
-                    <ul className="mb-6 max-w-[68ch] space-y-3 font-sans text-[15px] leading-relaxed text-muted-foreground">
-                        {exp.description.map((bullet, i) => (
-                           <li key={i} className="flex items-start gap-3">
-                             <span
-                               aria-hidden="true"
-                               className="mt-[0.6em] h-px w-3 shrink-0 bg-border-strong"
-                             />
-                             <span>{bullet}</span>
-                           </li>
-                        ))}
-                    </ul>
-
-                    {exp.tags.length > 0 && (
-                         <div className="flex flex-wrap gap-2">
-                            {exp.tags.map((tag, i) => (
-                                <span key={tag} className={`border border-border/70 px-2.5 py-1 font-mono text-[11px] tracking-wide text-faint transition-all duration-200 ${neonChip(i)}`}>
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-                    )}
-
-                    {exp.viewport && (
-                        <div className="mt-6">
-                            <ResearchViewport
-                                viewportLabel={exp.viewport.viewportLabel}
-                                accentColor={exp.viewport.accentColor}
-                                pdfUrl={exp.viewport.pdfUrl}
-                                link={exp.viewport.link}
-                                title={exp.role}
-                            />
-                        </div>
-                    )}
-                </motion.div>
+                <ResearchItem key={exp.role} exp={exp} index={index} />
             ))}
         </div>
     </Section>
+  );
+}
+
+/* One research role. Same treatment as the work timeline: the title stays
+   neon while any part of the role is at the middle of the screen, and each
+   bullet lights on its own. */
+function ResearchItem({ exp, index }: { exp: ExperienceEntry; index: number }) {
+  const [ref, inFocus] = useScrollFocus<HTMLDivElement>();
+
+  return (
+    <motion.div
+        ref={ref}
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        className="relative border-l border-border pl-7 md:pl-10"
+    >
+        <div data-focus={inFocus} className="glow-scope">
+            {/* Marker on the timeline rule */}
+            <div className="glow-mark absolute left-[-3px] top-2 h-1.5 w-1.5 bg-cyan" aria-hidden="true" />
+
+            <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+                <h3 className="glow-neon max-w-2xl font-mono text-lg font-bold leading-snug text-foreground md:text-xl">{exp.role}</h3>
+                <span className="shrink-0 font-mono text-xs tabular-nums text-faint">{exp.period}</span>
+            </div>
+        </div>
+
+        <div className="mb-6 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <span className="font-mono text-sm text-cyan">{exp.company}</span>
+            <span className="font-mono text-sm text-faint">{exp.advisor}</span>
+        </div>
+
+        <ul className="mb-6 max-w-[68ch] space-y-3 font-sans text-[15px] leading-relaxed text-muted-foreground">
+            {exp.description.map((bullet) => (
+               <GlowBullet key={bullet}>{bullet}</GlowBullet>
+            ))}
+        </ul>
+
+        {exp.tags.length > 0 && (
+            <SlideChips items={exp.tags} />
+        )}
+
+        {exp.viewport && (
+            <div className="mt-6">
+                <ResearchViewport
+                    viewportLabel={exp.viewport.viewportLabel}
+                    accentColor={exp.viewport.accentColor}
+                    pdfUrl={exp.viewport.pdfUrl}
+                    link={exp.viewport.link}
+                    title={exp.role}
+                />
+            </div>
+        )}
+    </motion.div>
   );
 }

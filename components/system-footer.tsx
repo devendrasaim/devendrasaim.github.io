@@ -4,7 +4,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
 
 const facts = [
-  { label: "Now", value: "Software Engineer at VelocitiPM" },
+  { label: "Now", value: "Founding Software & AI Engineer at VelocitiPM" },
+  { label: "Before", value: "AI Implementation Co-op at ServiceNow. AI and Software Engineer at Cognizant." },
   { label: "Study", value: "MS Computer Science, Iowa State" },
   { label: "Location", value: "Austin, TX. Open to relocate." },
 ];
@@ -63,7 +64,7 @@ export function SystemFooter() {
             Devendra Sai Mupparaju
           </span>
           <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
-            Updated February 2026
+            Updated October 2026
           </span>
         </div>
       </div>

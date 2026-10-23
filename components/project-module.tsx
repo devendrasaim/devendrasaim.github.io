@@ -5,7 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Crosshair } from "@/components/crosshair";
 import { WorkflowFlowchart } from "@/components/workflow-flowchart";
 import { JobAgentFlowchart } from "@/components/job-agent-flowchart";
-import { neonChip, NEON_BUTTON } from "@/components/neon-chips";
+import { NEON_BUTTON } from "@/components/neon-chips";
+import { SlideChips } from "@/components/slide-chips";
+import { useScrollFocus } from "@/components/use-scroll-focus";
 
 interface ProjectModuleProps {
   moduleId: string;
@@ -55,14 +57,17 @@ export function ProjectModule({
   const hasMedia = !!(image || video || pdfUrl || flowchart !== undefined);
   const [isPdfHovered, setIsPdfHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [focusRef, inFocus] = useScrollFocus<HTMLDivElement>();
 
   return (
     <motion.div
+      ref={focusRef}
+      data-focus={inFocus}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center"
+      className="glow-scope grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center"
     >
       {/* Text */}
       <div
@@ -72,26 +77,17 @@ export function ProjectModule({
         `}
       >
         <div className={`space-y-3 ${!hasMedia ? "lg:flex lg:flex-col lg:items-center" : ""}`}>
-          <h3 className="font-mono text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+          <h3 className="glow-neon font-mono text-2xl md:text-3xl font-bold tracking-tight text-foreground">
             {title}
           </h3>
         </div>
 
-        <p className="max-w-[58ch] font-sans text-base leading-relaxed text-muted-foreground md:text-[17px]">
+        <p className="glow-white max-w-[58ch] font-sans text-base leading-relaxed text-muted-foreground md:text-[17px]">
           {description}
         </p>
 
         {tags.length > 0 && (
-          <ul className={`flex flex-wrap gap-2 ${!hasMedia ? "lg:justify-center" : ""}`}>
-            {tags.map((tag, i) => (
-              <li
-                key={tag}
-                className={`border border-border/70 px-2.5 py-1 font-mono text-[11px] tracking-wide text-faint transition-all duration-200 ${neonChip(i)}`}
-              >
-                {tag}
-              </li>
-            ))}
-          </ul>
+          <SlideChips items={tags} className={!hasMedia ? "lg:justify-center" : ""} />
         )}
 
         {(link || liveLink) && (

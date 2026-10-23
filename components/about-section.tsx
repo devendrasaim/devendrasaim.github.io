@@ -3,17 +3,23 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Section } from "@/components/section";
 import { PixelCompanion } from "@/components/pixel-companion";
+import { useScrollFocus } from "@/components/use-scroll-focus";
 
 const focusAreas = [
   {
-    title: "Product Engineering",
+    title: "AI Product Engineering",
     description:
-      "I build the interfaces customers use every day: authentication, onboarding, application shells, and the dense data views in between. React and TypeScript are my main tools.",
+      "At VelocitiPM I build the React and TypeScript screens product teams plan their sprints in, and the Velo AI interface that drafts tickets and user stories. Behind it, I feed product design context into the Python AI service so the drafts match what was actually designed. Users edit every draft before it is saved.",
   },
   {
-    title: "Data & Systems",
+    title: "Enterprise Generative AI",
     description:
-      "When a feature needs work below the UI, I do that too: Supabase, PostgreSQL, edge functions, and API integrations. How the data is modeled usually decides how the feature behaves once real users are on it, so that is where I spend the time.",
+      "At ServiceNow I configured Now Assist to summarize incidents and draft resolution notes and knowledge articles. I built the Flow Designer actions that sent incident details to the AI service and routed drafts to agents for review, and wrote Python checks that compared each response with the source incident.",
+  },
+  {
+    title: "Data Pipelines & Validation",
+    description:
+      "At Cognizant I built reusable Python and SQL pipelines that turned raw enterprise data into datasets for analytics and machine learning. I cleaned it with Pandas and NumPy and added validation checks that caught bad records before they reached downstream systems.",
   },
   {
     title: "AI-Assisted Development",
@@ -21,6 +27,59 @@ const focusAreas = [
       "I use Claude, Codex, and Antigravity most days to read unfamiliar codebases, prototype, debug, and refactor. They speed the work up and sometimes catch what I miss. The architecture and validation calls stay with me.",
   },
 ];
+
+/* The career in one glance, oldest first, so the closing note reads as a
+   timeline rather than a list of buzzwords. */
+const timeline = [
+  { year: "2022", label: "Data pipelines" },
+  { year: "2024", label: "Enterprise AI" },
+  { year: "2025", label: "LLM research" },
+  { year: "2026", label: "AI product" },
+];
+
+/* One focus area. The index and title glow neon and the description brightens
+   while the row crosses the middle of the screen; hover still lights the
+   index for pointer users. */
+function FocusRow({
+  area,
+  index,
+  reduce,
+}: {
+  area: (typeof focusAreas)[number];
+  index: number;
+  reduce: boolean;
+}) {
+  const [ref, inFocus] = useScrollFocus<HTMLElement>();
+
+  return (
+    <motion.article
+      ref={ref}
+      data-focus={inFocus}
+      initial={reduce ? false : { opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.08,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className="glow-scope group grid grid-cols-1 gap-x-10 gap-y-4 border-t border-border py-8 transition-colors duration-300 last:border-b hover:border-border-strong md:grid-cols-[3rem_minmax(0,14rem)_minmax(0,1fr)] md:py-10"
+    >
+      <span
+        aria-hidden="true"
+        className="glow-neon font-mono text-xs tabular-nums text-faint group-hover:text-cyan"
+      >
+        {String(index + 1).padStart(2, "0")}
+      </span>
+      <h3 className="glow-neon font-mono text-lg font-bold leading-snug text-foreground">
+        {area.title}
+      </h3>
+      <p className="glow-white max-w-[62ch] font-sans text-base leading-relaxed text-muted-foreground">
+        {area.description}
+      </p>
+    </motion.article>
+  );
+}
 
 export function AboutSection() {
   const reduce = useReducedMotion();
@@ -41,13 +100,15 @@ export function AboutSection() {
           className="max-w-4xl"
         >
           <h2 className="font-mono text-[1.75rem] leading-[1.15] font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
-            I build product features from the interface down to the database.
+            I build AI features that people can review before they rely on them.
           </h2>
           <p className="mt-8 max-w-[58ch] font-sans text-lg leading-relaxed text-muted-foreground">
-            I&apos;m Devendra Sai Mupparaju, a Software Engineer at VelocitiPM. Most of
-            my work is frontend, but it rarely stops there. I write the React, shape
-            the database features behind it, and stay with a problem across the stack
-            until the whole workflow works.
+            I&apos;m Devendra Sai Mupparaju, a founding software and AI engineer at
+            VelocitiPM, where I work on the React and TypeScript front end and the
+            Python service behind its AI ticket generation. Before that I rolled out
+            generative AI incident summarization at ServiceNow, and before that I
+            built data pipelines at Cognizant. In each job the AI worked only as well
+            as the data going into it and the review step after it, so I build both.
           </p>
         </motion.div>
 
@@ -63,31 +124,7 @@ export function AboutSection() {
           rows are related, so they read better as one table than three tiles. */}
       <div className="mt-16 md:mt-24">
         {focusAreas.map((area, index) => (
-          <motion.article
-            key={area.title}
-            initial={reduce ? false : { opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: 0.5,
-              delay: index * 0.08,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="group grid grid-cols-1 gap-x-10 gap-y-4 border-t border-border py-8 transition-colors duration-300 last:border-b hover:border-border-strong md:grid-cols-[3rem_minmax(0,14rem)_minmax(0,1fr)] md:py-10"
-          >
-            <span
-              aria-hidden="true"
-              className="font-mono text-xs tabular-nums text-faint transition-colors duration-300 group-hover:text-cyan"
-            >
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <h3 className="font-mono text-lg font-bold leading-snug text-foreground">
-              {area.title}
-            </h3>
-            <p className="max-w-[62ch] font-sans text-base leading-relaxed text-muted-foreground">
-              {area.description}
-            </p>
-          </motion.article>
+          <FocusRow key={area.title} area={area} index={index} reduce={!!reduce} />
         ))}
       </div>
 
@@ -104,20 +141,23 @@ export function AboutSection() {
             Where the range comes from
           </h3>
           <p className="mt-3 max-w-[62ch] font-sans text-base leading-relaxed text-muted-foreground">
-            I have an MS in Computer Science, and I have worked on full-stack
-            products, AI systems, and applied research. What carries over from all
-            of it is ownership. I would rather spend the extra day understanding a
-            problem and simplifying the system than ship something that only works
-            in a demo.
+            I started on the data side at Cognizant, then put generative AI in
+            front of service desk agents at ServiceNow. My MS research at Iowa State
+            took me inside the models: with activation steering I raised
+            CodeLlama-7B&apos;s HumanEval accuracy by 8 points without retraining it.
+            At VelocitiPM I use all three on one product, and I would rather spend
+            the extra day getting a feature right than ship something that only
+            works in a demo.
           </p>
         </div>
-        <p className="font-mono text-xs leading-relaxed text-faint md:text-right">
-          Frontend
-          <br />
-          Databases
-          <br />
-          AI workflows
-        </p>
+        <ol className="space-y-1 font-mono text-xs leading-relaxed text-faint md:text-right">
+          {timeline.map(({ year, label }) => (
+            <li key={year}>
+              <span className="tabular-nums text-cyan/70">{year}</span>{" "}
+              {label}
+            </li>
+          ))}
+        </ol>
       </motion.div>
     </Section>
   );

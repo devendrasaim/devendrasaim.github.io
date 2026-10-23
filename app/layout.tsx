@@ -22,14 +22,14 @@ const jetbrainsMono = JetBrains_Mono({
 const siteUrl = "https://devendrasaim-portfolio.vercel.app";
 
 export const metadata: Metadata = {
-  title: "Devendra Sai Mupparaju | Full Stack Engineer & AI Researcher",
+  title: "Devendra Sai Mupparaju | Software & AI Engineer",
   description:
-    "Full Stack Engineer & AI Researcher. MSCS Graduate from Iowa State. Building production apps with Next.js, Supabase & CI/CD. Steering LLM internals with PyTorch.",
+    "Software and AI engineer with about three years of shipping AI features: founding engineer at VelocitiPM, generative AI at ServiceNow, data pipelines at Cognizant, and LLM research at Iowa State.",
   metadataBase: new URL(siteUrl),
   openGraph: {
-    title: "Devendra Sai Mupparaju | Full Stack Engineer & AI Researcher",
+    title: "Devendra Sai Mupparaju | Software & AI Engineer",
     description:
-      "MSCS Graduate from Iowa State. Building production full-stack platforms and researching training-free LLM steering techniques.",
+      "Founding engineer at VelocitiPM. Previously generative AI at ServiceNow and data pipelines at Cognizant. MS in Computer Science, Iowa State.",
     url: siteUrl,
     siteName: "Devendra Sai Mupparaju",
     images: [
@@ -45,9 +45,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Devendra Sai Mupparaju | Full Stack Engineer & AI Researcher",
+    title: "Devendra Sai Mupparaju | Software & AI Engineer",
     description:
-      "MSCS Graduate from Iowa State. Building production full-stack platforms and researching training-free LLM steering techniques.",
+      "Founding engineer at VelocitiPM. Previously generative AI at ServiceNow and data pipelines at Cognizant. MS in Computer Science, Iowa State.",
     images: ["/images/profile-og.jpg"],
   },
   manifest: "/manifest.json",

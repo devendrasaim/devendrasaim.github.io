@@ -1,8 +1,9 @@
 {
   "meta": {
-    "version": "1.0",
-    "last_updated": "2026-09-28",
-    "description": "Single source of truth for Devendra Sai Mupparaju. Load into any AI model via system prompt or server action. Keep phone/email in .env for production use."
+    "version": "2.0",
+    "last_updated": "2026-10-22",
+    "description": "Single source of truth for Devendra Sai Mupparaju. Load into any AI model via system prompt or server action. Keep phone/email in .env for production use.",
+    "changelog": "v2.0: cloned from v1.0 profile; added ServiceNow (Co-op) and Cognizant work experience and updated the VelocitiPM title from 'Devendra_Sai_Mupparaju_Resume.pdf'; added ServiceNow and data skills."
   },
   "personal": {
     "full_name": "Devendra Sai Mupparaju",
@@ -75,7 +76,7 @@
   ],
   "work_experience": [
     {
-      "title": "Software Engineer",
+      "title": "Founding Software and AI Engineer",
       "company": "VelocitiPM",
       "location": "Remote",
       "type": "Full-time",
@@ -129,6 +130,85 @@
         "Docker",
         "Docker Compose",
         "Git"
+      ],
+      "resume_highlights": [
+        "Built the sprint planning board in React and TypeScript, with drag-and-drop between sprints and backlog, completion views, and bulk edits across tasks.",
+        "Built the Velo AI interface that drafts tickets and user stories, with a review step so users can edit every draft before it is saved.",
+        "Fed product design context into the Python AI service and standardized how that context is prepared across model providers, so generated tickets line up with the actual design.",
+        "Turned detailed Figma mockups into production screens, including searchable, filterable side panels for linking related work items.",
+        "Wrote automated tests with each feature change to catch regressions, and used Claude to plan, implement, and review code."
+      ]
+    },
+    {
+      "title": "AI Implementation Engineer (Co-op)",
+      "company": "ServiceNow",
+      "location": "",
+      "type": "Co-op",
+      "start": "May 2024",
+      "end": "April 2025",
+      "current": false,
+      "stack_owned": "ServiceNow platform AI: Now Assist, Generative AI Controller (Vertex AI), Flow Designer, server-side JavaScript, Knowledge Management, plus Python for validation scripts and API tests.",
+      "description": "Rolled out generative AI incident summarization for service-desk teams on the ServiceNow platform. Configured Now Assist for incident summaries, resolution notes and knowledge-article drafts; built the Flow Designer actions and JavaScript scripts that fed incident data to the AI service and routed drafts to agents for review; worked on the Vertex AI integration through the Generative AI Controller; and backed it with Python validation scripts, API tests, role-based access and article approval workflows.",
+      "simple_summary": "At ServiceNow I was an AI Implementation Engineer co-op, adding AI features that help IT service-desk teams handle tickets faster. I set up the AI assistant to summarize incidents and write first drafts of resolution notes and help articles, built the automated workflows that send ticket details to the AI and hand its draft to a person for review, and wrote tests to make sure the AI's output matched the original tickets.",
+      "simple_highlights": [
+        "Set up AI that summarizes support tickets and drafts resolution notes and help articles, cutting manual write-up work.",
+        "Built automated workflows that send ticket details to the AI and pass its draft to an agent for review.",
+        "Worked on connecting Google's Vertex AI to the platform and tuned prompts so answers were clearer and more consistent.",
+        "Wrote tests that flagged missing information and checked AI output against the original ticket.",
+        "Set up who can see and approve articles, fixed issues found in user testing, and documented deployment."
+      ],
+      "highlights": [
+        "Configured Now Assist to summarize incidents and draft resolution notes and knowledge articles, reducing manual write-up work for service desk agents.",
+        "Built Flow Designer actions and JavaScript scripts that gathered incident details, called the AI service, and routed drafts to agents for review.",
+        "Worked on the Vertex AI integration through the Generative AI Controller, tuning prompts and input fields to make responses clearer and more consistent.",
+        "Wrote Python validation scripts and API tests that flagged missing inputs and checked AI output against the source incident record.",
+        "Set up role-based access and knowledge article approval workflows, fixed defects found in user acceptance testing, and documented the deployment process."
+      ],
+      "tech": [
+        "ServiceNow",
+        "Now Assist",
+        "Generative AI Controller",
+        "Vertex AI",
+        "Flow Designer",
+        "Knowledge Management",
+        "JavaScript",
+        "Python",
+        "API Testing",
+        "Prompt Engineering"
+      ]
+    },
+    {
+      "title": "AI and Software Engineer",
+      "company": "Cognizant",
+      "location": "",
+      "type": "",
+      "start": "February 2022",
+      "end": "July 2023",
+      "current": false,
+      "stack_owned": "Python and SQL data pipelines, Pandas and NumPy preprocessing and feature building, automated data validation, and document extraction for analytics and ML workloads.",
+      "description": "Built the data layer that analytics and machine learning work depended on: reusable Python and SQL pipelines that turned raw enterprise data into structured datasets, Pandas/NumPy cleaning and feature building for model evaluation, automated validation that caught bad records before they reached downstream systems, and document extraction workflows that turned unstructured enterprise content into usable inputs.",
+      "simple_summary": "At Cognizant I worked as an AI and Software Engineer on the data side of AI projects. I built reusable pipelines that took messy company data and turned it into clean, organized datasets that analysts and machine learning models could use, added automatic checks that caught bad records early, and built tools that pulled useful content out of unstructured documents.",
+      "simple_highlights": [
+        "Built reusable data pipelines that turned raw company data into clean datasets for analytics and machine learning.",
+        "Cleaned and prepared data by fixing missing values, removing duplicates, and building features for model evaluation.",
+        "Added automatic checks that caught inconsistent or unusual records before they reached other systems.",
+        "Built workflows that turned unstructured documents into usable inputs for analysis."
+      ],
+      "highlights": [
+        "Built reusable Python and SQL pipelines that turned raw enterprise data into structured datasets for analytics and machine learning.",
+        "Cleaned and prepared data with Pandas and NumPy, handling missing values, removing duplicates, and building features for model evaluation.",
+        "Added automated validation checks that caught inconsistent and anomalous records before they reached downstream systems.",
+        "Built document extraction workflows that converted unstructured enterprise content into usable inputs for analysis."
+      ],
+      "tech": [
+        "Python",
+        "SQL",
+        "Pandas",
+        "NumPy",
+        "Data Pipelines",
+        "Data Validation",
+        "Document Extraction",
+        "Feature Engineering"
       ]
     }
   ],
@@ -306,9 +386,103 @@
       "Model Context Protocol (MCP)",
       "Agent Skill Authoring (SKILL.md)",
       "OAuth 2.0 Flow Implementation"
+    ],
+    "servicenow": [
+      "Now Assist",
+      "Generative AI Controller",
+      "Flow Designer",
+      "Knowledge Management",
+      "Role-Based Access Control",
+      "Server-side JavaScript scripting",
+      "User acceptance testing"
+    ],
+    "data": [
+      "Pandas",
+      "NumPy",
+      "Pydantic",
+      "ETL / data pipelines",
+      "Data validation",
+      "Document extraction and preprocessing"
     ]
   },
   "projects": [
+    {
+      "name": "Resume Desk: AI Resume Tailoring Agent",
+      "source": "Personal project, built for his own job search (the Resume Crafting folder)",
+      "status": "Local desktop app in daily use; not on GitHub",
+      "started": "October 2026",
+      "description": "A local app that turns a job post into a tailored, one-page resume. Python checks the post first (work authorization, duplicates, skills matched and missing), then a LangGraph agent picks bullets from a bank of pre-written, fact-checked sentences, and the app stops twice for his approval before it builds the PDF. Every LLM output passes deterministic checks for invented facts, AI-sounding wording, and company-internal jargon. Every resume is logged to his Obsidian job tracker, a side panel answers application-form questions from the chosen resume, and a slide-out panel traces the tokens, cost, and latency of every model call.",
+      "contribution_scope": "He designed the workflow, the rules, and the checks, and reviewed and tested every change. Much of the code was written with Claude Code as an AI pair programmer, which is how he normally works.",
+      "components": {
+        "triage": "Rule-based Python read of a job post: flags citizenship or clearance requirements, no-sponsorship language, and contract or 1099 roles; checks the tracker for duplicates; matches skills against an 82-entry skill dictionary; reads pay, years asked, and role family.",
+        "bullet_bank": "41 pre-written, humanized resume bullets plus summaries and skill sets, grouped by role family (AI Builder, AI Engineer, Software / Full-stack). New text from each build is saved automatically, with an 80% similarity filter against duplicates and a backup before every save.",
+        "evidence_check": "Grades each keyword from the job post as proven by a bullet, only listed in skills, missing, or a gap he doesn't have, and writes an HTML evidence map with the proving phrase underlined.",
+        "pdf_builder": "Fills an HTML template and prints it with headless Edge, trying spacing levels until the resume fills exactly one page, after a style check for em-dashes, buzzwords, and repeated opening verbs.",
+        "agent": "LangGraph graph with two human-in-the-loop pauses (go or skip after the fit read; vote, edit, or swap bullets before the build), Pydantic structured outputs, up to three validated retries with a fallback to the engine's own picks, and a trim loop when the page runs long.",
+        "grounding_check": "Rejects LLM-written text that contains a number not found in his profile or names a skill he doesn't have.",
+        "feedback_loop": "Votes, edits, swaps, and interview outcomes re-rank bullets for each role family, and recent edits are fed to the model as style examples. Feedback is exported as prompt / chosen / rejected pairs for possible future preference training (no model training yet).",
+        "model_switching": "Each step can run on a different model from Anthropic (Claude), Google (Gemini), or OpenAI (GPT) through LangChain, set in one config file or per run, with per-step reasoning effort, an automatic retry that drops a setting a model rejects (temperature or effort), and an offline fake model for tests.",
+        "desktop_app": "FastAPI backend with a plain HTML, CSS, and JavaScript front end, opened in its own window with pywebview from a desktop shortcut. Includes a resizable side panel that answers application questions using his Application Form Filler skill, the chosen resume, and that job's post.",
+        "humanizer_engine": "Deterministic Python cleaner built from his humanizer skill: turns em and en dashes, curly quotes, arrows, and markdown into plain punctuation, and flags AI wording (buzzwords, not-X-but-Y contrasts, tacked-on -ing phrases, chatbot phrases). Flagged text gets one targeted LLM retry, and the build refuses a resume that still fails. Also used to clean the whole bullet bank.",
+        "jargon_check": "Flags company-internal product names from his current job (for example the assistant's internal name) so every bullet describes what a feature does for users in words a recruiter outside the company understands.",
+        "rephrase_engine": "One-click LLM rephrase during review, fenced by checks: the rewrite must keep every keyword the line proved (same patterns as the evidence check), keep every number, pass the grounding check and the humanizer rules, and fit two lines, or the original stays.",
+        "voice_profile": "His resume voice, distilled from his 10 most recent hand-tuned resumes (action verb, then a 'so' outcome, real engineering detail, exact numbers), is injected into every prompt that writes resume text.",
+        "usage_tracing": "Logs every real model call's input, cached, output, and thinking tokens, latency, and cost from a per-model price table, against a monthly budget, prepaid credits, and OpenAI's daily free-token tier. Shown in a slide-out panel with per-step and per-model breakdowns and a toast for each new call.",
+        "langsmith_tracing": "LangSmith tracing turns on when a key is present: one trace per job, grouped by thread, with every LLM call named and tagged by step and model. Prompts, answers, and run errors are scrubbed before upload; testing against a local stand-in server found that LangGraph's pause records carried the whole review screen, which is now reduced to the exception type.",
+        "prompt_caching": "The application-question panel sends its fixed context (skill rules, resume, profile facts, job post) as a cached prefix; a live test read 8,403 of 8,453 input tokens from cache on the second question."
+      },
+      "engineering_notes": [
+        "Every LLM step is followed by a Python check, so the model never has the last word on what goes on the resume",
+        "Found and fixed a retry bug where the agent re-checked a failed attempt's output instead of the clean starter order",
+        "Found that test runs were leaking invented text into the real bullet bank; offline test runs now never write to it",
+        "Fixed a desktop window that opened taller than a 125%-scaled laptop screen by sizing it to the screen",
+        "Fixed a Windows console crash on emoji from the tracker by forcing UTF-8 output",
+        "Fixed a crash where newer Claude models rejected the temperature setting, by skipping it for those models and retrying without any setting a provider rejects",
+        "Found that LangGraph pause events leaked resume text into LangSmith through the error field, and added a scrubber that sends only the exception type",
+        "Capped the CLI's final trace upload at 10 seconds after a broken tracing endpoint made it hang on exit",
+        "Caught two plain-language rewrites that silently dropped keyword evidence (LLM, AI agent, real-time) by diffing matched keywords before and after"
+      ],
+      "metrics": {
+        "python_modules": 19,
+        "skill_dictionary_entries": 82,
+        "bank_bullets": 41,
+        "tailored_resumes_first_two_days": 7,
+        "model_providers": 3
+      },
+      "tech": [
+        "Python",
+        "LangGraph",
+        "LangChain",
+        "Pydantic",
+        "Anthropic Claude API",
+        "Google Gemini API",
+        "LangSmith",
+        "OpenAI API",
+        "FastAPI",
+        "Uvicorn",
+        "pywebview (Edge WebView2)",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "pypdf",
+        "Headless Microsoft Edge",
+        "Obsidian (Markdown vault)",
+        "Claude Code"
+      ],
+      "highlights": [
+        "LangGraph agent that tailors a resume to a job post and stops twice for human approval before anything is built",
+        "Python checks after every LLM step: valid bullet ids, house style rules, and a grounding check against invented numbers or skills",
+        "Keyword-to-evidence check that shows which bullet proves each skill the job post asks for",
+        "Bullet bank that learns from every build, with duplicate detection and suggestions by role family",
+        "Human feedback loop: votes, edits, swaps, and interview outcomes re-rank bullets; data saved in DPO format",
+        "Packaged as a local desktop app with a resizable side panel that answers application-form questions",
+        "Per-step model switching across Claude, Gemini, and OpenAI, with reasoning effort per step and an offline fake model for testing",
+        "Humanizer engine and internal-jargon check that keep every bullet and form answer in plain, recruiter-readable language",
+        "Guarded LLM rephrase that must keep every keyword, number, and fact the original line had",
+        "Token, cost, and latency tracing for every model call, in a slide-out panel and in LangSmith with private data scrubbed",
+        "Produced 7 tailored, one-page resumes in its first two days"
+      ]
+    },
     {
       "name": "Autonomous Job Application Agent System",
       "status": "Local — not yet on GitHub",
@@ -768,17 +942,44 @@
     ]
   },
   "career_narrative": {
-    "identity": "AI Application Builder — bridges LLM research depth with full-stack shipping ability",
-    "thirty_second_pitch": "I'm an AI engineer who just graduated from Iowa State with a Master's in CS where I did research on activation steering for LLMs — a technique that improves code generation accuracy without any retraining. I reduced invalid code generation to zero on CodeLlama-7B. Outside of research I've shipped full-stack AI products: an autonomous Instagram content pipeline, a browser automation agent using Gemini Vision and Playwright, and a Reddit game with 3,000 concurrent users. Most recently I built a 5-agent system that automates my own job search end-to-end. I'm best at wiring AI capabilities into things that actually run in production.",
-    "key_differentiators": [
-      "LLM internals knowledge (PyTorch hooks, residual streams, activation space) — rare at new grad level",
-      "Full-stack shipping ability — research + production apps",
-      "Agentic pipeline design (5-agent job system, autonomous content pipeline)",
-      "3,000+ concurrent users on an independent project (Bounce Streak)",
-      "Hands-on activation-steering work: applied a published technique and tuned the steering strength to cut invalid LLM code output to near zero on the benchmark, model-behavior tuning that is uncommon at new-grad level"
+    "identity": "Software and AI engineer who ships AI features in real products, along with the clean data going in and the human review step coming out.",
+    "story_arc": [
+      {
+        "period": "2022-2023",
+        "chapter": "Data foundations",
+        "where": "Cognizant",
+        "what": "Python and SQL pipelines, Pandas/NumPy preprocessing, and validation checks that analytics and ML work ran on."
+      },
+      {
+        "period": "2024-2025",
+        "chapter": "Enterprise generative AI",
+        "where": "ServiceNow (Co-op)",
+        "what": "Now Assist incident summaries and knowledge drafts, Flow Designer automation, Vertex AI through the Generative AI Controller, and Python checks against source records."
+      },
+      {
+        "period": "2025",
+        "chapter": "Model behavior research",
+        "where": "Iowa State University",
+        "what": "Activation steering in PyTorch: CodeLlama-7B HumanEval 48.12% to 56.25% and invalid output 4.38% to zero, without retraining."
+      },
+      {
+        "period": "2026-present",
+        "chapter": "AI product engineering",
+        "where": "VelocitiPM (founding engineer)",
+        "what": "React and TypeScript front end and the Python AI service behind ticket and user story generation, with a review step before anything is saved."
+      }
     ],
-    "strongest_project_for_interviews": "Autonomous Job Application Agent System (5-agent pipeline)",
-    "strongest_research_for_interviews": "Activation Steering — CodeLlama 48.12% → 56.25%, invalid 4.38% → 0%"
+    "thirty_second_pitch": "I'm a software and AI engineer with about three years of experience shipping AI features in real products. I'm a founding engineer at VelocitiPM, where I build the React and TypeScript front end and the Python service behind its AI ticket generation. Before that I rolled out generative AI incident summarization at ServiceNow as a co-op, and at Cognizant I built the Python and SQL pipelines that analytics and machine learning work ran on. In my master's research at Iowa State I used activation steering to raise CodeLlama-7B's HumanEval accuracy by 8 points without retraining. In every one of those jobs, the AI part only worked as well as the data going into it and the review step after it, so that's what I build for.",
+    "key_differentiators": [
+      "AI features shipped at three companies: an early-stage SaaS product, an enterprise platform, and an IT services firm",
+      "Works across the stack: React and TypeScript front end, Python AI services, Supabase and PostgreSQL",
+      "Enterprise generative AI on ServiceNow: Now Assist, Generative AI Controller, Vertex AI, Flow Designer",
+      "Data engineering grounding from Cognizant: Python and SQL pipelines, Pandas and NumPy, automated validation",
+      "LLM internals from research: PyTorch forward hooks and activation steering, +8.13pp on CodeLlama-7B HumanEval",
+      "Builds human review into AI workflows: agents review ServiceNow drafts, VelocitiPM users edit every AI draft before saving"
+    ],
+    "strongest_project_for_interviews": "Velo AI ticket and user story generation at VelocitiPM, plus the Resume Desk LangGraph agent",
+    "strongest_research_for_interviews": "Activation Steering: CodeLlama-7B 48.12% to 56.25%, invalid output 4.38% to 0%"
   },
   "standard_form_answers": {
     "gender": "Male",
@@ -792,5 +993,7 @@
     "how_did_you_hear": "LinkedIn",
     "cover_letter_available": true,
     "references_available": true
-  }
+  },
+  "summary": "Software engineer with about three years of experience shipping AI features in real products, from enterprise service desks to an early-stage SaaS app. Founding engineer at VelocitiPM, building the React and TypeScript front end and the Python service behind its AI ticket generation. Rolled out generative AI incident summarization at ServiceNow, and in graduate research raised CodeLlama-7B's HumanEval accuracy by 8 points with activation steering, without retraining.",
+  "headline": "Software Engineer | AI and Full-Stack Development"
 }

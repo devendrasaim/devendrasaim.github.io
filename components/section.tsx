@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
+import { useScrollFocus } from "@/components/use-scroll-focus";
 
 /**
  * One rhythm for every section on the page: same vertical scale, same container
@@ -61,16 +62,20 @@ export function SectionHeading({
   meta,
   className = "",
 }: SectionHeadingProps) {
+  const [ref, inFocus] = useScrollFocus<HTMLDivElement>();
+
   return (
     <motion.div
+      ref={ref}
+      data-focus={inFocus}
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.6 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className={`mb-12 md:mb-16 ${className}`}
+      className={`glow-scope mb-12 md:mb-16 ${className}`}
     >
       <div className="flex items-baseline justify-between gap-6">
-        <h2 className="font-mono text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+        <h2 className="glow-neon font-mono text-2xl md:text-3xl font-bold tracking-tight text-foreground">
           {title}
         </h2>
         {meta && (
@@ -79,6 +84,16 @@ export function SectionHeading({
           </span>
         )}
       </div>
+      {/* Accent rule that draws itself in once, marking where a new chapter
+          of the page starts. */}
+      <motion.div
+        aria-hidden="true"
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        className="glow-mark mt-4 h-px w-14 origin-left bg-cyan/70"
+      />
       {lede && (
         <p className="mt-4 max-w-[60ch] font-sans text-base leading-relaxed text-muted-foreground">
           {lede}

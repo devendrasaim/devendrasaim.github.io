@@ -162,7 +162,15 @@ export function ProjectsSection() {
                   <span className="font-mono text-[11px] font-bold uppercase tracking-[0.28em] text-muted-foreground">
                     {label}
                   </span>
-                  <div className="h-px flex-1 bg-border" />
+                  {/* The rule draws out from the label, so each category reads
+                      as a new chapter rather than a static divider. */}
+                  <motion.div
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                    className="h-px flex-1 origin-left bg-gradient-to-r from-cyan/50 via-border to-border"
+                  />
                 </motion.div>
 
                 {/* Projects under this category */}
