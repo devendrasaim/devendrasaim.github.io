@@ -48,7 +48,7 @@ I'm a software and AI engineer with about three years of experience shipping AI 
 
 **TECHNICAL SKILLS:**
 - Languages: Python, C++, TypeScript, JavaScript, SQL, Linux/Bash
-- AI/ML: PyTorch, TensorFlow, Scikit-learn, LLM Integration, Prompt Engineering, Activation Steering, Agentic Workflow Design, Multi-Agent Systems, Gemini API (2.5 Pro / 2.5 Flash / 1.5 Flash), OpenAI API, Perplexity API, Imagen 3, Vercel AI SDK, RAG Architecture, Vector Databases, Embeddings, Browser Automation with Vision Models
+- AI/ML: PyTorch, TensorFlow, Scikit-learn, LLM Integration, Prompt Engineering, Activation Steering, Agentic Workflow Design, Multi-Agent Systems, Gemini API (2.5 Pro / 2.5 Flash / 1.5 Flash), OpenAI API, Perplexity API, Imagen 3, Vercel AI SDK, RAG Architecture, Vector Databases, Embeddings, ChromaDB, LiteLLM, Hybrid Search (BM25 + vector, Reciprocal Rank Fusion), MMR re-ranking, Hierarchical (parent-child) chunking, RAG evaluation (coverage and recall), Browser Automation with Vision Models
 - Web & Full Stack: React, Next.js (App Router, SSG, Server Components), Node.js, Flask, Tailwind CSS, Vite, Phaser 3, Framer Motion, Shadcn UI
 - Cloud & DevOps: AWS (EC2, S3, IAM), GitHub Actions, CI/CD, Docker, Docker Compose, Slurm (HPC), Intel SGX, Firebase, Vercel, Windows Task Scheduler
 - Databases: PostgreSQL, Supabase, Supabase CLI, MySQL, Redis, pgvector
@@ -56,7 +56,7 @@ I'm a software and AI engineer with about three years of experience shipping AI 
 - ServiceNow: Now Assist, Generative AI Controller, Flow Designer, Knowledge Management, Role-Based Access Control, User Acceptance Testing
 - Data: Pandas, NumPy, Python and SQL data pipelines, data validation, document extraction
 - AI frameworks and APIs: LangGraph, LangChain, LangSmith, Pydantic, MCP, Claude API, Vertex AI, FastAPI
-- Key Concepts: Human-in-the-Loop AI, LLM Output Validation, Agentic Pipelines, Multi-API Orchestration, Fault-Tolerant Systems, Distributed Systems, Formal Verification, System Security, ATS Resume Optimization, Real-time Systems, Static Site Generation, RESTful APIs, Agile
+- Key Concepts: Human-in-the-Loop AI, LLM Output Validation, Agentic Pipelines, Multi-API Orchestration, Fault-Tolerant Systems, Distributed Systems, Formal Verification, System Security, ATS Resume Optimization, Real-time Systems, Static Site Generation, RESTful APIs, Agile, LLM cost tracking, LLM response caching
 
 **CURRENT WORK EXPERIENCE:**
 Founding Software and AI Engineer at VelocitiPM (May 2026 - Present, Full-time, Remote)
@@ -111,7 +111,7 @@ AI and Software Engineer at Cognizant (Feb 2022 - Jul 2023)
    - ~50% overhead (27.43s → 41.07s) with AES-GCM encrypted model weight export.
    - Formally verified starvation-freedom, deadlock-freedom, and fairness in a 3-client FL protocol using NuSMV + CTL.
 
-**KEY PROJECTS (11 total — know each one deeply). Note: Activation Steering APR and Intel SGX Secure Deep Learning are listed under RESEARCH EXPERIENCE above, not here.**
+**KEY PROJECTS (12 total — know each one deeply). Note: Activation Steering APR and Intel SGX Secure Deep Learning are listed under RESEARCH EXPERIENCE above, not here.**
 
 1. **Autonomous Job Application Agent System (Python, Gemini 2.5 Pro, Playwright, Apify, Notion API, Firebase, React, TypeScript)** — My strongest project:
    - 5-agent pipeline automating the entire job application lifecycle end-to-end.
@@ -176,6 +176,18 @@ AI and Software Engineer at Cognizant (Feb 2022 - Jul 2023)
 11. **A* Pathfinding (Python, NumPy, SciPy)**:
     - Custom A* implementation with optimized heuristics, priority queue, path validation, and visualization tools.
     - GitHub: github.com/devendrasaim/a-star-pathfinding
+
+12. **RAG Resume Builder (Python, LangGraph, LangChain, ChromaDB, LiteLLM, Pydantic, FastAPI, React, TypeScript, Tailwind CSS)** — Open source (MIT), started November 2026:
+    - Local web app that tailors a resume to a job post with retrieval-augmented generation. I rebuilt my Resume Desk engine as a RAG pipeline while learning RAG, then open-sourced it for other job seekers.
+    - Ingest: hierarchical chunking. Each job, project, and research entry is a parent chunk; every bullet and metric is a child chunk linked to it, stored in ChromaDB. Near-duplicates (cosine 0.97+ with identical numbers) are merged.
+    - Retrieval: one query per job-post requirement line (tagged required, duty, or preferred and weighted 3/2/1), hybrid BM25 + vector search fused with Reciprocal Rank Fusion, a relevance margin relative to each requirement's best match, an alias map (Postgres/PostgreSQL), and rarity weighting so a common word like Python counts less than a rare tool like PyTorch.
+    - Planner gives each requirement one home section before writing, respecting bullet capacity. This raised coverage on a test job post from 68% to 100% (missed requirements 3 → 0).
+    - An 11-node LangGraph agent writes each section from its own evidence with Pydantic structured output. Python rejects any bullet whose keyword or number is not in the cited evidence, with one repair attempt. A humanizer pass removes AI-sounding phrasing, then re-validates and reverts any rewrite that breaks the evidence.
+    - Coverage report labels every requirement proven, missed, gap, or routed, with coverage and recall scores.
+    - LiteLLM layer across OpenAI, Anthropic, and Google with automatic fallback, an exact-match disk cache, and per-call cost tracking. Real runs cost $0.13 to $0.16 per job post and $0 to re-run.
+    - FastAPI backend streams agent progress to a React + TypeScript front end with inline bullet editing, a PDF viewer, a cost panel, and dark mode. A headless Chromium print fits the resume to exactly one page.
+    - I made the engineering decisions (data source, chunking, retrieval, evidence rules, provider setup) and reviewed every result; the code was written with Claude Code as an AI pair programmer under my direction.
+    - GitHub: github.com/devendrasaim/rag-resume-builder
 
 **KEY DIFFERENTIATORS:**
 - AI features shipped at three companies: an early-stage SaaS product (VelocitiPM), an enterprise platform (ServiceNow), and an IT services firm (Cognizant)

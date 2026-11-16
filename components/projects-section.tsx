@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { Section, SectionHeading } from "@/components/section";
 import { ProjectModule } from "@/components/project-module";
-import { PixelCompanion } from "@/components/pixel-companion";
 
 const CATEGORIES = [
   { key: "web",      label: "WEB APPLICATIONS" },
@@ -26,6 +25,24 @@ const projects = [
     link: "https://devendrasaim.github.io/GrocerySquare/",
     video: "/videos/grocery.mp4",
     poster: "/images/posters/grocery.webp",
+  },
+  {
+    moduleId: "rag-resume-builder",
+    category: "ai" as CategoryKey,
+    title: "RAG RESUME BUILDER",
+    tags: ["Python", "LangGraph", "ChromaDB", "LiteLLM", "FastAPI", "React", "TypeScript", "Pydantic"],
+    description:
+      "An open-source app that tailors a resume to a job post and checks every line against the user's own evidence. The resume is split into linked parent and child chunks in ChromaDB. Each requirement in the post gets its own hybrid search, with BM25 and vector rankings fused by Reciprocal Rank Fusion. A planner gives each requirement one home section before any writing, which raised coverage on a test post from 68% to 100%. A LangGraph agent writes the bullets, and Python rejects any line whose keyword or number is missing from its cited evidence. Calls go through LiteLLM with a disk cache and per-call cost tracking: $0.13 to $0.16 per job post, and nothing to re-run.",
+    viewportLabel: "App screenshots",
+    accentColor: "cyan" as const,
+    link: "https://github.com/devendrasaim/rag-resume-builder",
+    gallery: [
+      { src: "/images/rag-resume-builder/01-app-overview.webp", full: "/images/rag-resume-builder/full/01-app-overview.webp", alt: "RAG Resume Builder workspace with the evidence map beside the tailored one-page resume" },
+      { src: "/images/rag-resume-builder/02-pipeline-running.webp", full: "/images/rag-resume-builder/full/02-pipeline-running.webp", alt: "LangGraph agent run in progress with live node status and stdout log" },
+      { src: "/images/rag-resume-builder/03-pipeline-done.webp", full: "/images/rag-resume-builder/full/03-pipeline-done.webp", alt: "Completed agent graph showing the time spent on each node" },
+      { src: "/images/rag-resume-builder/04-evidence-map.webp", full: "/images/rag-resume-builder/full/04-evidence-map.webp", alt: "Evidence map labelling each job requirement proven, gap, or routed, with coverage and recall scores" },
+      { src: "/images/rag-resume-builder/05-cost-panel.webp", full: "/images/rag-resume-builder/full/05-cost-panel.webp", alt: "Cost panel showing spend per job post, per stage, and per LLM call, including cache savings" },
+    ],
   },
   {
     moduleId: "job-agent",
@@ -120,33 +137,14 @@ const projects = [
   },
 ];
 
-/* The header sprite is right-aligned to the container, and the first category
-   rule runs underneath it. These two must stay in step: RULE_INSET is the
-   sprite width plus a gap, so the rule stops short of the artwork instead of
-   slicing through it. */
-const SPRITE_WIDTH = "w-64 lg:w-[22rem] xl:w-[29rem]";
-const RULE_INSET = "md:pr-[17.5rem] lg:pr-[23.75rem] xl:pr-[31rem]";
-
 export function ProjectsSection() {
   return (
     <Section id="projects" width="wide">
-        {/* Sprite for the header band. The wrapper is zero-height so this adds
-            no layout: it hangs up into the section padding beside the title,
-            and the first category rule stops short of it. */}
-        <div className="relative h-0">
-          <PixelCompanion
-            src="/videos/projects-pixel-loop.mp4"
-            width={476}
-            height={288}
-            className={`absolute right-0 -top-16 hidden md:block lg:-top-20 xl:-top-24 ${SPRITE_WIDTH}`}
-          />
-        </div>
-
         <SectionHeading title="Projects" />
 
         {/* Grouped modules */}
         <div className="space-y-28 md:space-y-36">
-          {CATEGORIES.map(({ key, label }, categoryIndex) => {
+          {CATEGORIES.map(({ key, label }) => {
             const catProjects = projects.filter((p) => p.category === key);
             if (!catProjects.length) return null;
             return (
@@ -157,7 +155,7 @@ export function ProjectsSection() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5 }}
-                  className={`flex items-center gap-5 ${categoryIndex === 0 ? RULE_INSET : ""}`}
+                  className="flex items-center gap-5"
                 >
                   <span className="font-mono text-[11px] font-bold uppercase tracking-[0.28em] text-muted-foreground">
                     {label}

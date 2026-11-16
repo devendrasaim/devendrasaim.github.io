@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   motion,
   useMotionValue,
@@ -15,8 +15,19 @@ import {
  * they sit outside the document flow and never intercept interaction.
  */
 
-/* Wide enough to read as room lighting rather than a flashlight dot. */
-const LIGHT_SIZE = 680;
+/* A focused spotlight rather than room lighting: small enough that the text
+   glow inside it reads as "under the cursor". */
+const LIGHT_SIZE = 170;
+
+/* The visible edge of the light. Both the light and the text glow fade out by
+   this point, so the glowing text covers exactly the lit area. */
+const SPOT_MASK =
+  "radial-gradient(circle closest-side, #000 0%, #000 42%, rgba(0,0,0,0.5) 60%, transparent 76%)";
+
+/* Glowing text that the scroll focus has already lit white. Under the cursor
+   it turns neon instead of staying white. */
+const FOCUSED_TEXT =
+  '.glow-scope[data-focus="true"] .glow-white, .glow-scope[data-focus="true"] .glow-neon';
 
 function CursorLight() {
   const reduce = useReducedMotion();
@@ -32,6 +43,8 @@ function CursorLight() {
   const springX = useSpring(x, { stiffness: 110, damping: 24, mass: 0.7 });
   const springY = useSpring(y, { stiffness: 110, damping: 24, mass: 0.7 });
   const springLit = useSpring(lit, { stiffness: 70, damping: 20 });
+  /* 1 while the cursor sits on text the scroll focus has already lit white. */
+  const [onFocusedText, setOnFocusedText] = useState(false);
 
   useEffect(() => {
     if (reduce) return;
@@ -39,11 +52,31 @@ function CursorLight() {
        wherever the last tap landed just looks broken. */
     if (!window.matchMedia("(pointer: fine)").matches) return;
 
-    const onMove = (event: PointerEvent) => {
-      x.set(event.clientX - LIGHT_SIZE / 2);
-      y.set(event.clientY - LIGHT_SIZE / 2);
-      lit.set(1);
+    let px = -1;
+    let py = -1;
+    let frame = 0;
+    /* What is under the cursor changes on pointer moves and on scroll (the
+       page slides under a still cursor, and focus moves with it). Checked at
+       most once per frame. */
+    const check = () => {
+      frame = 0;
+      if (px < 0) return;
+      const el = document.elementFromPoint(px, py);
+      setOnFocusedText(!!el?.closest(FOCUSED_TEXT));
     };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(check);
+    };
+
+    const onMove = (event: PointerEvent) => {
+      px = event.clientX;
+      py = event.clientY;
+      x.set(px - LIGHT_SIZE / 2);
+      y.set(py - LIGHT_SIZE / 2);
+      lit.set(1);
+      schedule();
+    };
+    window.addEventListener("scroll", schedule, { passive: true });
     /* Fade out only when the pointer actually leaves the window, so the light
        does not hang at the edge. Deliberately not tied to window blur: focus
        moves for all sorts of reasons the mouse knows nothing about (clicking
@@ -55,6 +88,8 @@ function CursorLight() {
     document.documentElement.addEventListener("pointerleave", onLeave);
 
     return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
       window.removeEventListener("pointermove", onMove);
       document.documentElement.removeEventListener("pointerleave", onLeave);
     };
@@ -62,7 +97,45 @@ function CursorLight() {
 
   if (reduce) return null;
 
+  const spotBase = {
+    x: springX,
+    y: springY,
+    width: LIGHT_SIZE,
+    height: LIGHT_SIZE,
+    willChange: "transform",
+    maskImage: SPOT_MASK,
+    WebkitMaskImage: SPOT_MASK,
+  } as const;
+
   return (
+    <>
+    {/* Text glow, white: brightens whatever is under the light, so dim grey
+        text inside the circle reads as lit white and the rest of the line
+        stays as it was. The page background is near black, so it barely
+        moves. Sits above content, below the grain and overlays. */}
+    <motion.div
+      aria-hidden="true"
+      className="pointer-events-none fixed left-0 top-0 z-[55] hidden transition-opacity duration-200 [@media(pointer:fine)]:block"
+      style={{
+        ...spotBase,
+        opacity: onFocusedText ? 0 : springLit,
+        backdropFilter: "brightness(1.75)",
+        WebkitBackdropFilter: "brightness(1.75)",
+      }}
+    />
+    {/* Text glow, neon: on text the scroll focus already lit white, multiply
+        by the accent so the white inside the circle turns cyan. Black stays
+        black under multiply, so only the text picks up the colour. */}
+    <motion.div
+      aria-hidden="true"
+      className="pointer-events-none fixed left-0 top-0 z-[55] hidden transition-opacity duration-200 [@media(pointer:fine)]:block"
+      style={{
+        ...spotBase,
+        opacity: onFocusedText ? springLit : 0,
+        background: "hsl(var(--cyan))",
+        mixBlendMode: "multiply",
+      }}
+    />
     <motion.div
       aria-hidden="true"
       className="pointer-events-none fixed left-0 top-0 z-0 hidden rounded-full [@media(pointer:fine)]:block"
@@ -84,6 +157,7 @@ function CursorLight() {
           " transparent 76%)",
       }}
     />
+    </>
   );
 }
 

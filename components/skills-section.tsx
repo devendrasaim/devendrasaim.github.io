@@ -21,7 +21,8 @@ const skillCategories = [
     name: "AI & LLM Engineering",
     items: [
       "PyTorch", "LangGraph", "LangChain", "LangSmith", "Pydantic",
-      "RAG", "Embeddings", "Multi-Agent Systems", "MCP",
+      "RAG", "Embeddings", "ChromaDB", "Hybrid Search (BM25 + Vector)", "LiteLLM",
+      "Multi-Agent Systems", "MCP",
       "Prompt Engineering", "Prompt Caching", "Activation Steering",
       "Claude API", "OpenAI API", "Gemini API", "Vertex AI", "Vercel AI SDK",
     ],

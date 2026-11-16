@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Crosshair } from "@/components/crosshair";
 import { NEON_BUTTON } from "@/components/neon-chips";
+import { chipFeedback } from "@/lib/chip-feedback";
 
 type AccentColor = "amber" | "cyan" | "green" | "rose";
 
@@ -58,6 +59,7 @@ export function ResearchViewport({ viewportLabel, pdfUrl, title, link, accentCol
         <div className="mt-3">
           <a
             href={link}
+            onPointerEnter={(e) => chipFeedback(e.pointerType)}
             target="_blank"
             rel="noopener noreferrer"
             className={`group relative inline-flex items-center gap-2 border border-foreground/50 px-4 py-2 font-mono text-xs tracking-[0.15em] text-foreground transition-all duration-200 ${NEON_BUTTON[accentColor]}`}

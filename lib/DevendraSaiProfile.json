@@ -1,9 +1,9 @@
 {
   "meta": {
     "version": "2.0",
-    "last_updated": "2026-10-22",
+    "last_updated": "2026-11-16",
     "description": "Single source of truth for Devendra Sai Mupparaju. Load into any AI model via system prompt or server action. Keep phone/email in .env for production use.",
-    "changelog": "v2.0: cloned from v1.0 profile; added ServiceNow (Co-op) and Cognizant work experience and updated the VelocitiPM title from 'Devendra_Sai_Mupparaju_Resume.pdf'; added ServiceNow and data skills."
+    "changelog": "v2.0: cloned from v1.0 profile; added ServiceNow (Co-op) and Cognizant work experience and updated the VelocitiPM title from 'Devendra_Sai_Mupparaju_Resume.pdf'; added ServiceNow and data skills. 2026-11-16: added the RAG Resume Builder project (open source, github.com/devendrasaim/rag-resume-builder) and the skills it used."
   },
   "personal": {
     "full_name": "Devendra Sai Mupparaju",
@@ -314,7 +314,15 @@
       "RAG Architecture",
       "Vector Databases",
       "Embeddings",
-      "Browser Automation with Vision Models"
+      "Browser Automation with Vision Models",
+      "LangGraph",
+      "LangChain",
+      "LiteLLM",
+      "ChromaDB",
+      "Hybrid Search (BM25 + vector, RRF)",
+      "MMR re-ranking",
+      "Hierarchical (parent-child) chunking",
+      "RAG evaluation (coverage and recall)"
     ],
     "ai_dev_tools": [
       "Cursor",
@@ -332,7 +340,8 @@
       "Vite",
       "Phaser 3",
       "Framer Motion",
-      "Shadcn UI"
+      "Shadcn UI",
+      "FastAPI"
     ],
     "cloud_devops": [
       "AWS (EC2, S3, IAM)",
@@ -385,7 +394,9 @@
       "Static Site Generation",
       "Model Context Protocol (MCP)",
       "Agent Skill Authoring (SKILL.md)",
-      "OAuth 2.0 Flow Implementation"
+      "OAuth 2.0 Flow Implementation",
+      "LLM cost tracking",
+      "LLM response caching"
     ],
     "servicenow": [
       "Now Assist",
@@ -818,6 +829,91 @@
         "Structured coaching report with 4 scored categories, corrections, strengths, and next steps",
         "In-browser voice input and AI voice output with no paid speech APIs",
         "Three-model fallback chain for API reliability"
+      ]
+    },
+    {
+      "name": "RAG Resume Builder",
+      "source": "Personal project. He rebuilt his Resume Desk engine as a RAG pipeline while learning retrieval-augmented generation, then turned it into an open-source tool for other job seekers",
+      "status": "Open source on GitHub (MIT license)",
+      "started": "November 2026",
+      "repo": "https://github.com/devendrasaim/rag-resume-builder",
+      "description": "An open-source local web app that tailors a resume to a job post with retrieval-augmented generation. The user uploads a resume once, as a PDF or a JSON profile, and the app chunks it into linked parent and child sections and embeds them in ChromaDB. For each job post it splits the post into requirement lines, retrieves evidence for every line with hybrid BM25 and vector search, and a LangGraph agent writes bullets only from that evidence. Python checks every keyword and number against the cited evidence before anything reaches the page, then the app prints a one-page PDF with an evidence map showing which requirement each bullet proves.",
+      "contribution_scope": "He made the engineering decisions at each step: the source data, the chunking strategy, the retrieval method, the evidence rules, the section order, and the provider setup. He reviewed every result. The code was written with Claude Code as an AI pair programmer, following his direction, which is how he normally works.",
+      "components": {
+        "ingest": "Structure-based, hierarchical chunking of the profile: each job, project, and research entry becomes a parent chunk, and every bullet, note, and metric becomes a child chunk linked to it. Near-duplicate chunks (cosine 0.97 or higher with identical numbers) are merged before storing in ChromaDB.",
+        "requirement_split": "Splits a job post into requirement lines tagged required, duty, or preferred (weighted 3, 2, 1), and drops boilerplate such as benefits, EEO text, and the company blurb.",
+        "retrieval": "Multi-query hybrid search: one query per requirement line, BM25 and vector rankings fused with Reciprocal Rank Fusion, and a relevance margin measured from each requirement's best match. A hand-written alias map expands searches (Postgres and PostgreSQL), and MMR re-ranking is available for exploring results.",
+        "specificity": "Weights each match by how rare the shared word is across the profile, so a common word like Python counts less than a rare tool like PyTorch. A chunk that names a rare tool from the requirement is admitted as evidence even when its meaning score is slightly lower.",
+        "planner": "Before any writing, gives each requirement one home section (a job, project, or research entry) with its strongest specific evidence, without assigning a section more requirements than it has bullet slots. Projects and research are then chosen by how many still-unproven requirements they cover.",
+        "writer_and_validator": "A LangGraph agent writes each section from its own evidence slate through a strict evidence prompt with Pydantic structured output. Python rejects any bullet whose keyword is not in the requirement, the bullet, and the cited evidence, or whose numbers are not in the evidence, then gives the model one repair attempt.",
+        "humanizer": "A rewrite pass removes AI-sounding phrasing, then every rewritten line is validated again; a rewrite that drops a keyword, changes a number, or repeats an opening verb is reverted to the draft.",
+        "coverage_report": "Labels every requirement proven, missed (evidence existed but no bullet used it), gap (nothing in the profile), or routed (education or soft skill), with weighted coverage and recall scores.",
+        "pdf_builder": "Renders the resume as HTML and prints it with a headless Chromium browser, stepping through spacing levels and trimming the least important bullet until it fits exactly one page.",
+        "llm_layer": "All model calls go through LiteLLM with an exact-match disk cache keyed by a hash of the model, messages, and output schema, and every call is priced and logged per stage and per job post.",
+        "source_upload": "Accepts a resume PDF, which one LLM call copies into a strict profile schema, or a JSON profile, which is normalized and validated. The app shows what was extracted so the user can download, correct, and re-upload it.",
+        "web_app": "FastAPI backend that streams LangGraph node progress, and a React, TypeScript, and Tailwind front end with inline bullet editing and style linting, an in-app PDF viewer, a cost panel, and a dark theme."
+      },
+      "engineering_notes": [
+        "Replaced a fixed distance cutoff that let almost every chunk match with a margin relative to each requirement's best match, because embedding distances sat in a narrow 0.23 to 0.40 band",
+        "Stopped the model from stuffing job-post phrases into bullets by requiring every claimed keyword to appear in the requirement, the bullet, and the cited evidence",
+        "Fixed a near-duplicate merge that combined two different model results (cosine 0.976) by also requiring identical numbers",
+        "Found that the word Python let unrelated projects qualify, and weighted matches by how rare the shared word is across the profile",
+        "Found that a meaning-only cutoff dropped the chunk that named PyTorch, and added lexical admission for rare tool names",
+        "Made the planner respect bullet capacity after it assigned six requirements to a job with two bullet slots",
+        "Added re-validation after the humanizer so a rewrite can never break the evidence a bullet stands on",
+        "Wrote an exact-match disk cache when LiteLLM dropped its disk backend, and chose not to use a semantic cache because it would return bullets written for a different job post",
+        "Built a coverage report first, then measured each retrieval change against it on the same job post",
+        "Moved the RAG pipeline out of the original engine into a separate app with its own PDF builder, so the two systems share no code"
+      ],
+      "metrics": {
+        "test_post_coverage_before_pct": 68,
+        "test_post_coverage_after_pct": 100,
+        "test_post_missed_requirements_before": 3,
+        "test_post_missed_requirements_after": 0,
+        "cost_per_job_post_usd_real_runs": [
+          0.127,
+          0.162
+        ],
+        "rerun_cost_usd": 0,
+        "agent_graph_nodes": 11,
+        "llm_providers_supported": 3
+      },
+      "tech": [
+        "Python",
+        "LangGraph",
+        "LangChain",
+        "ChromaDB",
+        "LiteLLM",
+        "OpenAI API",
+        "Anthropic Claude API",
+        "Google Gemini API",
+        "Gemini embeddings",
+        "Pydantic",
+        "FastAPI",
+        "Uvicorn",
+        "NumPy",
+        "diskcache",
+        "pypdf",
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Framer Motion",
+        "react-pdf (PDF.js)",
+        "Headless Chrome / Edge",
+        "Claude Code"
+      ],
+      "highlights": [
+        "Built an open-source RAG app that tailors a resume to any job post and checks every line against the user's own evidence",
+        "Hybrid retrieval over parent-child chunks in ChromaDB, with BM25 and vector search fused by Reciprocal Rank Fusion, one query per requirement line",
+        "Planner that gives each requirement one home section before writing, which raised coverage on a test job post from 68% to 100%",
+        "Python validator that rejects any bullet whose keyword or number is not in its cited evidence, with one repair attempt",
+        "Humanizer pass that rewrites AI-sounding phrasing, then re-validates and reverts any rewrite that breaks the evidence",
+        "Coverage report that labels every requirement proven, missed, gap, or routed, with coverage and recall scores",
+        "LiteLLM layer with an exact-match disk cache and per-call cost tracing; real runs cost $0.13 to $0.16 per job post and $0 to re-run",
+        "Resume upload as PDF or JSON, where one LLM call copies a PDF into a structured profile without inventing fields",
+        "React and FastAPI app with live agent progress, inline bullet editing, a PDF viewer, a cost panel, and dark mode",
+        "Routes calls across OpenAI, Anthropic, and Google with automatic fallback, so users need only one API key"
       ]
     }
   ],

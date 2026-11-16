@@ -8,6 +8,8 @@ import { JobAgentFlowchart } from "@/components/job-agent-flowchart";
 import { NEON_BUTTON } from "@/components/neon-chips";
 import { SlideChips } from "@/components/slide-chips";
 import { useScrollFocus } from "@/components/use-scroll-focus";
+import { ImageCarousel, type CarouselSlide } from "@/components/image-carousel";
+import { chipFeedback } from "@/lib/chip-feedback";
 
 interface ProjectModuleProps {
   moduleId: string;
@@ -29,6 +31,9 @@ interface ProjectModuleProps {
   poster?: string;
   pdfUrl?: string;
   flowchart?: "social" | "jobagent";
+  /** Screenshots shown as an auto-advancing slideshow in the viewport.
+      Each image should already be 16:10 so it fills the frame. */
+  gallery?: CarouselSlide[];
 }
 
 const colors = {
@@ -53,8 +58,9 @@ export function ProjectModule({
   poster,
   pdfUrl,
   flowchart,
+  gallery,
 }: ProjectModuleProps) {
-  const hasMedia = !!(image || video || pdfUrl || flowchart !== undefined);
+  const hasMedia = !!(gallery?.length || image || video || pdfUrl || flowchart !== undefined);
   const [isPdfHovered, setIsPdfHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [focusRef, inFocus] = useScrollFocus<HTMLDivElement>();
@@ -95,6 +101,7 @@ export function ProjectModule({
             {link && (
               <a
                 href={link}
+                onPointerEnter={(e) => chipFeedback(e.pointerType)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`group inline-flex items-center gap-2 border border-foreground/50 px-4 py-2.5 font-mono text-xs tracking-[0.12em] text-foreground transition-all duration-200 ${NEON_BUTTON[accentColor]}`}
@@ -121,6 +128,7 @@ export function ProjectModule({
             {liveLink && (
               <a
                 href={liveLink}
+                onPointerEnter={(e) => chipFeedback(e.pointerType)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`group inline-flex items-center gap-2 border border-foreground/50 px-4 py-2.5 font-mono text-xs tracking-[0.12em] text-foreground transition-all duration-200 ${NEON_BUTTON[accentColor]}`}
@@ -159,13 +167,15 @@ export function ProjectModule({
             <Crosshair position="top-left" />
             <Crosshair position="bottom-right" />
 
-            <div className="absolute left-8 top-3 z-10">
+            <div className="absolute left-8 top-3 z-30">
               <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-faint">
                 {viewportLabel ?? "Preview"}
               </span>
             </div>
 
-            {video ? (
+            {gallery?.length ? (
+              <ImageCarousel slides={gallery} />
+            ) : video ? (
               <>
                 {!imageLoaded && !poster && (
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 pointer-events-none">
